@@ -8,33 +8,33 @@
 
 #import "NSFetchRequest+DCTInitMethods.h"
 
-NSUInteger const DTBatchSizeNil = 0;
+NSUInteger const DCTFetchBatchSizeNil = 0;
 
 @implementation NSFetchRequest (DCTInitMethods)
 
-- (id)initWithEntity:(NSEntityDescription *)entity {
+- (id)dct_initWithEntity:(NSEntityDescription *)entity {
 	
-	return [self initWithEntity:entity predicate:nil sortDescriptors:nil batchSize:DTBatchSizeNil];
+	return [self dct_initWithEntity:entity predicate:nil sortDescriptors:nil batchSize:DCTFetchBatchSizeNil];
 }
 
-- (id)initWithEntity:(NSEntityDescription *)entity
-		   predicate:(NSPredicate *)predicate {
+- (id)dct_initWithEntity:(NSEntityDescription *)entity
+			   predicate:(NSPredicate *)predicate {
 	
-	return [self initWithEntity:entity predicate:predicate sortDescriptors:nil batchSize:DTBatchSizeNil];
+	return [self dct_initWithEntity:entity predicate:predicate sortDescriptors:nil batchSize:DCTFetchBatchSizeNil];
 }
 
-- (id)initWithEntity:(NSEntityDescription *)entity
-		   predicate:(NSPredicate *)predicate
-	 sortDescriptors:(NSArray *)sortDescriptors {
+- (id)dct_initWithEntity:(NSEntityDescription *)entity
+			   predicate:(NSPredicate *)predicate
+		 sortDescriptors:(NSArray *)sortDescriptors {
 	
-	return [self initWithEntity:entity predicate:predicate sortDescriptors:sortDescriptors batchSize:DTBatchSizeNil];
+	return [self dct_initWithEntity:entity predicate:predicate sortDescriptors:sortDescriptors batchSize:DCTFetchBatchSizeNil];
 }
 
 
-- (id)initWithEntity:(NSEntityDescription *)entity
-		   predicate:(NSPredicate *)predicate
-	 sortDescriptors:(NSArray *)sortDescriptors
-		   batchSize:(NSUInteger)batchSize {
+- (id)dct_initWithEntity:(NSEntityDescription *)entity
+			   predicate:(NSPredicate *)predicate
+		 sortDescriptors:(NSArray *)sortDescriptors
+			   batchSize:(NSUInteger)batchSize {
 	
 	if (!(self = [self init])) return nil;
 	
@@ -44,7 +44,7 @@ NSUInteger const DTBatchSizeNil = 0;
 	
 	if (sortDescriptors) [self setSortDescriptors:sortDescriptors];
 	
-	if (batchSize != DTBatchSizeNil) [self setFetchBatchSize:batchSize];
+	if (batchSize != DCTFetchBatchSizeNil) [self setFetchBatchSize:batchSize];
 	
 	return self;
 }

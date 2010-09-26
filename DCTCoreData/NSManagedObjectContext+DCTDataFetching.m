@@ -19,7 +19,7 @@
 	return [self objectsForEntityName:entityName
 							predicate:nil
 					  sortDescriptors:nil
-							batchSize:DTBatchSizeNil];
+							batchSize:DCTFetchBatchSizeNil];
 }
 
 - (NSArray *)objectsForEntityName:(NSString *)entityName
@@ -28,7 +28,7 @@
 	return [self objectsForEntityName:entityName
 							predicate:predicate
 					  sortDescriptors:nil
-							batchSize:DTBatchSizeNil];
+							batchSize:DCTFetchBatchSizeNil];
 }
 
 - (NSArray *)objectsForEntityName:(NSString *)entityName
@@ -38,7 +38,7 @@
 	return [self objectsForEntityName:entityName
 							predicate:predicate
 					  sortDescriptors:sortDescriptors
-							batchSize:DTBatchSizeNil];
+							batchSize:DCTFetchBatchSizeNil];
 }
 
 - (NSArray *)objectsForEntityName:(NSString *)entityName
@@ -47,7 +47,7 @@
 	return [self objectsForEntityName:entityName
 							predicate:nil
 					  sortDescriptors:sortDescriptors
-							batchSize:DTBatchSizeNil];
+							batchSize:DCTFetchBatchSizeNil];
 }
 
 // The one method that does the heavy lifting:
@@ -58,7 +58,7 @@
 	
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
 	
-	NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntity:entity predicate:predicate sortDescriptors:sortDescriptors batchSize:batchSize];
+	NSFetchRequest *request = [[NSFetchRequest alloc] dct_initWithEntity:entity predicate:predicate sortDescriptors:sortDescriptors batchSize:batchSize];
 	
 	NSError *error = nil;
 	
@@ -81,7 +81,7 @@
 	return [self objectForEntityName:entityName
 						   predicate:nil
 					 sortDescriptors:nil
-						   batchSize:DTBatchSizeNil];
+						   batchSize:DCTFetchBatchSizeNil];
 }
 
 - (id)objectForEntityName:(NSString *)entityName
@@ -90,7 +90,7 @@
 	return [self objectForEntityName:entityName
 						   predicate:predicate
 					 sortDescriptors:nil
-						   batchSize:DTBatchSizeNil];
+						   batchSize:DCTFetchBatchSizeNil];
 }
 
 - (id)objectForEntityName:(NSString *)entityName
@@ -100,7 +100,7 @@
 	return [self objectForEntityName:entityName
 						   predicate:predicate
 					 sortDescriptors:sortDescriptors
-						   batchSize:DTBatchSizeNil];
+						   batchSize:DCTFetchBatchSizeNil];
 }
 
 - (id)objectForEntityName:(NSString *)entityName
@@ -109,7 +109,7 @@
 	return [self objectForEntityName:entityName
 						   predicate:nil
 					 sortDescriptors:sortDescriptors
-						   batchSize:DTBatchSizeNil];
+						   batchSize:DCTFetchBatchSizeNil];
 }
 
 - (id)objectForEntityName:(NSString *)entityName

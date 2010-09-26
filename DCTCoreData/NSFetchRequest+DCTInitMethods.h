@@ -8,22 +8,22 @@
 
 #import <CoreData/CoreData.h>
 
-extern NSUInteger const DTBatchSizeNil;
+extern NSUInteger const DCTFetchBatchSizeNil;
 
 @interface NSFetchRequest (DCTInitMethods)
 
-- (id)initWithEntity:(NSEntityDescription *)entity;
+- (id)dct_initWithEntity:(NSEntityDescription *)entity;
 
-- (id)initWithEntity:(NSEntityDescription *)entity
-		   predicate:(NSPredicate *)predicate;
+- (id)dct_initWithEntity:(NSEntityDescription *)entity
+			   predicate:(NSPredicate *)predicate;
 
-- (id)initWithEntity:(NSEntityDescription *)entity
-		   predicate:(NSPredicate *)predicate
-	 sortDescriptors:(NSArray *)sortDescriptors;
+- (id)dct_initWithEntity:(NSEntityDescription *)entity
+			   predicate:(NSPredicate *)predicate
+		 sortDescriptors:(NSArray *)sortDescriptors;
 
-- (id)initWithEntity:(NSEntityDescription *)entity
-		   predicate:(NSPredicate *)predicate
-	 sortDescriptors:(NSArray *)sortDescriptors
-		   batchSize:(NSUInteger)batchSize;
+- (id)dct_initWithEntity:(NSEntityDescription *)entity
+			   predicate:(NSPredicate *)predicate
+		 sortDescriptors:(NSArray *)sortDescriptors
+			   batchSize:(NSUInteger)batchSize;
 
 @end
