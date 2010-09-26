@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2433E619124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E618124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m */; };
 		2433E624124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */; };
+		2433E633124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */; };
 		24714B9C124F963D00817366 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9B124F963D00817366 /* UIKit.framework */; };
 		24714B9E124F963D00817366 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9D124F963D00817366 /* Foundation.framework */; };
 		24714BA0124F963D00817366 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9F124F963D00817366 /* CoreGraphics.framework */; };
@@ -28,6 +29,8 @@
 		2433E618124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+DCTDataFetching.m"; sourceTree = "<group>"; };
 		2433E622124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+DCTInitMethods.h"; sourceTree = "<group>"; };
 		2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchRequest+DCTInitMethods.m"; sourceTree = "<group>"; };
+		2433E631124F9CE7002C81BD /* NSArray+DCTSortDescriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DCTSortDescriptors.h"; sourceTree = "<group>"; };
+		2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DCTSortDescriptors.m"; sourceTree = "<group>"; };
 		24714B98124F963D00817366 /* DCTCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCTCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24714B9B124F963D00817366 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24714B9D124F963D00817366 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -155,6 +158,8 @@
 		24714BC5124F972C00817366 /* DCTCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				2433E631124F9CE7002C81BD /* NSArray+DCTSortDescriptors.h */,
+				2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */,
 				2433E622124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.h */,
 				2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */,
 				2433E617124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.h */,
@@ -233,6 +238,7 @@
 				24714BBB124F963D00817366 /* DCTCoreDataAppDelegate_iPad.m in Sources */,
 				2433E619124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m in Sources */,
 				2433E624124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m in Sources */,
+				2433E633124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
