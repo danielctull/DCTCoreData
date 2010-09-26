@@ -13,45 +13,45 @@
 #pragma mark -
 #pragma mark Fetching Multiple Objects
 
-- (NSArray *)objectsForEntityName:(NSString *)entityName;
+- (NSArray *)dct_objectsForEntityName:(NSString *)entityName;
 
-- (NSArray *)objectsForEntityName:(NSString *)entityName
-						predicate:(NSPredicate *)predicate;
+- (NSArray *)dct_objectsForEntityName:(NSString *)entityName
+							predicate:(NSPredicate *)predicate;
 
-- (NSArray *)objectsForEntityName:(NSString *)entityName
-						predicate:(NSPredicate *)predicate
-				  sortDescriptors:(NSArray *)sortDescriptors;
+- (NSArray *)dct_objectsForEntityName:(NSString *)entityName
+							predicate:(NSPredicate *)predicate
+					  sortDescriptors:(NSArray *)sortDescriptors;
 	
-- (NSArray *)objectsForEntityName:(NSString *)entityName
-				  sortDescriptors:(NSArray *)sortDescriptors;
+- (NSArray *)dct_objectsForEntityName:(NSString *)entityName
+					  sortDescriptors:(NSArray *)sortDescriptors;
 
-- (NSArray *)objectsForEntityName:(NSString *)entityName
-						predicate:(NSPredicate *)predicate
-				  sortDescriptors:(NSArray *)sortDescriptors
-						batchSize:(NSUInteger)batchSize;
+- (NSArray *)dct_objectsForEntityName:(NSString *)entityName
+							predicate:(NSPredicate *)predicate
+					  sortDescriptors:(NSArray *)sortDescriptors
+							batchSize:(NSUInteger)batchSize;
 
 #pragma mark -
 #pragma mark Fetching Single Objects
 
-- (id)objectForEntityName:(NSString *)entityName;
+- (id)dct_objectForEntityName:(NSString *)entityName;
 
-- (id)objectForEntityName:(NSString *)entityName
-				predicate:(NSPredicate *)predicate;
+- (id)dct_objectForEntityName:(NSString *)entityName
+					predicate:(NSPredicate *)predicate;
 
-- (id)objectForEntityName:(NSString *)entityName
-				predicate:(NSPredicate *)predicate
-		  sortDescriptors:(NSArray *)sortDescriptors;
+- (id)dct_objectForEntityName:(NSString *)entityName
+					predicate:(NSPredicate *)predicate
+			  sortDescriptors:(NSArray *)sortDescriptors;
 
-- (id)objectForEntityName:(NSString *)entityName
-		  sortDescriptors:(NSArray *)sortDescriptors;
+- (id)dct_objectForEntityName:(NSString *)entityName
+			  sortDescriptors:(NSArray *)sortDescriptors;
 
-- (id)objectForEntityName:(NSString *)entityName
-				predicate:(NSPredicate *)predicate 
-		  sortDescriptors:(NSArray *)sortDescriptors
-				batchSize:(NSUInteger)batchSize;
+- (id)dct_objectForEntityName:(NSString *)entityName
+					predicate:(NSPredicate *)predicate 
+			  sortDescriptors:(NSArray *)sortDescriptors
+					batchSize:(NSUInteger)batchSize;
 
 #pragma mark -
 #pragma mark Inserting New Objects
 
-- (id)insertNewObjectForEntityName:(NSString *)entityName;
+- (id)dct_insertNewObjectForEntityName:(NSString *)entityName;
 @end

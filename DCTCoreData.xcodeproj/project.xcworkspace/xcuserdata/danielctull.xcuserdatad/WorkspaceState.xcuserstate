@@ -774,9 +774,9 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{318, 0}</string>
-		<real>307206808.91681898</real>
-		<string>{0, 1627}</string>
+		<string>{1627, 0}</string>
+		<real>307207110.44630301</real>
+		<string>{0, 1685}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -972,9 +972,9 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{1780, 0}</string>
-		<string>{772, 1757}</string>
-		<real>307207050.645953</real>
+		<string>{740, 0}</string>
+		<string>{0, 1742}</string>
+		<real>307207120.45345497</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1469,7 +1469,7 @@
 				<integer>134</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/danielctull/Dropbox/Programs/Cocoa/DCTCoreData/DCTCoreData/NSFetchRequest+DCTInitMethods.h</string>
+		<string>file://localhost/Users/danielctull/Dropbox/Programs/Cocoa/DCTCoreData/DCTCoreData/NSManagedObjectContext+DCTDataFetching.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1487,7 +1487,7 @@
 				<integer>136</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/danielctull/Dropbox/Programs/Cocoa/DCTCoreData/DCTCoreData/NSFetchRequest+DCTInitMethods.m</string>
+		<string>file://localhost/Users/danielctull/Dropbox/Programs/Cocoa/DCTCoreData/DCTCoreData/NSFetchRequest+DCTInitMethods.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1505,7 +1505,7 @@
 				<integer>138</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/danielctull/Dropbox/Programs/Cocoa/DCTCoreData/DCTCoreData/NSManagedObjectContext+DCTDataFetching.h</string>
+		<string>file://localhost/Users/danielctull/Dropbox/Programs/Cocoa/DCTCoreData/DCTCoreData/NSFetchRequest+DCTInitMethods.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1745,7 +1745,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>274</integer>
+					<integer>284</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -1753,7 +1753,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>283</integer>
+					<integer>293</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2023,7 +2023,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>-objectsForEntityName:predicate:sortDescriptors:batchSize:</string>
+		<string>-dct_objectsForEntityName:predicate:</string>
 		<string>@implementation NSManagedObjectContext(DCTDataFetching)</string>
 		<string>NSManagedObjectContext+DCTDataFetching.m</string>
 		<string>DCTCoreData</string>
@@ -2036,9 +2036,9 @@
 				<integer>200</integer>
 			</dict>
 			<key>characterRangeLen</key>
-			<integer>184</integer>
+			<integer>102</integer>
 			<key>characterRangeLoc</key>
-			<integer>1427</integer>
+			<integer>578</integer>
 			<key>documentURL</key>
 			<dict>
 				<key>CF$UID</key>
@@ -2059,7 +2059,7 @@
 			</dict>
 		</dict>
 		<string>file://localhost/Users/danielctull/Dropbox/Programs/Cocoa/DCTCoreData/DCTCoreData/NSManagedObjectContext+DCTDataFetching.m</string>
-		<real>307207045.62482202</real>
+		<real>307207120.31808901</real>
 		<dict>
 			<key>$classes</key>
 			<array>
@@ -2116,9 +2116,9 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{1780, 0}</string>
-		<string>{772, 1757}</string>
-		<real>307207050.64721298</real>
+		<string>{740, 0}</string>
+		<string>{0, 1742}</string>
+		<real>307207120.45489001</real>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -2469,7 +2469,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>258</integer>
+					<integer>268</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2549,7 +2549,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>256</integer>
+					<integer>266</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -2557,7 +2557,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>257</integer>
+					<integer>267</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2606,8 +2606,116 @@
 				<integer>253</integer>
 			</dict>
 			<key>NS.objects</key>
-			<array/>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>256</integer>
+				</dict>
+			</array>
 		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>49</integer>
+			</dict>
+			<key>NS.keys</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>257</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>258</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>259</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>260</integer>
+				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>261</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>264</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>265</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>264</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>documentLocations</string>
+		<string>fullMessage</string>
+		<string>type</string>
+		<string>shortMessage</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>108</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>262</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>200</integer>
+			</dict>
+			<key>characterRangeLen</key>
+			<integer>0</integer>
+			<key>characterRangeLoc</key>
+			<integer>-1</integer>
+			<key>documentURL</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>263</integer>
+			</dict>
+			<key>endingColumnNumber</key>
+			<integer>-1</integer>
+			<key>endingLineNumber</key>
+			<integer>21</integer>
+			<key>startingColumnNumber</key>
+			<integer>-1</integer>
+			<key>startingLineNumber</key>
+			<integer>21</integer>
+			<key>timestamp</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>20</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>file://localhost/Users/danielctull/Dropbox/Programs/Cocoa/DCTCoreData/DCTCoreData/NSManagedObjectContext+DCTDataFetching.m</string>
+		</dict>
+		<string>'NSManagedObjectContext' may not respond to '-objectsForEntityName:predicate:sortDescriptors:batchSize:'</string>
+		<string>'*' may not respond to '*'</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -2636,27 +2744,27 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>259</integer>
+					<integer>269</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>260</integer>
+					<integer>270</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>261</integer>
+					<integer>271</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>262</integer>
+					<integer>272</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>263</integer>
+					<integer>273</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>264</integer>
+					<integer>274</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -2667,7 +2775,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>265</integer>
+					<integer>275</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -2679,11 +2787,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>266</integer>
+					<integer>276</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>270</integer>
+					<integer>280</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2704,7 +2812,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>267</integer>
+					<integer>277</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2718,7 +2826,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>268</integer>
+					<integer>278</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -2726,41 +2834,27 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>269</integer>
+					<integer>279</integer>
 				</dict>
 			</array>
 		</dict>
 		<string>DCTCoreData</string>
-		<string>NSFetchRequest+DCTInitMethods.h</string>
+		<string>NSManagedObjectContext+DCTDataFetching.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>273</integer>
+				<integer>283</integer>
 			</dict>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>271</integer>
+					<integer>281</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>272</integer>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>120</integer>
-			</dict>
-			<key>NS.objects</key>
-			<array>
-				<dict>
-					<key>CF$UID</key>
-					<integer>268</integer>
+					<integer>282</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2774,7 +2868,21 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>268</integer>
+					<integer>278</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>120</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>278</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -2808,7 +2916,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>275</integer>
+					<integer>285</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2822,15 +2930,15 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>276</integer>
+					<integer>286</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>278</integer>
+					<integer>288</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>280</integer>
+					<integer>290</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2859,7 +2967,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>277</integer>
+					<integer>287</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2889,7 +2997,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>279</integer>
+					<integer>289</integer>
 				</dict>
 			</array>
 		</dict>
@@ -2915,11 +3023,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>281</integer>
+					<integer>291</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>282</integer>
+					<integer>292</integer>
 				</dict>
 			</array>
 		</dict>
