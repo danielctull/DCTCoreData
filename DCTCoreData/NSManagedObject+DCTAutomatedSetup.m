@@ -12,6 +12,7 @@
 #import "NSEntityDescription+DCTObjectCheck.h"
 #import "NSAttributeDescription+DCTObjectCheck.h"
 #import "NSManagedObject+DCTRelatedObjects.h"
+#import "NSDictionary+DCTKeyForObject.h"
 
 BOOL const DCTManagedObjectAutomatedSetupLogStorageFailures = YES;
 BOOL const DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse = YES;
