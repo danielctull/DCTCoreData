@@ -66,12 +66,12 @@
  Implement this method if the unique attribute for the object is not named in this fashion.
  
  */
-+ (NSString *)dct_primaryKey;
++ (NSString *)dct_uniqueKey;
 
 /*
  Give the keys for the attributes to check for equality showing two managed objects are the same.
  */
-+ (NSMutableArray *)dct_primaryKeys;
++ (NSMutableArray *)dct_uniqueKeys;
 
 /*
  Some key/value pairs in the given dictionary 

@@ -104,13 +104,13 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	
 	NSMutableArray *localPrimaryKeys = nil;
 	
-	if ([self respondsToSelector:@selector(dct_primaryKeys)])
-		localPrimaryKeys = [myself dct_primaryKeys];
+	if ([self respondsToSelector:@selector(dct_uniqueKeys)])
+		localPrimaryKeys = [myself dct_uniqueKeys];
 	
 	
-	if (!localPrimaryKeys && [self respondsToSelector:@selector(dct_primaryKey)]) {
+	if (!localPrimaryKeys && [self respondsToSelector:@selector(dct_uniqueKey)]) {
 		localPrimaryKeys = [[[NSMutableArray alloc] init] autorelease];
-		[localPrimaryKeys addObject:[myself dct_primaryKey]];
+		[localPrimaryKeys addObject:[myself dct_uniqueKey]];
 	}
 	
 	if (!localPrimaryKeys) {
