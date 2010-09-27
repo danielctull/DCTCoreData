@@ -1,0 +1,267 @@
+//
+//  NSManagedObject+DCTAutomatedSetup.m
+//  DCTCoreData
+//
+//  Created by Daniel Tull on 11.08.2010.
+//  Copyright (c) 2010 Daniel Tull. All rights reserved.
+//
+
+#import "NSManagedObject+DCTAutomatedSetup.h"
+#import "NSManagedObjectContext+DCTDataFetching.h"
+#import "NSManagedObject+DCTOrdering.h"
+#import "NSEntityDescription+DCTObjectCheck.h"
+#import "NSAttributeDescription+DCTObjectCheck.h"
+#import "NSManagedObject+DCTRelatedObjects.h"
+
+BOOL const DCTManagedObjectAutomatedSetupLogStorageFailures = YES;
+BOOL const DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse = YES;
+BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
+
+@interface NSManagedObject ()
+
++ (id)dctInternal_objectForEntity:(NSEntityDescription *)entity
+					   dictionary:(NSDictionary *)dictionary 
+			 managedObjectContext:(NSManagedObjectContext *)moc;
+
+- (BOOL)dctInternal_handleObject:(id)object forKey:(NSString *)key;
+
+@end
+
+@implementation NSManagedObject (DCTAutomatedSetup)
+
++ (id)dct_objectForDictionary:(NSDictionary *)dictionary 
+		managedObjectContext:(NSManagedObjectContext *)moc {
+	
+	if (![self conformsToProtocol:@protocol(DCTManagedObjectAutomatedSetup)])
+		return nil;
+	
+	Class<DCTManagedObjectAutomatedSetup> myself = (Class<DCTManagedObjectAutomatedSetup>)self;
+	
+	NSManagedObject *object = nil;
+	
+	if ([self respondsToSelector:@selector(dct_handleObjectForDictionary:)]) {
+		object = [myself dct_handleObjectForDictionary:dictionary];
+		[object dct_setupFromDictionary:dictionary];
+		return object;
+	}
+	
+	NSString *entityName = nil;
+	if ([self respondsToSelector:@selector(dct_entityName)])
+		entityName = [myself dct_entityName];
+	
+	if (!entityName)
+		entityName = NSStringFromClass(myself);
+	
+	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:moc];
+	
+	if (!object)
+		object = [self dctInternal_objectForEntity:entity dictionary:dictionary managedObjectContext:moc];
+	
+	if (!object)
+		object = [moc dct_insertNewObjectForEntityName:entityName];
+	
+	[object retain];
+	
+	[object dct_setupFromDictionary:dictionary];	
+	
+	return [object autorelease];
+}
+
+- (BOOL)dct_setupFromDictionary:(NSDictionary *)dictionary {
+	
+	if (![self conformsToProtocol:@protocol(DCTManagedObjectAutomatedSetup)])
+		return NO;
+	
+	Class<DCTManagedObjectAutomatedSetup> selfclass = [self class];
+	
+	NSDictionary *mapping = nil;
+	
+	if ([[self class] respondsToSelector:@selector(dct_mappingFromRemoteNamesToLocalNames)])
+		mapping = [selfclass dct_mappingFromRemoteNamesToLocalNames];
+	
+	for (NSString *key in dictionary) {
+		
+		id object = [dictionary objectForKey:key];
+		
+		// convert the key to our local storage using the provide mapping
+		if ([[mapping allKeys] containsObject:key])
+			key = [mapping objectForKey:key];
+		
+		
+		if (![self dctInternal_handleObject:object forKey:key] && DCTManagedObjectAutomatedSetupLogStorageFailures)
+			NSLog(@"%@ (DCTManagedObjectAutomatedSetup): Didn't store key:%@ object:%@", NSStringFromClass([self class]), key, object);
+		
+	}
+	
+	return YES;
+	
+}
+
++ (id)dctInternal_objectForEntity:(NSEntityDescription *)entity dictionary:(NSDictionary *)dictionary managedObjectContext:(NSManagedObjectContext *)moc {
+	
+	Class<DCTManagedObjectAutomatedSetup> myself = (Class<DCTManagedObjectAutomatedSetup>)self;
+	
+	NSMutableArray *localPrimaryKeys = nil;
+	
+	if ([self respondsToSelector:@selector(dct_primaryKeys)])
+		localPrimaryKeys = [myself dct_primaryKeys];
+	
+	
+	if (!localPrimaryKeys && [self respondsToSelector:@selector(dct_primaryKey)]) {
+		localPrimaryKeys = [[[NSMutableArray alloc] init] autorelease];
+		[localPrimaryKeys addObject:[myself dct_primaryKey]];
+	}
+	
+	if (!localPrimaryKeys) {
+		NSRange range = [[entity name] rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet] options:NSBackwardsSearch];
+		NSString *localPrimaryKey = [[[[entity name] substringFromIndex:range.location] lowercaseString] stringByAppendingString:@"ID"];
+		localPrimaryKeys = [[[NSMutableArray alloc] init] autorelease];
+		[localPrimaryKeys addObject:localPrimaryKey];
+		
+		
+		if (DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse)
+			NSLog(@"%@ (DCTManagedObjectAutomatedSetup): Cannot determine primary keys, using '%@\'", NSStringFromClass([self class]), localPrimaryKey);
+	}
+	
+	for (NSString *localPrimaryKey in localPrimaryKeys) {
+		if (![[[entity propertiesByName] allKeys] containsObject:localPrimaryKey]) {
+			
+			if (DCTManagedObjectAutomatedSetupLogExtremeFailures)
+				NSLog(@"!!!!! DCTManagedObjectAutomatedSetup: Cannot resolve a primary key for %@, so duplicate objects will not be found.", [entity name]);
+			
+			return nil;	
+		}
+	}
+	
+	NSMutableString *predicateString = [[NSMutableString alloc] init];
+	
+	for (NSString *localPrimaryKey in localPrimaryKeys) {
+		
+		NSString *remotePrimaryKey = nil;
+		
+		if ([[dictionary allKeys] containsObject:localPrimaryKey])
+			remotePrimaryKey = localPrimaryKey;
+		
+		if ([self respondsToSelector:@selector(dct_mappingFromRemoteNamesToLocalNames)]) {
+			NSDictionary *mapping = [myself dct_mappingFromRemoteNamesToLocalNames];
+			
+			if ([[mapping allValues] containsObject:localPrimaryKey]) {
+				NSString *pKey = [mapping dct_keyForObject:localPrimaryKey];
+				if (pKey) remotePrimaryKey = pKey;
+			}
+		}
+		
+		if (!remotePrimaryKey)
+			remotePrimaryKey = @"id";
+		
+		
+		id primaryKeyValue = [dictionary objectForKey:remotePrimaryKey];
+		
+		NSDictionary *attributesByName = [entity attributesByName];
+		NSDictionary *relationshipsByName = [entity relationshipsByName];
+		
+		BOOL objectIsValid = NO;
+		
+		if ([[attributesByName allKeys] containsObject:localPrimaryKey]) {
+			NSAttributeDescription *attribute = [attributesByName objectForKey:localPrimaryKey];
+			objectIsValid = [attribute dct_isObjectValid:primaryKeyValue];
+			
+		} else if ([[relationshipsByName allKeys] containsObject:localPrimaryKey]) {
+			NSRelationshipDescription *relationship = [relationshipsByName objectForKey:localPrimaryKey];
+			NSEntityDescription *destinationEntity = [relationship destinationEntity];
+			objectIsValid = [destinationEntity dct_isObjectValid:primaryKeyValue];				
+		}
+		
+		if (!objectIsValid && [self respondsToSelector:@selector(dct_convertValue:toCorrectTypeForKey:)])
+			primaryKeyValue = [myself dct_convertValue:primaryKeyValue toCorrectTypeForKey:localPrimaryKey];
+		
+		if ([predicateString length] > 0) [predicateString appendString:@" && "];
+		
+		[predicateString appendFormat:@"%@ == '%@'", localPrimaryKey, primaryKeyValue];
+	}
+	
+	NSLog(@"%@:%@ %@", self, NSStringFromSelector(_cmd), predicateString);
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString];
+	[predicateString release];
+	
+	return [moc dct_objectForEntityName:[entity name] predicate:predicate];
+	
+}
+
+- (BOOL)dctInternal_handleObject:(id)object forKey:(NSString *)key {
+	
+	NSManagedObject<DCTManagedObjectAutomatedSetup> *myself = (NSManagedObject<DCTManagedObjectAutomatedSetup> *)self;
+	Class<DCTManagedObjectAutomatedSetup> selfclass = [self class];
+	
+	if ([myself respondsToSelector:@selector(dct_handleKey:value:)])
+		if ([myself dct_handleKey:key value:object])
+			return YES;
+	
+	// give the class a chance to convert the object
+	if ([[self class] respondsToSelector:@selector(dct_convertValue:toCorrectTypeForKey:)] && ![object isKindOfClass:[NSNull class]]) {
+		id returnedObject = [selfclass dct_convertValue:object toCorrectTypeForKey:key];
+		if (returnedObject) object = returnedObject;
+	}
+	
+	
+	if ([object isKindOfClass:[NSArray class]]) {
+		BOOL returnBool = NO;
+		
+		for (id o in (NSArray *)object) {
+			if ([self dctInternal_handleObject:o forKey:key])
+				returnBool = YES;
+		}
+		return returnBool;
+	}
+	
+	
+	NSEntityDescription *entity = [self entity];
+	NSDictionary *attributesByName = [entity attributesByName];
+	
+	if ([[attributesByName allKeys] containsObject:key]) {
+		
+		NSAttributeDescription *attribute = [attributesByName objectForKey:key];
+		
+		if ([attribute dct_isObjectValid:object]) {
+			[self setValue:object forKey:key];
+			return YES;
+		}
+	}
+	
+	
+	NSDictionary *relationshipsByName = [entity relationshipsByName];
+	
+	if ([[relationshipsByName allKeys] containsObject:key]) {
+		
+		NSRelationshipDescription *relationship = [relationshipsByName objectForKey:key];
+		NSEntityDescription *destinationEntity = [relationship destinationEntity];
+		
+		// if it's a dictionary at this point, we'll try to create a managed object of the right class using the dictionary
+		if ([object isKindOfClass:[NSDictionary class]]) {
+			NSString *destinationClassName = [destinationEntity managedObjectClassName];
+			Class destinationClass = NSClassFromString(destinationClassName);
+			object = [destinationClass dct_objectForDictionary:object managedObjectContext:[self managedObjectContext]];
+		}
+		
+		BOOL isValid = [destinationEntity dct_isObjectValid:object];
+		
+		if (isValid) {
+			
+			if ([relationship isToMany]) {
+				
+				if ([object conformsToProtocol:@protocol(DCTOrderedObject)])
+					[self dct_addOrderedObject:object forKey:key];
+				else
+					[self dct_addRelatedObject:object forKey:key];
+				
+			} else if (isValid)
+				[self setValue:object forKey:key];
+			
+			return YES;			
+		}
+	}
+	
+	return NO;
+}
+
+@end
