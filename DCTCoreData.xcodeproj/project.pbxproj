@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		242555BC125127070095D2F6 /* NSAttributeDescription+DCTObjectCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 242555BB125127070095D2F6 /* NSAttributeDescription+DCTObjectCheck.m */; };
 		242555C0125127D80095D2F6 /* NSEntityDescription+DCTObjectCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 242555BF125127D80095D2F6 /* NSEntityDescription+DCTObjectCheck.m */; };
+		242555C41251289F0095D2F6 /* NSManagedObject+DCTRelatedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 242555C31251289F0095D2F6 /* NSManagedObject+DCTRelatedObjects.m */; };
 		2433E619124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E618124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m */; };
 		2433E624124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */; };
 		2433E633124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */; };
@@ -31,6 +32,8 @@
 		242555BB125127070095D2F6 /* NSAttributeDescription+DCTObjectCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributeDescription+DCTObjectCheck.m"; sourceTree = "<group>"; };
 		242555BE125127D80095D2F6 /* NSEntityDescription+DCTObjectCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+DCTObjectCheck.h"; sourceTree = "<group>"; };
 		242555BF125127D80095D2F6 /* NSEntityDescription+DCTObjectCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+DCTObjectCheck.m"; sourceTree = "<group>"; };
+		242555C21251289F0095D2F6 /* NSManagedObject+DCTRelatedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTRelatedObjects.h"; sourceTree = "<group>"; };
+		242555C31251289F0095D2F6 /* NSManagedObject+DCTRelatedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTRelatedObjects.m"; sourceTree = "<group>"; };
 		2433E617124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+DCTDataFetching.h"; sourceTree = "<group>"; };
 		2433E618124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+DCTDataFetching.m"; sourceTree = "<group>"; };
 		2433E622124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+DCTInitMethods.h"; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 				242555BF125127D80095D2F6 /* NSEntityDescription+DCTObjectCheck.m */,
 				242555BA125127070095D2F6 /* NSAttributeDescription+DCTObjectCheck.h */,
 				242555BB125127070095D2F6 /* NSAttributeDescription+DCTObjectCheck.m */,
+				242555C21251289F0095D2F6 /* NSManagedObject+DCTRelatedObjects.h */,
+				242555C31251289F0095D2F6 /* NSManagedObject+DCTRelatedObjects.m */,
 			);
 			path = DCTCoreData;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				2433E633124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m in Sources */,
 				242555BC125127070095D2F6 /* NSAttributeDescription+DCTObjectCheck.m in Sources */,
 				242555C0125127D80095D2F6 /* NSEntityDescription+DCTObjectCheck.m in Sources */,
+				242555C41251289F0095D2F6 /* NSManagedObject+DCTRelatedObjects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
