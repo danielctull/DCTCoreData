@@ -17,6 +17,8 @@
 		246A872B1251E05700DA85C3 /* DCTCoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */; };
 		246A87361251E0B000DA85C3 /* DCTCDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87331251E0B000DA85C3 /* DCTCDItem.m */; };
 		246A87371251E0B000DA85C3 /* DCTCDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87351251E0B000DA85C3 /* DCTCDGroup.m */; };
+		246A873E1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A873D1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m */; };
+		246A87431251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87421251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m */; };
 		24714B9C124F963D00817366 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9B124F963D00817366 /* UIKit.framework */; };
 		24714B9E124F963D00817366 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9D124F963D00817366 /* Foundation.framework */; };
 		24714BA0124F963D00817366 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9F124F963D00817366 /* CoreGraphics.framework */; };
@@ -53,6 +55,10 @@
 		246A87331251E0B000DA85C3 /* DCTCDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTCDItem.m; sourceTree = "<group>"; };
 		246A87341251E0B000DA85C3 /* DCTCDGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTCDGroup.h; sourceTree = "<group>"; };
 		246A87351251E0B000DA85C3 /* DCTCDGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTCDGroup.m; sourceTree = "<group>"; };
+		246A873C1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DCTCDItem+DCTManagedObjectAutomatedSetup.h"; sourceTree = "<group>"; };
+		246A873D1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DCTCDItem+DCTManagedObjectAutomatedSetup.m"; sourceTree = "<group>"; };
+		246A87411251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DCTCDGroup+DCTManagedObjectAutomatedSetup.h"; sourceTree = "<group>"; };
+		246A87421251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DCTCDGroup+DCTManagedObjectAutomatedSetup.m"; sourceTree = "<group>"; };
 		24714B98124F963D00817366 /* DCTCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCTCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24714B9B124F963D00817366 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24714B9D124F963D00817366 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -101,6 +107,10 @@
 				246A87341251E0B000DA85C3 /* DCTCDGroup.h */,
 				246A87351251E0B000DA85C3 /* DCTCDGroup.m */,
 				246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */,
+				246A873C1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.h */,
+				246A873D1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m */,
+				246A87411251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.h */,
+				246A87421251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +303,8 @@
 				246A872B1251E05700DA85C3 /* DCTCoreData.xcdatamodel in Sources */,
 				246A87361251E0B000DA85C3 /* DCTCDItem.m in Sources */,
 				246A87371251E0B000DA85C3 /* DCTCDGroup.m in Sources */,
+				246A873E1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m in Sources */,
+				246A87431251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
