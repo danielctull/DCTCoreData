@@ -10,4 +10,14 @@
 
 @implementation DCTCDItem (DCTManagedObjectAutomatedSetup)
 
++ (NSString *)dct_uniqueKey {
+	return @"theID";
+}
+
++ (NSDictionary *)dct_mappingFromRemoteNamesToLocalNames {
+	NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
+	[d setObject:@"theID" forKey:@"remoteID"];
+	return [d autorelease];	
+}
+
 @end
