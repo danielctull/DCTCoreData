@@ -39,15 +39,34 @@
 @interface NSManagedObject (DCTAutomatedSetup)
 
 
-/*
- Call this on the managed object class you wish to setup.  
+/**
+ @brief Setup method to get the managed object inserted into the given context, from the given dictionary.
+ 
+ Call this on the managed object class you wish to setup. 
+ 
+ This will recursively go through the dictionary, if a nested dictionary exists it will try to find
+ a relationship for the key, and set up that as a core data object using the nested dictionary.
+ 
+ @param dictionary The dictionary used to represent the managed object's data.
+ @param moc The managed object context the resulting managed object should be inserted to.
+ 
+ @return A managed object or nil if the setup process fails.
  */
 
 + (id)dct_objectForDictionary:(NSDictionary *)dictionary managedObjectContext:(NSManagedObjectContext *)moc;
 
 /*
- If you already have an object that represents the dictionary, 
- you can call this to run through the same setup proceedure.
+ @brief Sets up the object from the given dictionary.
+ 
+ If you already have an object that represents the dictionary,  you can call this to run through the same
+ setup proceedure as the class method. 
+ 
+ This will recursively go through the dictionary, if a nested dictionary exists it will try to find
+ a relationship for the key, and set up that as a core data object using the nested dictionary. 
+ 
+ @param dictionary The dictionary used to represent the managed object's data.
+ 
+ @return YES if the setup suceeded, NO otherwise.
 */
 
 - (BOOL)dct_setupFromDictionary:(NSDictionary *)dictionary;
