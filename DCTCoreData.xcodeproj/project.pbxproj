@@ -15,6 +15,8 @@
 		2433E624124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */; };
 		2433E633124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */; };
 		246A872B1251E05700DA85C3 /* DCTCoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */; };
+		246A87361251E0B000DA85C3 /* DCTCDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87331251E0B000DA85C3 /* DCTCDItem.m */; };
+		246A87371251E0B000DA85C3 /* DCTCDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87351251E0B000DA85C3 /* DCTCDGroup.m */; };
 		24714B9C124F963D00817366 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9B124F963D00817366 /* UIKit.framework */; };
 		24714B9E124F963D00817366 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9D124F963D00817366 /* Foundation.framework */; };
 		24714BA0124F963D00817366 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9F124F963D00817366 /* CoreGraphics.framework */; };
@@ -47,6 +49,10 @@
 		2433E631124F9CE7002C81BD /* NSArray+DCTSortDescriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DCTSortDescriptors.h"; sourceTree = "<group>"; };
 		2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DCTSortDescriptors.m"; sourceTree = "<group>"; };
 		246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = DCTCoreData.xcdatamodel; sourceTree = "<group>"; };
+		246A87321251E0B000DA85C3 /* DCTCDItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTCDItem.h; sourceTree = "<group>"; };
+		246A87331251E0B000DA85C3 /* DCTCDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTCDItem.m; sourceTree = "<group>"; };
+		246A87341251E0B000DA85C3 /* DCTCDGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTCDGroup.h; sourceTree = "<group>"; };
+		246A87351251E0B000DA85C3 /* DCTCDGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTCDGroup.m; sourceTree = "<group>"; };
 		24714B98124F963D00817366 /* DCTCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCTCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24714B9B124F963D00817366 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24714B9D124F963D00817366 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -90,6 +96,10 @@
 		246A87291251E05700DA85C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				246A87321251E0B000DA85C3 /* DCTCDItem.h */,
+				246A87331251E0B000DA85C3 /* DCTCDItem.m */,
+				246A87341251E0B000DA85C3 /* DCTCDGroup.h */,
+				246A87351251E0B000DA85C3 /* DCTCDGroup.m */,
 				246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */,
 			);
 			path = Model;
@@ -281,6 +291,8 @@
 				24A94265125136C0006E8BCD /* NSManagedObject+DCTOrdering.m in Sources */,
 				2426E38E1251DA9D00E170AF /* NSFetchedResultsController+DCTExtras.m in Sources */,
 				246A872B1251E05700DA85C3 /* DCTCoreData.xcdatamodel in Sources */,
+				246A87361251E0B000DA85C3 /* DCTCDItem.m in Sources */,
+				246A87371251E0B000DA85C3 /* DCTCDGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
