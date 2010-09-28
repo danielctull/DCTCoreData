@@ -14,6 +14,11 @@
 		2433E619124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E618124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m */; };
 		2433E624124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */; };
 		2433E633124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */; };
+		246A872B1251E05700DA85C3 /* DCTCoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */; };
+		246A87361251E0B000DA85C3 /* DCTCDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87331251E0B000DA85C3 /* DCTCDItem.m */; };
+		246A87371251E0B000DA85C3 /* DCTCDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87351251E0B000DA85C3 /* DCTCDGroup.m */; };
+		246A873E1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A873D1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m */; };
+		246A87431251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87421251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m */; };
 		24714B9C124F963D00817366 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9B124F963D00817366 /* UIKit.framework */; };
 		24714B9E124F963D00817366 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9D124F963D00817366 /* Foundation.framework */; };
 		24714BA0124F963D00817366 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24714B9F124F963D00817366 /* CoreGraphics.framework */; };
@@ -21,7 +26,6 @@
 		24714BA7124F963D00817366 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24714BA5124F963D00817366 /* InfoPlist.strings */; };
 		24714BA9124F963D00817366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24714BA8124F963D00817366 /* main.m */; };
 		24714BAC124F963D00817366 /* DCTCoreDataAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24714BAB124F963D00817366 /* DCTCoreDataAppDelegate.m */; };
-		24714BAF124F963D00817366 /* DCTCoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 24714BAE124F963D00817366 /* DCTCoreData.xcdatamodel */; };
 		24714BB2124F963D00817366 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24714BB0124F963D00817366 /* MainWindow_iPhone.xib */; };
 		24714BB5124F963D00817366 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24714BB3124F963D00817366 /* MainWindow_iPad.xib */; };
 		24714BB8124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 24714BB7124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.m */; };
@@ -46,6 +50,15 @@
 		2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchRequest+DCTInitMethods.m"; sourceTree = "<group>"; };
 		2433E631124F9CE7002C81BD /* NSArray+DCTSortDescriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DCTSortDescriptors.h"; sourceTree = "<group>"; };
 		2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DCTSortDescriptors.m"; sourceTree = "<group>"; };
+		246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = DCTCoreData.xcdatamodel; sourceTree = "<group>"; };
+		246A87321251E0B000DA85C3 /* DCTCDItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTCDItem.h; sourceTree = "<group>"; };
+		246A87331251E0B000DA85C3 /* DCTCDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTCDItem.m; sourceTree = "<group>"; };
+		246A87341251E0B000DA85C3 /* DCTCDGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTCDGroup.h; sourceTree = "<group>"; };
+		246A87351251E0B000DA85C3 /* DCTCDGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTCDGroup.m; sourceTree = "<group>"; };
+		246A873C1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DCTCDItem+DCTManagedObjectAutomatedSetup.h"; sourceTree = "<group>"; };
+		246A873D1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DCTCDItem+DCTManagedObjectAutomatedSetup.m"; sourceTree = "<group>"; };
+		246A87411251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DCTCDGroup+DCTManagedObjectAutomatedSetup.h"; sourceTree = "<group>"; };
+		246A87421251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DCTCDGroup+DCTManagedObjectAutomatedSetup.m"; sourceTree = "<group>"; };
 		24714B98124F963D00817366 /* DCTCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCTCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24714B9B124F963D00817366 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24714B9D124F963D00817366 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -57,7 +70,6 @@
 		24714BA8124F963D00817366 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		24714BAA124F963D00817366 /* DCTCoreDataAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCTCoreDataAppDelegate.h; sourceTree = "<group>"; };
 		24714BAB124F963D00817366 /* DCTCoreDataAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCTCoreDataAppDelegate.m; sourceTree = "<group>"; };
-		24714BAE124F963D00817366 /* DCTCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DCTCoreData.xcdatamodel; sourceTree = "<group>"; };
 		24714BB1124F963D00817366 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		24714BB4124F963D00817366 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
 		24714BB6124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCTCoreDataAppDelegate_iPhone.h; sourceTree = "<group>"; };
@@ -87,10 +99,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		246A87291251E05700DA85C3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				246A87321251E0B000DA85C3 /* DCTCDItem.h */,
+				246A87331251E0B000DA85C3 /* DCTCDItem.m */,
+				246A87341251E0B000DA85C3 /* DCTCDGroup.h */,
+				246A87351251E0B000DA85C3 /* DCTCDGroup.m */,
+				246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */,
+				246A873C1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.h */,
+				246A873D1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m */,
+				246A87411251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.h */,
+				246A87421251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		24714B87124F963D00817366 = {
 			isa = PBXGroup;
 			children = (
 				24714BC5124F972C00817366 /* DCTCoreData */,
+				246A87291251E05700DA85C3 /* Model */,
 				24714B8E124F963D00817366 /* iPhone */,
 				24714B8F124F963D00817366 /* iPad */,
 				24714B90124F963D00817366 /* Classes */,
@@ -98,7 +127,6 @@
 				24714B92124F963D00817366 /* Resources */,
 				24714B93124F963D00817366 /* Frameworks */,
 				24714B99124F963D00817366 /* Products */,
-				24714BAD124F963D00817366 /* Models */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,14 +194,6 @@
 				24714B98124F963D00817366 /* DCTCoreData.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		24714BAD124F963D00817366 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				24714BAE124F963D00817366 /* DCTCoreData.xcdatamodel */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		24714BC5124F972C00817366 /* DCTCoreData */ = {
@@ -268,7 +288,6 @@
 			files = (
 				24714BA9124F963D00817366 /* main.m in Sources */,
 				24714BAC124F963D00817366 /* DCTCoreDataAppDelegate.m in Sources */,
-				24714BAF124F963D00817366 /* DCTCoreData.xcdatamodel in Sources */,
 				24714BB8124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.m in Sources */,
 				24714BBB124F963D00817366 /* DCTCoreDataAppDelegate_iPad.m in Sources */,
 				2433E619124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m in Sources */,
@@ -281,6 +300,11 @@
 				24A9425E1251354B006E8BCD /* NSDictionary+DCTKeyForObject.m in Sources */,
 				24A94265125136C0006E8BCD /* NSManagedObject+DCTOrdering.m in Sources */,
 				2426E38E1251DA9D00E170AF /* NSFetchedResultsController+DCTExtras.m in Sources */,
+				246A872B1251E05700DA85C3 /* DCTCoreData.xcdatamodel in Sources */,
+				246A87361251E0B000DA85C3 /* DCTCDItem.m in Sources */,
+				246A87371251E0B000DA85C3 /* DCTCDGroup.m in Sources */,
+				246A873E1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m in Sources */,
+				246A87431251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
