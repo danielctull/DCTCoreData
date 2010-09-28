@@ -1,7 +1,7 @@
 DCTCoreData
 ===========
 
-DCTCoreData is my collection of extensions to Apple's Core Data framework.
+DCTCoreData is my collection of extensions to Apple's Core Data framework. 
 
 Features
 --------
@@ -10,6 +10,11 @@ Features
 * Convenience methods for fetching from the managed object context.
 * Automated creation of managed objects from an NSDictionary representation - for example one returned via a JSON parser.
 * A category to handle the ordering of related objects.
+
+Examples
+--------
+
+An example of the automated setup can be found in the app delegate.
 
 License
 -------
