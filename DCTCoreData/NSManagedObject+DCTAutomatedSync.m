@@ -35,10 +35,19 @@
  */
 
 #import "NSManagedObject+DCTAutomatedSync.h"
+#import "NSManagedObject+DCTExtras.h"
+#import "NSAttributeDescription+DCTObjectCheck.h"
+#import "NSDictionary+DCTKeyForObject.h"
+
+BOOL const DCTManagedObjectAutomatedSyncLogInformationMessages = YES;
+BOOL const DCTManagedObjectAutomatedSyncLogWarningMessages = YES;
+BOOL const DCTManagedObjectAutomatedSyncLogErrorMessages = YES;
+
 
 @interface NSManagedObject ()
-- (NSDate *)dct_localUpdatedDate;
-- (NSDate *)dct_remoteUpdatedDate;
+- (NSDate *)dctInternal_localUpdatedDate;
+- (NSDate *)dctInternal_updatedDateInDictionary:(NSDictionary *)dictionary;
+- (NSString *)dctInternal_lastUpdatedDateKey;
 @end
 
 @implementation NSManagedObject (DCTAutomatedSync)
@@ -46,7 +55,8 @@
 - (void)dct_syncWithDictionary:(NSDictionary *)dictionary {
 	
 	if (![self conformsToProtocol:@protocol(DCTManagedObjectAutomatedSync)]) {
-		NSLog(@"%@:%@ !!! Object does not conform to DCTManagedObjectAutomatedSync.", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+		if (DCTManagedObjectAutomatedSyncLogErrorMessages)
+			NSLog(@"DCTAutomatedSync !!!!! (%@) Does not conform to DCTManagedObjectAutomatedSync.", NSStringFromClass([self class]));
 		return;
 	}
 	
@@ -54,33 +64,32 @@
 	
 	DCTManagedObjectAutomatedSyncStatus syncStatus = DCTManagedObjectAutomatedSyncStatusNil;
 	
-	if ([syncSelf respondsToSelector:@selector(dct_syncTypeForDictionary:)])
+	if ([syncSelf respondsToSelector:@selector(dct_syncStatusForDictionary:)])
 		syncStatus = [syncSelf dct_syncStatusForDictionary:dictionary];
 	
-	if (syncStatus == DCTManagedObjectAutomatedSyncStatusNil && [syncSelf respondsToSelector:@selector(dct_lastUpdatedDateKey:)]) {
+	if (syncStatus == DCTManagedObjectAutomatedSyncStatusNil) {
 		
-		NSString *lastUpdatedKey = [syncSelf dct_lastUpdatedDateKey];
+		NSDate *localUpdatedDate = [self dctInternal_localUpdatedDate];
+		NSDate *remoteUpdatedDate = [self dctInternal_updatedDateInDictionary:dictionary];
 		
-		NSEntityDescription *entity = [self entity];
-		NSDictionary *attributesByName = [entity attributesByName];
-		
-		NSDate *selfLastUpdated = nil;
-		
-		if ([[attributesByName allKeys] containsObject:lastUpdatedKey]) {
-			NSDate *date = [self valueForKey:lastUpdatedKey];
-			if ([date isKindOfClass:[NSDate class]])
-				selfLastUpdated = date;
+		if (!localUpdatedDate || !remoteUpdatedDate) {
+			if (DCTManagedObjectAutomatedSyncLogErrorMessages)
+				NSLog(@"DCTAutomatedSync !!!!! (%@) Cannot determine sync status.", NSStringFromClass([self class]));
+			return;
 		}
 		
+		NSComparisonResult comparisonResult = [localUpdatedDate compare:remoteUpdatedDate];
 		
-	}
-	
-	
-	if (syncStatus == DCTManagedObjectAutomatedSyncStatusNil) {
-		NSLog(@"%@:%@ CANNOT DETERMINE SYNC STATUS", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
-		return;
-	}
-	
+		if (comparisonResult == NSOrderedSame)
+			syncStatus = DCTManagedObjectAutomatedSyncStatusNone;
+
+		else if (comparisonResult == NSOrderedAscending)
+			syncStatus = DCTManagedObjectAutomatedSyncStatusDown;
+		
+		else if (comparisonResult == NSOrderedDescending)
+			syncStatus = DCTManagedObjectAutomatedSyncStatusUp;
+		
+	}	
 	
 	if (syncStatus == DCTManagedObjectAutomatedSyncStatusUp) {
 		[syncSelf dct_synchroniseToSource];
@@ -92,8 +101,60 @@
 		return;
 	}
 	
-	NSLog(@"%@:%@ Sync Status Same", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+	if (DCTManagedObjectAutomatedSyncLogInformationMessages)
+		NSLog(@"DCTAutomatedSync (%@) Sync status same", NSStringFromClass([self class]));
 	
+}
+
+#pragma mark - 
+#pragma mark Internal methods
+
+- (NSDate *)dctInternal_localUpdatedDate {
+	
+	NSString *key = [self dctInternal_lastUpdatedDateKey];
+	
+	if (!key) return nil;
+	
+	NSAttributeDescription *attribute = [self dct_attributeDescriptionForKey:key];
+	
+	if (!attribute || ![attribute dct_isClassValid:[NSDate class]]) return nil;
+	
+	return [self valueForKey:key];
+}
+
+- (NSDate *)dctInternal_updatedDateInDictionary:(NSDictionary *)dictionary {
+	
+	NSString *key = [self dctInternal_lastUpdatedDateKey];
+	
+	if (!key) return nil;
+	
+	NSDate *date = [dictionary objectForKey:key];
+	
+	if (!date || ![date isKindOfClass:[NSDate class]]) {
+		
+		if ([self respondsToSelector:@selector(dct_mappingFromRemoteNamesToLocalNames)]) {
+			
+			NSDictionary *mapping = [[(id<DCTManagedObjectAutomatedSync>)self class] dct_mappingFromRemoteNamesToLocalNames];
+			
+			key = [mapping dct_keyForObject:key];
+			
+			date = [dictionary objectForKey:key];
+			
+			if (!date || ![date isKindOfClass:[NSDate class]]) return nil;
+			
+		}
+	}
+	
+	return date;	
+}
+
+
+- (NSString *)dctInternal_lastUpdatedDateKey {
+	
+	if ([self respondsToSelector:@selector(dct_lastUpdatedDateKey)])
+		return [(id<DCTManagedObjectAutomatedSync>)self dct_lastUpdatedDateKey];
+
+	return nil;
 }
 
 @end
