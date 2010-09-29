@@ -92,11 +92,20 @@ BOOL const DCTManagedObjectAutomatedSyncLogErrorMessages = YES;
 	}	
 	
 	if (syncStatus == DCTManagedObjectAutomatedSyncStatusUp) {
-		[syncSelf dct_synchroniseToSource];
+		
+		if (DCTManagedObjectAutomatedSyncLogInformationMessages)
+			NSLog(@"DCTAutomatedSync (%@) Sync status up", NSStringFromClass([self class]));
+		
+		if ([syncSelf respondsToSelector:@selector(dct_synchroniseToSource)]) 
+			[syncSelf dct_synchroniseToSource];
 		return;
 	}
 	
 	if (syncStatus == DCTManagedObjectAutomatedSyncStatusDown) {
+		
+		if (DCTManagedObjectAutomatedSyncLogInformationMessages)
+			NSLog(@"DCTAutomatedSync (%@) Sync status down", NSStringFromClass([self class]));
+		
 		[self dct_setupFromDictionary:dictionary];
 		return;
 	}
