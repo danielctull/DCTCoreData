@@ -25,4 +25,8 @@
 	return nil;
 }
 
+- (NSString *)dct_lastUpdatedDateKey {
+	return @"date";
+}
+
 @end
