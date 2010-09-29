@@ -38,4 +38,16 @@
 
 @implementation NSPredicate (DCTExtras)
 
++ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name equals:(NSObject *)object {
+	return [NSPredicate predicateWithFormat:@"%K == %@", name, object];
+}
+
++ (NSPredicate *)dct_predicateWherePropertyIsNotNil:(NSString *)name {
+	return [NSPredicate predicateWithFormat:@"%K != nil", name];
+}
+
++ (NSPredicate *)dct_predicateWhereStringPropertyIsNotNilAndNotEmpty:(NSString *)name {
+	return [NSPredicate predicateWithFormat:@"%K != nil && %K != ''", name, name];
+}
+
 @end
