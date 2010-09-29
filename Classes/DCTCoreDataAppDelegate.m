@@ -31,27 +31,32 @@
 	
 	// SETTING UP THE DICTIONARY TO IMPORT:
 	
-	NSDictionary *groupDict = [self dctInternal_initialDictionary];
+	NSDictionary *initialGroupDict = [self dctInternal_initialDictionary];
 	
-	NSLog(@"%@", groupDict);
+	NSLog(@"%@", initialGroupDict);
 	
 	// CREATE THE INITIAL GROUP:
 	
-	DCTCDGroup *group = [DCTCDGroup dct_objectForDictionary:groupDict managedObjectContext:managedObjectContext];
+	DCTCDGroup *group = [DCTCDGroup dct_objectForDictionary:initialGroupDict managedObjectContext:managedObjectContext];
 	[self dctInternal_logGroup:group];
 	
 	
 	// THE FOLLOWING SHOULD LOG OUT AS THE SAME OBJECT BECAUSE THE UNIQUE KEYS MATCHED:
 	
-	DCTCDGroup *group2 = [DCTCDGroup dct_objectForDictionary:groupDict managedObjectContext:managedObjectContext];
+	DCTCDGroup *group2 = [DCTCDGroup dct_objectForDictionary:initialGroupDict managedObjectContext:managedObjectContext];
 	[self dctInternal_logGroup:group2];
 	
 	
 	// GET AN UPDATED DICTIONARY AND SYNC SHOULD SYNC DOWN:
 	
-	groupDict = [self dctInternal_updatedDictionary];
-	[group dct_syncWithDictionary:groupDict];
+	NSDictionary *updatedGroupDict = [self dctInternal_updatedDictionary];
+	[group dct_syncWithDictionary:updatedGroupDict];
 	[self dctInternal_logGroup:group];
+	
+	
+	// TRY TO SYNC THE INITIAL DICTIONARY, IT'S OLD, SO SHOULD CAUSE A SYNC TO SOURCE:
+	
+	[group dct_syncWithDictionary:initialGroupDict];
 	
 	
     [window makeKeyAndVisible];
