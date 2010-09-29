@@ -45,4 +45,11 @@
 	return ([object isKindOfClass:attributeClass] || [self attributeType] == NSTransformableAttributeType);
 }
 
+- (BOOL)dct_isClassValid:(Class)aClass {
+	
+	Class attributeClass = NSClassFromString([self attributeValueClassName]);
+	
+	return (aClass == attributeClass);
+}
+
 @end
