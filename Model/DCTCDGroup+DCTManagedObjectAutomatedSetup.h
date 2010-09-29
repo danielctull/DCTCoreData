@@ -8,7 +8,10 @@
 
 #import "DCTCDGroup.h"
 #import "NSManagedObject+DCTAutomatedSetup.h"
+#import "NSManagedObject+DCTAutomatedSync.h"
 
-@interface DCTCDGroup (DCTManagedObjectAutomatedSetup) <DCTManagedObjectAutomatedSetup>
+@interface DCTCDGroup (DCTManagedObjectAutomatedSetup) <DCTManagedObjectAutomatedSync>
+
+
 
 @end
