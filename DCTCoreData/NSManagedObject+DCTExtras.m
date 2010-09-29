@@ -1,8 +1,8 @@
 /*
- NSAttributeDescription+DCTObjectCheck.h
+ NSManagedObject+DCTExtras.m
  DCTCoreData
  
- Created by Daniel Tull on 11.08.2010.
+ Created by Daniel Tull on 29.09.2010.
  
  
  
@@ -34,22 +34,16 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "NSAttributeDescription+DCTObjectCheck.h"
+#import "NSManagedObject+DCTExtras.h"
 
-@implementation NSAttributeDescription (DCTObjectCheck)
+@implementation NSManagedObject (DCTExtras)
 
-- (BOOL)dct_isObjectValid:(id)object {
+- (NSAttributeDescription *)dct_attributeDescriptionForKey:(NSString *)key {
 	
-	Class attributeClass = NSClassFromString([self attributeValueClassName]);
+	NSEntityDescription *entity = [self entity];	
+	NSDictionary *attributesByName = [entity attributesByName];
 	
-	return ([object isKindOfClass:attributeClass] || [self attributeType] == NSTransformableAttributeType);
-}
-
-- (BOOL)dct_isClassValid:(Class)aClass {
-	
-	Class attributeClass = NSClassFromString([self attributeValueClassName]);
-	
-	return (aClass == attributeClass);
+	return [attributesByName objectForKey:key];
 }
 
 @end

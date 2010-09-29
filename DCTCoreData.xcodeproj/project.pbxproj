@@ -30,6 +30,8 @@
 		24714BB5124F963D00817366 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24714BB3124F963D00817366 /* MainWindow_iPad.xib */; };
 		24714BB8124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 24714BB7124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.m */; };
 		24714BBB124F963D00817366 /* DCTCoreDataAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 24714BBA124F963D00817366 /* DCTCoreDataAppDelegate_iPad.m */; };
+		249EA218125345580043BC85 /* NSManagedObject+DCTAutomatedSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 249EA217125345580043BC85 /* NSManagedObject+DCTAutomatedSync.m */; };
+		249EA22F125356CA0043BC85 /* NSManagedObject+DCTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 249EA22E125356CA0043BC85 /* NSManagedObject+DCTExtras.m */; };
 		24A94243125132C5006E8BCD /* NSManagedObject+DCTAutomatedSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A94242125132C5006E8BCD /* NSManagedObject+DCTAutomatedSetup.m */; };
 		24A9425E1251354B006E8BCD /* NSDictionary+DCTKeyForObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A9425D1251354B006E8BCD /* NSDictionary+DCTKeyForObject.m */; };
 		24A94265125136C0006E8BCD /* NSManagedObject+DCTOrdering.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A94264125136C0006E8BCD /* NSManagedObject+DCTOrdering.m */; };
@@ -76,6 +78,10 @@
 		24714BB7124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCTCoreDataAppDelegate_iPhone.m; sourceTree = "<group>"; };
 		24714BB9124F963D00817366 /* DCTCoreDataAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCTCoreDataAppDelegate_iPad.h; sourceTree = "<group>"; };
 		24714BBA124F963D00817366 /* DCTCoreDataAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCTCoreDataAppDelegate_iPad.m; sourceTree = "<group>"; };
+		249EA216125345580043BC85 /* NSManagedObject+DCTAutomatedSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTAutomatedSync.h"; sourceTree = "<group>"; };
+		249EA217125345580043BC85 /* NSManagedObject+DCTAutomatedSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTAutomatedSync.m"; sourceTree = "<group>"; };
+		249EA22D125356CA0043BC85 /* NSManagedObject+DCTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTExtras.h"; sourceTree = "<group>"; };
+		249EA22E125356CA0043BC85 /* NSManagedObject+DCTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTExtras.m"; sourceTree = "<group>"; };
 		24A94241125132C5006E8BCD /* NSManagedObject+DCTAutomatedSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTAutomatedSetup.h"; sourceTree = "<group>"; };
 		24A94242125132C5006E8BCD /* NSManagedObject+DCTAutomatedSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTAutomatedSetup.m"; sourceTree = "<group>"; };
 		24A9425C1251354B006E8BCD /* NSDictionary+DCTKeyForObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DCTKeyForObject.h"; sourceTree = "<group>"; };
@@ -203,6 +209,8 @@
 				2426E38D1251DA9D00E170AF /* NSFetchedResultsController+DCTExtras.m */,
 				2433E631124F9CE7002C81BD /* NSArray+DCTSortDescriptors.h */,
 				2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */,
+				24A9425C1251354B006E8BCD /* NSDictionary+DCTKeyForObject.h */,
+				24A9425D1251354B006E8BCD /* NSDictionary+DCTKeyForObject.m */,
 				2433E622124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.h */,
 				2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */,
 				2433E617124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.h */,
@@ -217,8 +225,10 @@
 				242555C31251289F0095D2F6 /* NSManagedObject+DCTRelatedObjects.m */,
 				24A94241125132C5006E8BCD /* NSManagedObject+DCTAutomatedSetup.h */,
 				24A94242125132C5006E8BCD /* NSManagedObject+DCTAutomatedSetup.m */,
-				24A9425C1251354B006E8BCD /* NSDictionary+DCTKeyForObject.h */,
-				24A9425D1251354B006E8BCD /* NSDictionary+DCTKeyForObject.m */,
+				249EA216125345580043BC85 /* NSManagedObject+DCTAutomatedSync.h */,
+				249EA217125345580043BC85 /* NSManagedObject+DCTAutomatedSync.m */,
+				249EA22D125356CA0043BC85 /* NSManagedObject+DCTExtras.h */,
+				249EA22E125356CA0043BC85 /* NSManagedObject+DCTExtras.m */,
 			);
 			path = DCTCoreData;
 			sourceTree = "<group>";
@@ -305,6 +315,8 @@
 				246A87371251E0B000DA85C3 /* DCTCDGroup.m in Sources */,
 				246A873E1251E10800DA85C3 /* DCTCDItem+DCTManagedObjectAutomatedSetup.m in Sources */,
 				246A87431251E11A00DA85C3 /* DCTCDGroup+DCTManagedObjectAutomatedSetup.m in Sources */,
+				249EA218125345580043BC85 /* NSManagedObject+DCTAutomatedSync.m in Sources */,
+				249EA22F125356CA0043BC85 /* NSManagedObject+DCTExtras.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

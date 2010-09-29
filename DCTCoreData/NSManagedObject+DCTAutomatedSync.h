@@ -1,8 +1,8 @@
 /*
- NSAttributeDescription+DCTObjectCheck.h
+ NSManagedObject+DCTAutomatedSync.h
  DCTCoreData
  
- Created by Daniel Tull on 11.08.2010.
+ Created by Daniel Tull on 20.09.2010.
  
  
  
@@ -34,22 +34,28 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "NSAttributeDescription+DCTObjectCheck.h"
+#import <CoreData/CoreData.h>
+#import "NSManagedObject+DCTAutomatedSetup.h"
 
-@implementation NSAttributeDescription (DCTObjectCheck)
+typedef enum {
+	DCTManagedObjectAutomatedSyncStatusNil = 0,
+	DCTManagedObjectAutomatedSyncStatusUp,
+	DCTManagedObjectAutomatedSyncStatusNone,
+	DCTManagedObjectAutomatedSyncStatusDown
+} DCTManagedObjectAutomatedSyncStatus;
 
-- (BOOL)dct_isObjectValid:(id)object {
-	
-	Class attributeClass = NSClassFromString([self attributeValueClassName]);
-	
-	return ([object isKindOfClass:attributeClass] || [self attributeType] == NSTransformableAttributeType);
-}
+@interface NSManagedObject (DCTAutomatedSync)
 
-- (BOOL)dct_isClassValid:(Class)aClass {
-	
-	Class attributeClass = NSClassFromString([self attributeValueClassName]);
-	
-	return (aClass == attributeClass);
-}
+- (void)dct_syncWithDictionary:(NSDictionary *)dictionary;
+
+@end
+
+
+@protocol DCTManagedObjectAutomatedSync <DCTManagedObjectAutomatedSetup>
+
+@optional
+- (DCTManagedObjectAutomatedSyncStatus)dct_syncStatusForDictionary:(NSDictionary *)dictionary;
+- (NSString *)dct_lastUpdatedDateKey;
+- (void)dct_synchroniseToSource;
 
 @end

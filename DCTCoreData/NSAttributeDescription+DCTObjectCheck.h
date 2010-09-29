@@ -39,5 +39,6 @@
 @interface NSAttributeDescription (DCTObjectCheck)
 
 - (BOOL)dct_isObjectValid:(id)object;
+- (BOOL)dct_isClassValid:(Class)aClass;
 
 @end
