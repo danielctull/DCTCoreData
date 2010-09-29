@@ -130,19 +130,26 @@ BOOL const DCTManagedObjectAutomatedSyncLogErrorMessages = YES;
 	
 	NSDate *date = [dictionary objectForKey:key];
 	
-	if (!date || ![date isKindOfClass:[NSDate class]]) {
+	Class syncClass = [(id<DCTManagedObjectAutomatedSync>)self class];
+	
+	if (!date && [syncClass respondsToSelector:@selector(dct_mappingFromRemoteNamesToLocalNames)]) {
 		
-		if ([self respondsToSelector:@selector(dct_mappingFromRemoteNamesToLocalNames)]) {
+		NSDictionary *mapping = [syncClass dct_mappingFromRemoteNamesToLocalNames];
 			
-			NSDictionary *mapping = [[(id<DCTManagedObjectAutomatedSync>)self class] dct_mappingFromRemoteNamesToLocalNames];
+		key = [mapping dct_keyForObject:key];
 			
-			key = [mapping dct_keyForObject:key];
+		date = [dictionary objectForKey:key];
 			
-			date = [dictionary objectForKey:key];
-			
-			if (!date || ![date isKindOfClass:[NSDate class]]) return nil;
-			
-		}
+		if (!date) return nil;
+	}
+	
+	if (![date isKindOfClass:[NSDate class]]) {
+		
+		if (![syncClass respondsToSelector:@selector(dct_convertValue:toCorrectTypeForKey:)]) return nil;
+		
+		date = [syncClass dct_convertValue:date toCorrectTypeForKey:key];
+		
+		if (![date isKindOfClass:[NSDate class]]) return nil;
 	}
 	
 	return date;	
