@@ -38,4 +38,12 @@
 
 @implementation NSManagedObject (DCTExtras)
 
+- (NSAttributeDescription *)dct_attributeDescriptionForKey:(NSString *)key {
+	
+	NSEntityDescription *entity = [self entity];	
+	NSDictionary *attributesByName = [entity attributesByName];
+	
+	return [attributesByName objectForKey:key];
+}
+
 @end

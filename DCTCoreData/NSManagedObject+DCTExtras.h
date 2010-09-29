@@ -34,9 +34,11 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 
 @interface NSManagedObject (DCTExtras)
+
+- (NSAttributeDescription *)dct_attributeDescriptionForKey:(NSString *)key;
 
 @end
