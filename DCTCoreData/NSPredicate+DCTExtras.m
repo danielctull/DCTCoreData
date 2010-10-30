@@ -1,8 +1,8 @@
 /*
- NSFetchedResultsController+DCTExtras.h
+ NSPredicate+DCTExtras.m
  DCTCoreData
  
- Created by Daniel Tull on 18.02.2010.
+ Created by Daniel Tull on 16.06.2010.
  
  
  
@@ -34,11 +34,20 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "NSPredicate+DCTExtras.h"
 
-@interface NSFetchedResultsController (DCTExtras)
+@implementation NSPredicate (DCTExtras)
 
-- (BOOL)dct_performFetch;
++ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name equals:(NSObject *)object {
+	return [NSPredicate predicateWithFormat:@"%K == %@", name, object];
+}
+
++ (NSPredicate *)dct_predicateWherePropertyIsNotNil:(NSString *)name {
+	return [NSPredicate predicateWithFormat:@"%K != nil", name];
+}
+
++ (NSPredicate *)dct_predicateWhereStringPropertyIsNotNilAndNotEmpty:(NSString *)name {
+	return [NSPredicate predicateWithFormat:@"%K != nil && %K != ''", name, name];
+}
 
 @end
