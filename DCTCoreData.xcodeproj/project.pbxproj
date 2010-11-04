@@ -14,6 +14,7 @@
 		2433E619124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E618124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m */; };
 		2433E624124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */; };
 		2433E633124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */; };
+		2467A3A012835B8E00BE3BCC /* NSManagedObjectContext+DCTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2467A39F12835B8E00BE3BCC /* NSManagedObjectContext+DCTExtras.m */; };
 		246A872B1251E05700DA85C3 /* DCTCoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */; };
 		246A87361251E0B000DA85C3 /* DCTCDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87331251E0B000DA85C3 /* DCTCDItem.m */; };
 		246A87371251E0B000DA85C3 /* DCTCDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 246A87351251E0B000DA85C3 /* DCTCDGroup.m */; };
@@ -53,6 +54,8 @@
 		2433E623124F9A8A002C81BD /* NSFetchRequest+DCTInitMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchRequest+DCTInitMethods.m"; sourceTree = "<group>"; };
 		2433E631124F9CE7002C81BD /* NSArray+DCTSortDescriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DCTSortDescriptors.h"; sourceTree = "<group>"; };
 		2433E632124F9CE7002C81BD /* NSArray+DCTSortDescriptors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DCTSortDescriptors.m"; sourceTree = "<group>"; };
+		2467A39E12835B8E00BE3BCC /* NSManagedObjectContext+DCTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+DCTExtras.h"; sourceTree = "<group>"; };
+		2467A39F12835B8E00BE3BCC /* NSManagedObjectContext+DCTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+DCTExtras.m"; sourceTree = "<group>"; };
 		246A872A1251E05700DA85C3 /* DCTCoreData.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = DCTCoreData.xcdatamodel; sourceTree = "<group>"; };
 		246A87321251E0B000DA85C3 /* DCTCDItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTCDItem.h; sourceTree = "<group>"; };
 		246A87331251E0B000DA85C3 /* DCTCDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTCDItem.m; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 				242555C31251289F0095D2F6 /* NSManagedObject+DCTRelatedObjects.m */,
 				2433E617124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.h */,
 				2433E618124F9806002C81BD /* NSManagedObjectContext+DCTDataFetching.m */,
+				2467A39E12835B8E00BE3BCC /* NSManagedObjectContext+DCTExtras.h */,
+				2467A39F12835B8E00BE3BCC /* NSManagedObjectContext+DCTExtras.m */,
 				24971C23125381B000D23773 /* NSPredicate+DCTExtras.h */,
 				24971C24125381B000D23773 /* NSPredicate+DCTExtras.m */,
 			);
@@ -323,6 +328,7 @@
 				249EA218125345580043BC85 /* NSManagedObject+DCTAutomatedSync.m in Sources */,
 				249EA22F125356CA0043BC85 /* NSManagedObject+DCTExtras.m in Sources */,
 				24971C25125381B000D23773 /* NSPredicate+DCTExtras.m in Sources */,
+				2467A3A012835B8E00BE3BCC /* NSManagedObjectContext+DCTExtras.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
