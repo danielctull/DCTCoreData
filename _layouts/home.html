@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ site.name }}</title>
+		<link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/fonts/museo/stylesheet.css" type="text/css" media="screen" />
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DanielTull" />
+		<link rel="service.feed" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/DanielTull" />
+	</head>
+
+	<body>
+		<div id="wrapper" class="wrapper">
+			<div id="inner-wrapper" class="inner-wrapper">
+				<div class="page sixteen-col">
+										
+					<div class="sixteen-col last-col">
+						<div class="main-content main-text">
+							{{ content }}
+	                	</div>
+	            	</div>
+					
+					<div class="sidebar four-col">
+						<div class="section">
+							{% include recentpostsmenu.html %}
+						</div>
+					</div>
+					
+					<div class="sidebar four-col">
+						<div class="section">
+							{% include opensourcemenu.html %}
+						</div>
+					</div>
+					
+					<div class="sidebar four-col">
+						<div class="section">
+							{% include appsmenu.html %}
+						</div>
+					</div>
+
+					<div class="sidebar four-col last-col">
+						<div class="section">
+							{% include aboutmenu.html %}
+						</div>
+					</div>
+					
+					<div class="footer sixteen-col">
+						{% include footer.html %}
+					</div>
+					
+				</div>				
+			</div>
+		</div>
+		{% include analytics.html %}
+	</body>
+</html>
