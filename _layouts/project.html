@@ -12,18 +12,17 @@
 		<div id="wrapper" class="wrapper">
 			<div id="inner-wrapper" class="inner-wrapper">
 				<div class="page sixteen-col">
-										
-					<div class="sixteen-col last-col">
-						<div class="main-content main-text">
-							<h1>{{ page.title }}</h1>
-							
-							<div class="twelve-col">{{ content }}</div>
-							<div class="four-col last-col download">
-								<a href="http://github.com/danielctull/{{ page.title }}/zipball/master"><img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-								<a href="http://github.com/danielctull/{{ page.title }}/tarball/master"><img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-							</div>
-	                	</div>
-	            	</div>
+					
+					<div class="main-content main-text">
+						<h1>{{ page.title }}</h1>
+						
+						<div class="four-col last-col download">
+							<a href="http://github.com/danielctull/{{ page.title }}/zipball/master"><img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+							<a href="http://github.com/danielctull/{{ page.title }}/tarball/master"><img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+						</div>
+						
+						<div class="twelve-col">{{ content }}</div>
+	                </div>
 										
 					<div class="footer sixteen-col">
 						{% include footer.html %}

@@ -5,7 +5,7 @@ title: "DCTCoreData"
 
 DCTCoreData is my collection of extensions to Apple's Core Data framework. 
 
-Features
+h2. Features
 
 * BSD license.
 * Convenience methods for fetching from the managed object context.
