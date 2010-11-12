@@ -12,6 +12,12 @@ h2. Features
 * Automated creation of managed objects from an NSDictionary representation - for example one returned via a JSON parser.
 * A category to handle the ordering of related objects.
 
+h2. Blog Posts
+
+<ul class="archive">
+<li>30 September 2010: <a href="/blog/2010/09/30/dctcoredata-dctmanagedobjectautomatedsetup/">DCTCoreData: DCTManagedObjectAutomatedSetup</a></li>
+</ul>
+
 h2. Examples
 
 An example of the automated setup can be found in the app delegate.
