@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{ site.name }}</title>
+		<title>{{ site.name }}: {{ page.title }}</title>
 		<link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="/fonts/museo/stylesheet.css" type="text/css" media="screen" />
 		<link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DanielTull" />
@@ -15,6 +15,7 @@
 										
 					<div class="sixteen-col last-col">
 						<div class="main-content main-text">
+							<h1>{{ page.title }}</h1>
 							{{ content }}
 	                	</div>
 	            	</div>
