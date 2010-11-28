@@ -206,6 +206,10 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 		
 		if ([predicateString length] > 0) [predicateString appendString:@" && "];
 		
+		
+		if ([primaryKeyValue isKindOfClass:[NSString class]])
+			primaryKeyValue = [primaryKeyValue stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+		
 		[predicateString appendFormat:@"%@ == '%@'", localPrimaryKey, primaryKeyValue];
 	}
 	
