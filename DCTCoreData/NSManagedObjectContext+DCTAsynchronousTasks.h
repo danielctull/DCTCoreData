@@ -10,6 +10,7 @@
 
 typedef void (^DCTManagedObjectContextBlock) (NSManagedObjectContext *managedObjectContext);
 typedef void (^DCTFetchRequestCallbackBlock) (NSArray *fetchedObjects, NSError *error);
+typedef void (^DCTFetchRequestObjectCallbackBlock) (id fetchedObject, NSError *error);
 
 @interface NSManagedObjectContext (DCTAsynchronousTasks)
 
