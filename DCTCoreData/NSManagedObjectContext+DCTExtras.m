@@ -15,4 +15,8 @@
 	return [[self persistentStoreCoordinator] managedObjectModel];
 }
 
+- (BOOL)save {
+	return [self save:nil];
+}
+
 @end

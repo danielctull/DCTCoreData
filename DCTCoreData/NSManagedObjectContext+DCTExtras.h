@@ -11,5 +11,6 @@
 @interface NSManagedObjectContext (DCTExtras)
 
 - (NSManagedObjectModel *)dct_managedObjectModel;
+- (BOOL)save;
 
 @end
