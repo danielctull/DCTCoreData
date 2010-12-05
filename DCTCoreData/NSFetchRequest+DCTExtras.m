@@ -1,5 +1,5 @@
 /*
- NSFetchRequest+DCTInitMethods.m
+ NSFetchRequest+DCTExtras.m
  DCTCoreData
  
  Created by Daniel Tull on 18.02.2010.
@@ -34,30 +34,69 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "NSFetchRequest+DCTInitMethods.h"
+#import "NSFetchRequest+DCTExtras.h"
 
 NSUInteger const DCTFetchBatchSizeNil = 0;
 
-@implementation NSFetchRequest (DCTInitMethods)
+@implementation NSFetchRequest (DCTExtras)
+
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity {
+	return [[[self alloc] dct_initWithEntity:entity] autorelease];
+}
+
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
+					   predicate:(NSPredicate *)predicate {
+	
+	return [[[self alloc] dct_initWithEntity:entity
+								   predicate:predicate] autorelease];
+}
+
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
+					   predicate:(NSPredicate *)predicate
+				 sortDescriptors:(NSArray *)sortDescriptors {
+	
+	return [[[self alloc] dct_initWithEntity:entity
+								   predicate:predicate
+							 sortDescriptors:sortDescriptors] autorelease];
+}
+
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
+					   predicate:(NSPredicate *)predicate
+				 sortDescriptors:(NSArray *)sortDescriptors
+					   batchSize:(NSUInteger)batchSize {
+	
+	return [[[self alloc] dct_initWithEntity:entity
+								   predicate:predicate
+							 sortDescriptors:sortDescriptors
+								   batchSize:batchSize] autorelease];
+}
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity {
 	
-	return [self dct_initWithEntity:entity predicate:nil sortDescriptors:nil batchSize:DCTFetchBatchSizeNil];
+	return [self dct_initWithEntity:entity 
+						  predicate:nil
+					sortDescriptors:nil
+						  batchSize:DCTFetchBatchSizeNil];
 }
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity
 			   predicate:(NSPredicate *)predicate {
 	
-	return [self dct_initWithEntity:entity predicate:predicate sortDescriptors:nil batchSize:DCTFetchBatchSizeNil];
+	return [self dct_initWithEntity:entity
+						  predicate:predicate
+					sortDescriptors:nil 
+						  batchSize:DCTFetchBatchSizeNil];
 }
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity
 			   predicate:(NSPredicate *)predicate
 		 sortDescriptors:(NSArray *)sortDescriptors {
 	
-	return [self dct_initWithEntity:entity predicate:predicate sortDescriptors:sortDescriptors batchSize:DCTFetchBatchSizeNil];
+	return [self dct_initWithEntity:entity 
+						  predicate:predicate
+					sortDescriptors:sortDescriptors
+						  batchSize:DCTFetchBatchSizeNil];
 }
-
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity
 			   predicate:(NSPredicate *)predicate

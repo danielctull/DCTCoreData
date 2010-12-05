@@ -1,5 +1,5 @@
 /*
- NSFetchRequest+DCTInitMethods.h
+ NSFetchRequest+DCTExtras.h
  DCTCoreData
  
  Created by Daniel Tull on 18.02.2010.
@@ -38,7 +38,21 @@
 
 extern NSUInteger const DCTFetchBatchSizeNil;
 
-@interface NSFetchRequest (DCTInitMethods)
+@interface NSFetchRequest (DCTExtras)
+
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity;
+
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
+					   predicate:(NSPredicate *)predicate;
+
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
+					   predicate:(NSPredicate *)predicate
+				 sortDescriptors:(NSArray *)sortDescriptors;
+
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
+					   predicate:(NSPredicate *)predicate
+				 sortDescriptors:(NSArray *)sortDescriptors
+					   batchSize:(NSUInteger)batchSize;
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity;
 
