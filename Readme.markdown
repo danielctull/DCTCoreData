@@ -1,23 +1,44 @@
-DCTCoreData
-===========
+# DCTCoreData
 
 DCTCoreData is my collection of extensions to Apple's Core Data framework. 
 
-Features
---------
+## Features
 
-* BSD license.
-* Convenience methods for fetching from the managed object context.
-* Automated creation of managed objects from an NSDictionary representation - for example one returned via a JSON parser.
-* A category to handle the ordering of related objects.
+* Convenience methods for fetching from the managed object context
+* Automated creation of managed objects from an NSDictionary representation
+* A category to handle the ordering of related objects
+* Asynchronous tasks and fetching with blocks
+* Convenience methods for asynchronously fetching from the managed object context
 
-Examples
---------
+### NSManagedObjectContext (DCTDataFetching)
+
+Fetching from the context the way it always should have been! Lots of methods to ease the pain of fetching objects from a managed object context.
+
+Also includes an easy way to insert a new object. This will likely be moved to a separate category in the future.
+
+### NSManagedObject (DCTAutomatedSetup)
+
+Category to enable a subclass of NSManagedObject to conform to the DCTManagedObjectAutomatedSetup protocol and take a dictionary to generate its values.
+
+There are a number of methods subclasses can implement that will aid the setup process, I talk about these on [my blog post ](http://danieltull.co.uk/blog/2010/09/30/dctcoredata-dctmanagedobjectautomatedsetup/ "DCTCoreData: DCTManagedObjectAutomatedSetup").
+
+### NSManagedObjectContext (DCTAsynchronousTasks)
+
+Adds methods to perform tasks off the main thread using GCD queues.
+
+The first set allow you to pass a block, in which you can access the threaded managed object context, to perform the task in another queue.
+
+The second set allow you to execute a fetch request on another GCD queue, which will call the given block when done with any objects fetched and an error if there is one. This method returns objects managed in the managed object context called on.
+
+### NSManagedObjectContext (DCTAsynchronousDataFetching)
+
+Similar to the DCTDataFetching category on NSManagedObjectContext, but performed using the asynchronous fetch from the DCTAsynchronousTasks category.
+
+## Examples
 
 An example of the automated setup can be found in the app delegate.
 
-License
--------
+## License
 
 Copyright (C) 2010 Daniel Tull. All rights reserved.
  
