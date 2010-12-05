@@ -35,7 +35,7 @@
  */
 
 #import "NSManagedObjectContext+DCTAsynchronousDataFetching.h"
-#import "NSFetchRequest+DCTInitMethods.h"
+#import "NSFetchRequest+DCTExtras.h"
 
 @implementation NSManagedObjectContext (DCTAsynchronousDataFetching)
 
