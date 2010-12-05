@@ -36,7 +36,7 @@ Similar to the DCTDataFetching category on NSManagedObjectContext, but performed
 
 h2. Usage
 
-There are two branches to this repository. *master* and *production*
+There are two branches to this repository. *master* and *production* (Thanks to "Abizer":https://github.com/Abizern for showing me this method and for his text below.)
 
 h3. master branch
 
