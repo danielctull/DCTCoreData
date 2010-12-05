@@ -48,35 +48,35 @@
 #pragma mark Modification methods
 
 
-- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)block {
-	[self dct_asynchronousTaskWithWorkBlock:block completionBlock:nil];
+- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)workBlock {
+	[self dct_asynchronousTaskWithWorkBlock:workBlock completionBlock:nil];
 }
 
 
 
 
-- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)block
+- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)workBlock
 							   completionBlock:(DCTManagedObjectContextBlock)completionBlock {
 	
 	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
 	
-	[self dct_asynchronousOperationWithCallbackQueue:dispatch_get_main_queue() workBlock:block completionBlock:completionBlock];
+	[self dct_asynchronousTaskWithCallbackQueue:dispatch_get_main_queue() workBlock:workBlock completionBlock:completionBlock];
 }
 
 
 
 
-- (void)dct_asynchronousOperationWithCallbackQueue:(dispatch_queue_t)queue
-										 workBlock:(DCTManagedObjectContextBlock)block {
+- (void)dct_asynchronousTaskWithCallbackQueue:(dispatch_queue_t)queue
+										 workBlock:(DCTManagedObjectContextBlock)workBlock {
 	
-	[self dct_asynchronousOperationWithCallbackQueue:queue workBlock:block completionBlock:nil];
+	[self dct_asynchronousTaskWithCallbackQueue:queue workBlock:workBlock completionBlock:nil];
 }
 
 
 
 
-- (void)dct_asynchronousOperationWithCallbackQueue:(dispatch_queue_t)queue
-										 workBlock:(DCTManagedObjectContextBlock)block
+- (void)dct_asynchronousTaskWithCallbackQueue:(dispatch_queue_t)queue
+										 workBlock:(DCTManagedObjectContextBlock)workBlock
 								   completionBlock:(DCTManagedObjectContextBlock)completionBlock {
 	
 	NSManagedObjectContext *threadedContext = [[NSManagedObjectContext alloc] init];
@@ -86,7 +86,7 @@
 	
 	dispatch_async(asyncQueue, ^{
 		
-		block(threadedContext);
+		workBlock(threadedContext);
 		
 		dispatch_async(queue, ^{
 			
@@ -113,8 +113,8 @@
 #pragma mark -
 #pragma mark Fetch methods
 
-- (void)dct_asynchronousFetch:(NSFetchRequest *)fetchRequest
-			WithCallbackBlock:(DCTFetchRequestCallbackBlock)callbackBlock {
+- (void)dct_asynchronousFetchRequest:(NSFetchRequest *)fetchRequest
+				   withCallbackBlock:(DCTFetchRequestCallbackBlock)callbackBlock {
 	
 	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
 	

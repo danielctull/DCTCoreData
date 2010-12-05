@@ -99,8 +99,8 @@
 														 sortDescriptors:sortDescriptors
 															   batchSize:batchSize];
 	
-	[self dct_asynchronousFetch:request
-			  WithCallbackBlock:callbackBlock];
+	[self dct_asynchronousFetchRequest:request
+					 withCallbackBlock:callbackBlock];
 	
 	[request release];	
 }
