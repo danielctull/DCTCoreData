@@ -104,7 +104,7 @@
 	managedObjectContext = nil;
 	managedObjectContext = [self managedObjectContext]; // New MOC
 	
-	[managedObjectContext dct_asynchronousOperationWithWorkBlock:^(NSManagedObjectContext *moc) {
+	[managedObjectContext dct_asynchronousTaskWithWorkBlock:^(NSManagedObjectContext *moc) {
 		
 		DCTCDGroup *group = [DCTCDGroup dct_objectForDictionary:initialGroupDict managedObjectContext:moc]; // USE THE MOC GIVEN TO USÉ THIS WILL BE DIFFERENT TO OUR MAIN MOC
 		[self dctInternal_logGroup:group];

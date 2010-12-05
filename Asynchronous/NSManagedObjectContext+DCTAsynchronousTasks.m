@@ -48,14 +48,14 @@
 #pragma mark Modification methods
 
 
-- (void)dct_asynchronousOperationWithWorkBlock:(DCTManagedObjectContextBlock)block {
-	[self dct_asynchronousOperationWithWorkBlock:block completionBlock:nil];
+- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)block {
+	[self dct_asynchronousTaskWithWorkBlock:block completionBlock:nil];
 }
 
 
 
 
-- (void)dct_asynchronousOperationWithWorkBlock:(DCTManagedObjectContextBlock)block
+- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)block
 							   completionBlock:(DCTManagedObjectContextBlock)completionBlock {
 	
 	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;

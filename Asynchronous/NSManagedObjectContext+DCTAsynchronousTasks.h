@@ -42,9 +42,9 @@ typedef void (^DCTFetchRequestObjectCallbackBlock) (id fetchedObject, NSError *e
 
 @interface NSManagedObjectContext (DCTAsynchronousTasks)
 
-- (void)dct_asynchronousOperationWithWorkBlock:(DCTManagedObjectContextBlock)block;
+- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)block;
 
-- (void)dct_asynchronousOperationWithWorkBlock:(DCTManagedObjectContextBlock)block
+- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)block
 							   completionBlock:(DCTManagedObjectContextBlock)completionBlock;
 
 - (void)dct_asynchronousOperationWithCallbackQueue:(dispatch_queue_t)queue
