@@ -1,8 +1,8 @@
 /*
- NSFetchRequest+DCTInitMethods.m
+ NSManagedObjectContext+DCTExtras.h
  DCTCoreData
  
- Created by Daniel Tull on 18.02.2010.
+ Created by Daniel Tull on 4.11.2010.
  
  
  
@@ -34,47 +34,11 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "NSFetchRequest+DCTInitMethods.h"
+#import <CoreData/CoreData.h>
 
-NSUInteger const DCTFetchBatchSizeNil = 0;
+@interface NSManagedObjectContext (DCTExtras)
 
-@implementation NSFetchRequest (DCTInitMethods)
-
-- (id)dct_initWithEntity:(NSEntityDescription *)entity {
-	
-	return [self dct_initWithEntity:entity predicate:nil sortDescriptors:nil batchSize:DCTFetchBatchSizeNil];
-}
-
-- (id)dct_initWithEntity:(NSEntityDescription *)entity
-			   predicate:(NSPredicate *)predicate {
-	
-	return [self dct_initWithEntity:entity predicate:predicate sortDescriptors:nil batchSize:DCTFetchBatchSizeNil];
-}
-
-- (id)dct_initWithEntity:(NSEntityDescription *)entity
-			   predicate:(NSPredicate *)predicate
-		 sortDescriptors:(NSArray *)sortDescriptors {
-	
-	return [self dct_initWithEntity:entity predicate:predicate sortDescriptors:sortDescriptors batchSize:DCTFetchBatchSizeNil];
-}
-
-
-- (id)dct_initWithEntity:(NSEntityDescription *)entity
-			   predicate:(NSPredicate *)predicate
-		 sortDescriptors:(NSArray *)sortDescriptors
-			   batchSize:(NSUInteger)batchSize {
-	
-	if (!(self = [self init])) return nil;
-	
-	[self setEntity:entity];
-	
-	if (predicate) [self setPredicate:predicate];
-	
-	if (sortDescriptors) [self setSortDescriptors:sortDescriptors];
-	
-	if (batchSize != DCTFetchBatchSizeNil) [self setFetchBatchSize:batchSize];
-	
-	return self;
-}
+- (NSManagedObjectModel *)dct_managedObjectModel;
+- (BOOL)dct_save;
 
 @end

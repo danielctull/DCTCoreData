@@ -1,8 +1,8 @@
 /*
- NSFetchRequest+DCTInitMethods.h
+ NSManagedObjectContext+DCTExtras.m
  DCTCoreData
  
- Created by Daniel Tull on 18.02.2010.
+ Created by Daniel Tull on 4.11.2010.
  
  
  
@@ -34,24 +34,17 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <CoreData/CoreData.h>
+#import "NSManagedObjectContext+DCTExtras.h"
 
-extern NSUInteger const DCTFetchBatchSizeNil;
 
-@interface NSFetchRequest (DCTInitMethods)
+@implementation NSManagedObjectContext (DCTExtras)
 
-- (id)dct_initWithEntity:(NSEntityDescription *)entity;
+- (NSManagedObjectModel *)dct_managedObjectModel {
+	return [[self persistentStoreCoordinator] managedObjectModel];
+}
 
-- (id)dct_initWithEntity:(NSEntityDescription *)entity
-			   predicate:(NSPredicate *)predicate;
-
-- (id)dct_initWithEntity:(NSEntityDescription *)entity
-			   predicate:(NSPredicate *)predicate
-		 sortDescriptors:(NSArray *)sortDescriptors;
-
-- (id)dct_initWithEntity:(NSEntityDescription *)entity
-			   predicate:(NSPredicate *)predicate
-		 sortDescriptors:(NSArray *)sortDescriptors
-			   batchSize:(NSUInteger)batchSize;
+- (BOOL)dct_save {
+	return [self save:nil];
+}
 
 @end

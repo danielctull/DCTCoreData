@@ -9,7 +9,9 @@
 #import "DCTCoreDataAppDelegate.h"
 #import "DCTCDGroup+DCTManagedObjectAutomatedSetup.h"
 #import "DCTCDItem+DCTManagedObjectAutomatedSetup.h"
-
+#import "NSManagedObjectContext+DCTExtras.h"
+#import "NSManagedObjectContext+DCTAsynchronousDataFetching.h"
+#import "NSManagedObjectContext+DCTAsynchronousTasks.h"
 @interface DCTCoreDataAppDelegate ()
 - (NSDictionary *)dctInternal_initialDictionary;
 - (NSDictionary *)dctInternal_updatedDictionary;
@@ -57,6 +59,76 @@
 	// TRY TO SYNC THE INITIAL DICTIONARY, IT'S OLD, SO SHOULD CAUSE A SYNC TO SOURCE:
 	
 	[group dct_syncWithDictionary:initialGroupDict];
+	
+	
+	
+	
+	// Make sure the context saves so we can call async methods - these make new MOCs with the persistent store from the origin MOC
+	
+	[managedObjectContext dct_save];
+	
+	NSLog(@"======= ASYNC TESTING =======");
+	
+	// Try out the asyc fetches:
+	
+	[managedObjectContext dct_asynchronousObjectsForEntityName:@"DCTCDGroup" callbackBlock:^(NSArray *fetchedObjects, NSError *error) {
+		
+		if (fetchedObjects) NSLog(@"fetchedObjects: %@", fetchedObjects);
+		
+		if (error) NSLog(@"error: %@", error);
+		
+		if ([fetchedObjects count] > 0) {
+			NSManagedObjectContext *returnedObjectsContext = [[fetchedObjects objectAtIndex:0] managedObjectContext];
+			NSAssert([returnedObjectsContext isEqual:managedObjectContext], @"The returned obect's context is not the we called on.");
+		}
+	}];
+	
+	[managedObjectContext dct_asynchronousObjectsForEntityName:@"DCTCDItem" callbackBlock:^(NSArray *fetchedObjects, NSError *error) {
+		
+		if (fetchedObjects) NSLog(@"fetchedObjects: %@", fetchedObjects);
+		
+		if (error) NSLog(@"error: %@", error);
+		
+		if ([fetchedObjects count] > 0) {
+			NSManagedObjectContext *returnedObjectsContext = [[fetchedObjects objectAtIndex:0] managedObjectContext];
+			NSAssert([returnedObjectsContext isEqual:managedObjectContext], @"The returned obect's context is not the we called on.");
+		}
+		
+	}];
+	
+	
+	
+	
+	
+	
+	managedObjectContext = nil;
+	managedObjectContext = [self managedObjectContext]; // New MOC
+	
+	[managedObjectContext dct_asynchronousTaskWithWorkBlock:^(NSManagedObjectContext *moc) {
+		
+		DCTCDGroup *group = [DCTCDGroup dct_objectForDictionary:initialGroupDict managedObjectContext:moc]; // USE THE MOC GIVEN TO USÉ THIS WILL BE DIFFERENT TO OUR MAIN MOC
+		[self dctInternal_logGroup:group];
+		
+	} completionBlock:^(NSManagedObjectContext *moc) {
+		
+		
+		
+		[moc dct_asynchronousObjectsForEntityName:@"DCTCDItem" callbackBlock:^(NSArray *fetchedObjects, NSError *error) {
+			
+			if (fetchedObjects) NSLog(@"After async save. fetchedObjects: %@", fetchedObjects);
+			
+			if (error) NSLog(@"After async save. error: %@", error);
+			
+			if ([fetchedObjects count] > 0) {
+				NSManagedObjectContext *returnedObjectsContext = [[fetchedObjects objectAtIndex:0] managedObjectContext];
+				NSAssert([returnedObjectsContext isEqual:managedObjectContext], @"The returned obect's context is not the we called on.");
+			}
+			
+		}];
+		
+	}];
+	
+	
 	
 	
     [window makeKeyAndVisible];
