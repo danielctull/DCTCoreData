@@ -39,6 +39,6 @@
 @interface NSManagedObjectContext (DCTExtras)
 
 - (NSManagedObjectModel *)dct_managedObjectModel;
-- (BOOL)save;
+- (BOOL)dct_save;
 
 @end

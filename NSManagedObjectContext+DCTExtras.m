@@ -43,7 +43,7 @@
 	return [[self persistentStoreCoordinator] managedObjectModel];
 }
 
-- (BOOL)save {
+- (BOOL)dct_save {
 	return [self save:nil];
 }
 
