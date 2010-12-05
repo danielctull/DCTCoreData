@@ -38,7 +38,7 @@
 
 extern NSUInteger const DCTFetchBatchSizeNil;
 
-@interface NSFetchRequest (DCTInitMethods)
+@interface NSFetchRequest (DCTExtras)
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity;
 

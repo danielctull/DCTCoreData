@@ -34,11 +34,11 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "NSFetchRequest+DCTInitMethods.h"
+#import "NSFetchRequest+DCTExtras.h"
 
 NSUInteger const DCTFetchBatchSizeNil = 0;
 
-@implementation NSFetchRequest (DCTInitMethods)
+@implementation NSFetchRequest (DCTExtras)
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity {
 	

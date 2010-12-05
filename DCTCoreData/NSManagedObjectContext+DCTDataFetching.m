@@ -35,7 +35,7 @@
  */
 
 #import "NSManagedObjectContext+DCTDataFetching.h"
-#import "NSFetchRequest+DCTInitMethods.h"
+#import "NSFetchRequest+DCTExtras.h"
 
 @implementation NSManagedObjectContext (DCTDataFetching)
 
