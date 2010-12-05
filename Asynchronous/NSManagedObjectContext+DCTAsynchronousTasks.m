@@ -75,7 +75,7 @@
 								  name:NSManagedObjectContextDidSaveNotification
 								object:threadedContext];
 			
-			if ([threadedContext hasChanges]) [threadedContext save];
+			if ([threadedContext hasChanges]) [threadedContext dct_save];
 			
 			[defaultCenter removeObserver:self
 									 name:NSManagedObjectContextDidSaveNotification
@@ -118,12 +118,14 @@
 		for (NSManagedObject *mo in array)
 			[objectIDs addObject:[mo objectID]];
 		
+		NSLog(@"%@:%@ array: %@", self, NSStringFromSelector(_cmd), array);
+		
 		
 		dispatch_async(callbackQueue, ^{
 			
 			NSMutableArray *returnedObjects = [NSMutableArray arrayWithCapacity:[objectIDs count]];
 			
-			for (NSManagedObjectID *objectID in array)		
+			for (NSManagedObjectID *objectID in objectIDs)		
 				[returnedObjects addObject:[self objectWithID:objectID]];
 			
 			callbackBlock([NSArray arrayWithArray:returnedObjects], error);
