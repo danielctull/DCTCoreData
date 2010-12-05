@@ -44,8 +44,8 @@
 /* Begin PBXFileReference section */
 		240E4FDA12ABBA95005575CE /* NSManagedObjectContext+DCTAsynchronousDataFetching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+DCTAsynchronousDataFetching.h"; sourceTree = "<group>"; };
 		240E4FDB12ABBA95005575CE /* NSManagedObjectContext+DCTAsynchronousDataFetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+DCTAsynchronousDataFetching.m"; sourceTree = "<group>"; };
-		240E4FDC12ABBA95005575CE /* NSManagedObjectContext+DCTAsynchronousTasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+DCTAsynchronousTasks.h"; sourceTree = "<group>"; };
-		240E4FDD12ABBA95005575CE /* NSManagedObjectContext+DCTAsynchronousTasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+DCTAsynchronousTasks.m"; sourceTree = "<group>"; };
+		240E4FDC12ABBA95005575CE /* NSManagedObjectContext+DCTAsynchronousTasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSManagedObjectContext+DCTAsynchronousTasks.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		240E4FDD12ABBA95005575CE /* NSManagedObjectContext+DCTAsynchronousTasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSManagedObjectContext+DCTAsynchronousTasks.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		240E4FDF12ABBA95005575CE /* NSAttributeDescription+DCTObjectCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+DCTObjectCheck.h"; sourceTree = "<group>"; };
 		240E4FE012ABBA95005575CE /* NSAttributeDescription+DCTObjectCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributeDescription+DCTObjectCheck.m"; sourceTree = "<group>"; };
 		240E4FE112ABBA95005575CE /* NSDictionary+DCTKeyForObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DCTKeyForObject.h"; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		24714BA6124F963D00817366 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		24714BA8124F963D00817366 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		24714BAA124F963D00817366 /* DCTCoreDataAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCTCoreDataAppDelegate.h; sourceTree = "<group>"; };
-		24714BAB124F963D00817366 /* DCTCoreDataAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCTCoreDataAppDelegate.m; sourceTree = "<group>"; };
+		24714BAB124F963D00817366 /* DCTCoreDataAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DCTCoreDataAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		24714BB1124F963D00817366 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		24714BB4124F963D00817366 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
 		24714BB6124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCTCoreDataAppDelegate_iPhone.h; sourceTree = "<group>"; };

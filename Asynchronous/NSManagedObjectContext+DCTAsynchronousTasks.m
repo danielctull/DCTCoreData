@@ -47,15 +47,37 @@
 #pragma mark -
 #pragma mark Modification methods
 
-- (void)dct_asynchronousOperationWithBlock:(DCTManagedObjectContextBlock)block {
+
+- (void)dct_asynchronousOperationWithWorkBlock:(DCTManagedObjectContextBlock)block {
+	[self dct_asynchronousOperationWithWorkBlock:block completionBlock:nil];
+}
+
+
+
+
+- (void)dct_asynchronousOperationWithWorkBlock:(DCTManagedObjectContextBlock)block
+							   completionBlock:(DCTManagedObjectContextBlock)completionBlock {
 	
 	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
 	
-	[self dct_asynchronousOperationWithCallbackQueue:dispatch_get_main_queue() block:block];
+	[self dct_asynchronousOperationWithCallbackQueue:dispatch_get_main_queue() workBlock:block completionBlock:completionBlock];
 }
 
+
+
+
 - (void)dct_asynchronousOperationWithCallbackQueue:(dispatch_queue_t)queue
-											 block:(DCTManagedObjectContextBlock)block {
+										 workBlock:(DCTManagedObjectContextBlock)block {
+	
+	[self dct_asynchronousOperationWithCallbackQueue:queue workBlock:block completionBlock:nil];
+}
+
+
+
+
+- (void)dct_asynchronousOperationWithCallbackQueue:(dispatch_queue_t)queue
+										 workBlock:(DCTManagedObjectContextBlock)block
+								   completionBlock:(DCTManagedObjectContextBlock)completionBlock {
 	
 	NSManagedObjectContext *threadedContext = [[NSManagedObjectContext alloc] init];
 	[threadedContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
@@ -82,6 +104,8 @@
 								   object:threadedContext];
 			
 			[threadedContext release];
+			
+			completionBlock(self);
 		});		
 	});
 }
@@ -117,10 +141,7 @@
 		
 		for (NSManagedObject *mo in array)
 			[objectIDs addObject:[mo objectID]];
-		
-		NSLog(@"%@:%@ array: %@", self, NSStringFromSelector(_cmd), array);
-		
-		
+				
 		dispatch_async(callbackQueue, ^{
 			
 			NSMutableArray *returnedObjects = [NSMutableArray arrayWithCapacity:[objectIDs count]];
