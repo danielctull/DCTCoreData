@@ -2,6 +2,8 @@ h1. DCTCoreData
 
 DCTCoreData is my collection of extensions to Apple's Core Data framework. 
 
+*WARNING* DCTCoreData 1.1 moves the location of all of the classes and renames NSFetchRequest+DCTInitMethods.h/m to NSFetchRequest+DCTExtras.h/m so you may need to jiggle things about when updating.
+
 h2. Features
 
 * Convenience methods for fetching from the managed object context
