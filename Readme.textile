@@ -46,13 +46,17 @@ The master branch contains the class extension files as well as an Xcode project
 
 h3. The production Branch
 
-The production branch should be used if you want to use as a git submodule in other projects and will only contain the class files themselves without the Xcode project or example classes. This is preferable as it will keep your directories clean of any code which is unnecessary to your working project, of course you can switch branches in the submodule to access the given samples.
+The production branch should be used if you want to add these extensions as a git submodule in other projects and will only contain the class files themselves without the Xcode project or example classes. This is preferable as it will keep your directories clean of any code which is unnecessary to your working project, of course you can switch branches in the submodule to access the given samples.
 
 Changes made to the master branch will be merged across to production, so it will always remain current with respect to master.
 
 To add the production branch rather than master, simply use the -b flag as shown below.
 
 bc. git submodule add -b production git://github.com/danielctull/DCTCoreData.git
+
+To keep up to date with the latest changes `cd` into the directory that contains this submodule and pull the newest changes as usual
+
+bc. git pull origin
 
 h3. Artefacts
 
