@@ -36,17 +36,25 @@ h3. NSManagedObjectContext (DCTAsynchronousDataFetching)
 
 Similar to the DCTDataFetching category on NSManagedObjectContext, but performed using the asynchronous fetch from the DCTAsynchronousTasks category.
 
-h2. Usage
+h2. Branch Structure
 
-There are two branches to this repository. *master* and *production* (Thanks to "Abizer":https://github.com/Abizern for showing me this method and for his text below.)
+There are two branches to this repository, *master* and *production*, these are described below. (Thanks to "Abizer":https://github.com/Abizern for showing me this method and for his initial writeup below.)
 
-h3. master branch
+h3. The master Branch
 
-This branch contains the class extension files as well as an Xcode project that demonstrates the code. This is the branch to use to see how to use the code. It as also the branch that further development of the code should be performed on.
+The master branch contains the class extension files as well as an Xcode project that demonstrates the code and is the branch to use to see how to use the code. It as also the branch that further development of the code should be performed on.
 
-h3. production branch
+h3. The production Branch
 
-This is the branch that should be used if one wants to use git submodules to use the code in other projects. This will only contain the class files themselves without the Xcode project and any example code.
+The production branch should be used if you want to use as a git submodule in other projects and will only contain the class files themselves without the Xcode project or example classes. This is preferable as it will keep your directories clean of any code which is unnecessary to your working project, of course you can switch branches in the submodule to access the given samples.
+
+Changes made to the master branch will be merged across to production, so it will always remain current with respect to master.
+
+To add the production branch rather than master, simply use the -b flag as shown below.
+
+bc. git submodule add -b production git://github.com/danielctull/DCTCoreData.git
+
+h3. Artefacts
 
 Sometimes, there may be artefacts left over when switching from master to production. These are files that are ignored by git and are easily cleaned up by running
 
