@@ -51,6 +51,13 @@ NSUInteger const DCTFetchBatchSizeNil = 0;
 								   predicate:predicate] autorelease];
 }
 
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity 
+				 sortDescriptors:(NSArray *)sortDescriptors {
+	
+	return [[[self alloc] dct_initWithEntity:entity
+							 sortDescriptors:sortDescriptors] autorelease];
+}
+
 + (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
 					   predicate:(NSPredicate *)predicate
 				 sortDescriptors:(NSArray *)sortDescriptors {
@@ -85,6 +92,15 @@ NSUInteger const DCTFetchBatchSizeNil = 0;
 	return [self dct_initWithEntity:entity
 						  predicate:predicate
 					sortDescriptors:nil 
+						  batchSize:DCTFetchBatchSizeNil];
+}
+
+- (id)dct_initWithEntity:(NSEntityDescription *)entity 
+		 sortDescriptors:(NSArray *)sortDescriptors {
+	
+	return [self dct_initWithEntity:entity
+						  predicate:nil
+					sortDescriptors:sortDescriptors 
 						  batchSize:DCTFetchBatchSizeNil];
 }
 

@@ -45,6 +45,9 @@ extern NSUInteger const DCTFetchBatchSizeNil;
 + (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
 					   predicate:(NSPredicate *)predicate;
 
++ (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity 
+				 sortDescriptors:(NSArray *)sortDescriptors;
+
 + (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
 					   predicate:(NSPredicate *)predicate
 				 sortDescriptors:(NSArray *)sortDescriptors;
@@ -58,6 +61,9 @@ extern NSUInteger const DCTFetchBatchSizeNil;
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity
 			   predicate:(NSPredicate *)predicate;
+
+- (id)dct_initWithEntity:(NSEntityDescription *)entity 
+		 sortDescriptors:(NSArray *)sortDescriptors;
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity
 			   predicate:(NSPredicate *)predicate
