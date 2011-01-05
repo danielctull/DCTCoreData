@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>DCTManagedObjectAutomatedSetup Protocol Reference</title>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" />
+		<meta name="generator" content="appledoc" />
+	</head>
+	<body>
+		<article>
+			<div class="main-navigation navigation-top">
+				<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+			</div>
+			<div id="header">
+				<div class="section-header">
+					<h1 class="title title-header">DCTManagedObjectAutomatedSetup Protocol Reference</h1>
+				</div>		
+			</div>
+			<div id="container">	
+				
+				<div class="section section-specification"><table cellspacing="0"><tbody>
+					<tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">NSManagedObject+DCTAutomatedSetup.h</td>
+</tr>
+					</tbody></table></div>
+				
+				
+				
+				<div class="section section-overview">
+					<h2 class="subtitle subtitle-overview">Overview</h2>
+					
+<p> Any object that wants the ability to have its setup automated MUST conform to this protocol. It needn&apos;t implement any of the methods for it, but it must declare that it conforms to this protocol. </p>
+
+				</div>
+				
+				
+				
+				
+				<div class="section section-tasks">
+					<h2 class="subtitle subtitle-tasks">Tasks</h2>
+					
+					
+
+					<ul class="task-list">
+						<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dct_entityName">+ dct_entityName</a></code>
+		<span class="tooltip"> Add this method if the core data entity name differs to the class. </span>
+	</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dct_handleObjectForDictionary:">+ dct_handleObjectForDictionary:</a></code>
+		<span class="tooltip"> Override this method to handle the setup manually, returning the setup object. </span>
+	</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dct_uniqueKey">+ dct_uniqueKey</a></code>
+		<span class="tooltip"> Give the key for the attribute to check for equality showing two managed objects are the same. </span>
+	</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dct_uniqueKeys">+ dct_uniqueKeys</a></code>
+		<span class="tooltip"> Give the keys for the attributes to check for equality showing two managed objects are the same. </span>
+	</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dct_handleKey:value:">- dct_handleKey:value:</a></code>
+		<span class="tooltip"> Some key/value pairs in the given dictionary </span>
+	</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dct_convertValue:toCorrectTypeForKey:">+ dct_convertValue:toCorrectTypeForKey:</a></code>
+		<span class="tooltip"> Another option to convert the value in the dictionary to the correct type needed for the Core Data model. </span>
+	</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dct_mappingFromRemoteNamesToLocalNames">+ dct_mappingFromRemoteNamesToLocalNames</a></code>
+		<span class="tooltip"> This is an important method that should probably be implemented. Yuo need to return a dictionary of remote keys to local keys. For example if the remote key is &quot;updated_at&quot; and the key for in the model is &quot;updatedAt&quot;, you need to provide a dictionary like so: </span>
+	</span>
+	
+</li>
+					</ul>
+					
+				</div>
+				
+				
+				
+				
+				
+				<div class="section section-methods">
+					<h2 class="subtitle subtitle-methods">Class Methods</h2>
+					
+					<div class="section-method">
+	<a name="//api/name/dct_convertValue:toCorrectTypeForKey:" title="dct_convertValue:toCorrectTypeForKey:"></a>
+	<h3 class="subsubtitle method-title">dct_convertValue:toCorrectTypeForKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p> Another option to convert the value in the dictionary to the correct type needed for the Core Data model. </p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (id)dct_convertValue:(id)<em>value</em> toCorrectTypeForKey:(NSString *)<em>key</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+DCTAutomatedSetup.h</code><br />
+	</div>				
+	
+	
+</div>
+					
+					<div class="section-method">
+	<a name="//api/name/dct_entityName" title="dct_entityName"></a>
+	<h3 class="subsubtitle method-title">dct_entityName</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p> Add this method if the core data entity name differs to the class. </p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSString *)dct_entityName</code></div>
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		
+		<p> Add this method if the core data entity name differs to the class. </p>
+		
+		<p> If this method does not exist, the class name is used as the enity name. </p>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+DCTAutomatedSetup.h</code><br />
+	</div>				
+	
+	
+</div>
+					
+					<div class="section-method">
+	<a name="//api/name/dct_handleObjectForDictionary:" title="dct_handleObjectForDictionary:"></a>
+	<h3 class="subsubtitle method-title">dct_handleObjectForDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p> Override this method to handle the setup manually, returning the setup object. </p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (id)dct_handleObjectForDictionary:(NSDictionary *)<em>dictionary</em></code></div>
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		
+		<p> Override this method to handle the setup manually, returning the setup object. </p>
+		
+		<p> If this method returns nil, the automated setup will continue to run. </p>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+DCTAutomatedSetup.h</code><br />
+	</div>				
+	
+	
+</div>
+					
+					<div class="section-method">
+	<a name="//api/name/dct_mappingFromRemoteNamesToLocalNames" title="dct_mappingFromRemoteNamesToLocalNames"></a>
+	<h3 class="subsubtitle method-title">dct_mappingFromRemoteNamesToLocalNames</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p> This is an important method that should probably be implemented. Yuo need to return a dictionary of remote keys to local keys. For example if the remote key is &quot;updated_at&quot; and the key for in the model is &quot;updatedAt&quot;, you need to provide a dictionary like so: </p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)dct_mappingFromRemoteNamesToLocalNames</code></div>
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		
+		<p> This is an important method that should probably be implemented. Yuo need to return a dictionary of remote keys to local keys. For example if the remote key is &quot;updated_at&quot; and the key for in the model is &quot;updatedAt&quot;, you need to provide a dictionary like so: </p>
+		
+		<p> { &quot;updated_at&quot; =&gt; &quot;updatedAt&quot;; } </p>
+		
+		<p> The automated setup will then do the neccessary conversion to make sure the remote keys and local keys align. </p>
+		
+		<p> WARNING It is sometimes necesary to convert the local name to remote name, thus it can in certain cases look up a key using the value. Thus if you have two remote keys going to the same local key, problems will likely occur. In most usage I doubt this can happen, but I may change how I get this information in future. </p>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+DCTAutomatedSetup.h</code><br />
+	</div>				
+	
+	
+</div>
+					
+					<div class="section-method">
+	<a name="//api/name/dct_uniqueKey" title="dct_uniqueKey"></a>
+	<h3 class="subsubtitle method-title">dct_uniqueKey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p> Give the key for the attribute to check for equality showing two managed objects are the same. </p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSString *)dct_uniqueKey</code></div>
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		
+		<p> Give the key for the attribute to check for equality showing two managed objects are the same. </p>
+		
+		<p> If not implemented, the setup will try to locate an attribute named like so: </p>
+		
+		<p> Last camel-cased word of entity name, lowercased, plus &quot;ID&quot; on the end. Examples: An entity &quot;Person&quot; will lead to an attribute of name &quot;personID&quot;. An entity &quot;DTPerson&quot; will lead to an attribute of name &quot;personID&quot;. An entity &quot;DTTwitterPerson&quot; will lead to an attribute of name &quot;personID&quot;. </p>
+		
+		<p> Implement this method if the unique attribute for the object is not named in this fashion. </p>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+DCTAutomatedSetup.h</code><br />
+	</div>				
+	
+	
+</div>
+					
+					<div class="section-method">
+	<a name="//api/name/dct_uniqueKeys" title="dct_uniqueKeys"></a>
+	<h3 class="subsubtitle method-title">dct_uniqueKeys</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p> Give the keys for the attributes to check for equality showing two managed objects are the same. </p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSMutableArray *)dct_uniqueKeys</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+DCTAutomatedSetup.h</code><br />
+	</div>				
+	
+	
+</div>
+					
+				</div>
+				
+				
+				
+				<div class="section section-methods">
+					<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+					
+					<div class="section-method">
+	<a name="//api/name/dct_handleKey:value:" title="dct_handleKey:value:"></a>
+	<h3 class="subsubtitle method-title">dct_handleKey:value:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p> Some key/value pairs in the given dictionary </p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)dct_handleKey:(NSString *)<em>key</em> value:(id)<em>value</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+DCTAutomatedSetup.h</code><br />
+	</div>				
+	
+	
+</div>
+					
+				</div>
+				
+				
+				
+				
+			</div>
+			<div class="main-navigation navigation-bottom">
+				<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+			</div>
+			<div id="footer">
+				<hr />
+				<div class="footer-copyright">
+					<p><span class="copyright">&copy; 2011 Daniel Tull. All rights reserved. (Last updated: 2011-01-05)</span><br />
+					<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc</a>.</span></p>
+				</div>
+			</div>
+		</article>
+	</body>
+</html>

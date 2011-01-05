@@ -42,7 +42,13 @@
 						<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/dct_objectForDictionary:managedObjectContext:">+ dct_objectForDictionary:managedObjectContext:</a></code>
-		<span class="tooltip"> @brief Setup method to get the managed object inserted into the given context, from the given dictionary. </span>
+		<span class="tooltip"> Setup method to get the managed object inserted into the given context, from the given dictionary. </span>
+	</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dct_setupFromDictionary:">- dct_setupFromDictionary:</a></code>
+		<span class="tooltip"> Sets up the object from the given dictionary. </span>
 	</span>
 	
 </li>
@@ -64,7 +70,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p> @brief Setup method to get the managed object inserted into the given context, from the given dictionary. </p>
+		<p> Setup method to get the managed object inserted into the given context, from the given dictionary. </p>
 	</div>		
 	
 	
@@ -98,7 +104,7 @@
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		
-		<p> @brief Setup method to get the managed object inserted into the given context, from the given dictionary. </p>
+		<p> Setup method to get the managed object inserted into the given context, from the given dictionary. </p>
 		
 		<p> Call this on the managed object class you wish to setup. </p>
 		
@@ -123,6 +129,69 @@
 				</div>
 				
 				
+				
+				<div class="section section-methods">
+					<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+					
+					<div class="section-method">
+	<a name="//api/name/dct_setupFromDictionary:" title="dct_setupFromDictionary:"></a>
+	<h3 class="subsubtitle method-title">dct_setupFromDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p> Sets up the object from the given dictionary. </p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)dct_setupFromDictionary:(NSDictionary *)<em>dictionary</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dictionary</em></dt>
+			<dd> The dictionary used to represent the managed object&apos;s data. </dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p> YES if the setup suceeded, NO otherwise. </p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		
+		<p> Sets up the object from the given dictionary. </p>
+		
+		<p> If you already have an object that represents the dictionary, you can call this to run through the same setup proceedure as the class method. </p>
+		
+		<p> This will recursively go through the dictionary, if a nested dictionary exists it will try to find a relationship for the key, and set up that as a core data object using the nested dictionary. </p>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSManagedObject+DCTAutomatedSetup.h</code><br />
+	</div>				
+	
+	
+</div>
+					
+				</div>
 				
 				
 				
