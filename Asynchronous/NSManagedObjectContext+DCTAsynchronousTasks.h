@@ -37,7 +37,10 @@
 #import <Foundation/Foundation.h>
 
 typedef void (^DCTManagedObjectContextBlock) (NSManagedObjectContext *managedObjectContext);
-typedef void (^DCTManagedObjectContextObjectBlock) (NSManagedObjectContext *managedObjectContext, NSManagedObject *managedObject);
+
+typedef void (^DCTManagedObjectContextObjectBlock) (NSManagedObjectContext *managedObjectContext, id managedObject);
+typedef void (^DCTManagedObjectContextObjectsBlock) (NSManagedObjectContext *managedObjectContext, NSArray *managedObjects);
+
 typedef void (^DCTManagedObjectContextCompletionBlock) (void);
 typedef void (^DCTFetchRequestCallbackBlock) (NSArray *fetchedObjects, NSError *error);
 typedef void (^DCTFetchRequestObjectCallbackBlock) (id fetchedObject, NSError *error);
@@ -90,5 +93,24 @@ typedef void (^DCTFetchRequestObjectCallbackBlock) (id fetchedObject, NSError *e
 - (void)dct_asynchronousFetchRequest:(NSFetchRequest *)fetchRequest
 				   withCallbackQueue:(dispatch_queue_t)callbackQueue
 							   block:(DCTFetchRequestCallbackBlock)callbackBlock;
+
+
+
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock;
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
+						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+						  callbackQueue:(dispatch_queue_t)queue
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock;
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+						  callbackQueue:(dispatch_queue_t)queue
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
+						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
 
 @end
