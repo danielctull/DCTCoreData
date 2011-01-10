@@ -44,6 +44,83 @@
 
 @implementation NSManagedObjectContext (DCTAsynchronousTasks)
 
+
+#pragma - 
+#pragma Modification methods with a translated object
+
+- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
+							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock {
+	
+	[self dct_asynchronousTaskWithObject:object
+							   workBlock:workBlock
+						 completionBlock:nil];
+}
+
+- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
+							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock
+					   completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock {
+	
+	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
+	
+	[self dct_asynchronousTaskWithObject:object
+						   callbackQueue:dispatch_get_main_queue()
+							   workBlock:workBlock
+						 completionBlock:completionBlock];
+}
+
+- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
+						 callbackQueue:(dispatch_queue_t)queue
+							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock {
+	
+	[self dct_asynchronousTaskWithObject:object
+						   callbackQueue:queue
+							   workBlock:workBlock
+						 completionBlock:nil];
+}
+
+- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
+						 callbackQueue:(dispatch_queue_t)queue
+							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock
+					   completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock {
+	
+	NSManagedObjectID *objectID = [object objectID];	
+		
+	NSManagedObjectContext *threadedContext = [[NSManagedObjectContext alloc] init];
+	[threadedContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
+	
+	dispatch_queue_t asyncQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+	
+	dispatch_async(asyncQueue, ^{
+		
+		NSManagedObject *threadedObject = nil;
+		if (objectID) [threadedContext objectWithID:objectID];
+		
+		workBlock(threadedContext, threadedObject);
+		
+		dispatch_async(queue, ^{
+			
+			NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+			
+			[defaultCenter addObserver:self 
+							  selector:@selector(dctInternal_threadedContextDidSave:)
+								  name:NSManagedObjectContextDidSaveNotification
+								object:threadedContext];
+			
+			if ([threadedContext hasChanges]) [threadedContext dct_save];
+			
+			[defaultCenter removeObserver:self
+									 name:NSManagedObjectContextDidSaveNotification
+								   object:threadedContext];
+			
+			[threadedContext release];
+			
+			completionBlock();
+		});		
+	});	
+}
+
+
+
 #pragma mark -
 #pragma mark Modification methods
 
@@ -76,38 +153,19 @@
 
 
 - (void)dct_asynchronousTaskWithCallbackQueue:(dispatch_queue_t)queue
-										 workBlock:(DCTManagedObjectContextBlock)workBlock
-								   completionBlock:(DCTManagedObjectContextBlock)completionBlock {
+									workBlock:(DCTManagedObjectContextBlock)workBlock
+							  completionBlock:(DCTManagedObjectContextBlock)completionBlock {
 	
-	NSManagedObjectContext *threadedContext = [[NSManagedObjectContext alloc] init];
-	[threadedContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
+	[self dct_asynchronousTaskWithObject:nil
+						   callbackQueue:queue
 	
-	dispatch_queue_t asyncQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-	
-	dispatch_async(asyncQueue, ^{
+	workBlock:^(NSManagedObjectContext *moc, NSManagedObject *mo) {
+		workBlock(moc);
+
+	} completionBlock:^{
+		completionBlock(self);
 		
-		workBlock(threadedContext);
-		
-		dispatch_async(queue, ^{
-			
-			NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-			
-			[defaultCenter addObserver:self 
-							  selector:@selector(dctInternal_threadedContextDidSave:)
-								  name:NSManagedObjectContextDidSaveNotification
-								object:threadedContext];
-			
-			if ([threadedContext hasChanges]) [threadedContext dct_save];
-			
-			[defaultCenter removeObserver:self
-									 name:NSManagedObjectContextDidSaveNotification
-								   object:threadedContext];
-			
-			[threadedContext release];
-			
-			completionBlock(self);
-		});		
-	});
+	}];
 }
 
 #pragma mark -
