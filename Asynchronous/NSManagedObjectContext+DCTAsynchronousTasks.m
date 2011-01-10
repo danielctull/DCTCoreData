@@ -44,9 +44,53 @@
 
 @implementation NSManagedObjectContext (DCTAsynchronousTasks)
 
+#pragma mark -
+#pragma mark Modification methods
 
-#pragma - 
-#pragma Modification methods with a translated object
+
+- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)workBlock {
+	[self dct_asynchronousTaskWithWorkBlock:workBlock completionBlock:nil];
+}
+
+
+
+
+- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)workBlock
+						  completionBlock:(DCTManagedObjectContextBlock)completionBlock {
+	
+	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
+	
+	[self dct_asynchronousTaskWithCallbackQueue:dispatch_get_main_queue() workBlock:workBlock completionBlock:completionBlock];
+}
+
+
+
+
+- (void)dct_asynchronousTaskWithCallbackQueue:(dispatch_queue_t)queue
+									workBlock:(DCTManagedObjectContextBlock)workBlock {
+	
+	[self dct_asynchronousTaskWithCallbackQueue:queue workBlock:workBlock completionBlock:nil];
+}
+
+
+
+
+- (void)dct_asynchronousTaskWithCallbackQueue:(dispatch_queue_t)queue
+									workBlock:(DCTManagedObjectContextBlock)workBlock
+							  completionBlock:(DCTManagedObjectContextBlock)completionBlock {
+	
+	[self dct_asynchronousTaskWithObject:nil
+						   callbackQueue:queue
+							   workBlock:^(NSManagedObjectContext *moc, id mo) {
+								   workBlock(moc);
+								   
+							   } completionBlock:^{
+								   completionBlock(self);
+							   }];
+}
+
+#pragma mark -
+#pragma mark Modification methods with object
 
 - (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
 							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock {
@@ -83,8 +127,68 @@
 							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock
 					   completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock {
 	
-	NSManagedObjectID *objectID = [object objectID];	
-		
+	
+	NSArray *array = nil;
+	if (object) array = [NSArray arrayWithObject:object];
+	
+	[self dct_asynchronousTaskWithObjects:array
+							callbackQueue:queue
+								workBlock:^(NSManagedObjectContext *managedObjectContext, NSArray *managedObjects) {
+									
+									workBlock(managedObjectContext, [managedObjects objectAtIndex:0]);
+									
+								} completionBlock:completionBlock];
+}
+
+
+
+#pragma mark - 
+#pragma mark Modification methods with objects
+
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock {
+	
+	[self dct_asynchronousTaskWithObjects:objects
+								workBlock:workBlock
+						  completionBlock:nil];
+}
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
+						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock {
+	
+	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
+	
+	[self dct_asynchronousTaskWithObjects:objects
+							callbackQueue:dispatch_get_main_queue()
+								workBlock:workBlock
+						  completionBlock:completionBlock];
+}
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+						  callbackQueue:(dispatch_queue_t)queue
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock {
+	
+	[self dct_asynchronousTaskWithObjects:objects
+							callbackQueue:queue
+								workBlock:workBlock
+						  completionBlock:nil];
+}
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+						  callbackQueue:(dispatch_queue_t)queue
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
+						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock {
+	
+	NSMutableArray *objectIDs = nil;
+	
+	if (objects) {
+		objectIDs = [NSMutableArray arrayWithCapacity:[objects count]];
+		for (NSManagedObject *mo in objects)
+			[objectIDs addObject:[mo objectID]];
+	}
+	
 	NSManagedObjectContext *threadedContext = [[NSManagedObjectContext alloc] init];
 	[threadedContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
 	
@@ -92,10 +196,16 @@
 	
 	dispatch_async(asyncQueue, ^{
 		
-		NSManagedObject *threadedObject = nil;
-		if (objectID) [threadedContext objectWithID:objectID];
+		NSArray *threadedObjects = nil;
+		if (objectIDs) {
+			NSMutableArray *array = [NSMutableArray arrayWithCapacity:[objectIDs count]];
+			for (NSManagedObjectID *objectID in objectIDs)			
+				[array addObject:[threadedContext objectWithID:objectID]];
+			
+			threadedObjects = [NSArray arrayWithArray:array];
+		}
 		
-		workBlock(threadedContext, threadedObject);
+		workBlock(threadedContext, threadedObjects);
 		
 		dispatch_async(queue, ^{
 			
@@ -117,55 +227,7 @@
 			completionBlock();
 		});		
 	});	
-}
-
-
-
-#pragma mark -
-#pragma mark Modification methods
-
-
-- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)workBlock {
-	[self dct_asynchronousTaskWithWorkBlock:workBlock completionBlock:nil];
-}
-
-
-
-
-- (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)workBlock
-							   completionBlock:(DCTManagedObjectContextBlock)completionBlock {
 	
-	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
-	
-	[self dct_asynchronousTaskWithCallbackQueue:dispatch_get_main_queue() workBlock:workBlock completionBlock:completionBlock];
-}
-
-
-
-
-- (void)dct_asynchronousTaskWithCallbackQueue:(dispatch_queue_t)queue
-										 workBlock:(DCTManagedObjectContextBlock)workBlock {
-	
-	[self dct_asynchronousTaskWithCallbackQueue:queue workBlock:workBlock completionBlock:nil];
-}
-
-
-
-
-- (void)dct_asynchronousTaskWithCallbackQueue:(dispatch_queue_t)queue
-									workBlock:(DCTManagedObjectContextBlock)workBlock
-							  completionBlock:(DCTManagedObjectContextBlock)completionBlock {
-	
-	[self dct_asynchronousTaskWithObject:nil
-						   callbackQueue:queue
-	
-	workBlock:^(NSManagedObjectContext *moc, id mo) {
-		workBlock(moc);
-
-	} completionBlock:^{
-		completionBlock(self);
-		
-	}];
 }
 
 #pragma mark -
@@ -210,93 +272,6 @@
 			callbackBlock([NSArray arrayWithArray:returnedObjects], error);
 		});
 			
-	});	
-	
-}
-
-
-
-
-- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
-							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock {
-	
-	[self dct_asynchronousTaskWithObjects:objects
-								workBlock:workBlock
-						  completionBlock:nil];
-}
-
-- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
-							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
-						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock {
-	
-	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
-	
-	[self dct_asynchronousTaskWithObjects:objects
-							callbackQueue:dispatch_get_main_queue()
-								workBlock:workBlock
-						  completionBlock:completionBlock];
-}
-
-- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
-						  callbackQueue:(dispatch_queue_t)queue
-							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock {
-
-	[self dct_asynchronousTaskWithObjects:objects
-							callbackQueue:queue
-								workBlock:workBlock
-						  completionBlock:nil];
-}
-
-- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
-						  callbackQueue:(dispatch_queue_t)queue
-							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
-						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock {
-	
-	NSMutableArray *objectIDs = nil;
-	
-	if (objects) {
-		objectIDs = [NSMutableArray arrayWithCapacity:[objects count]];
-		for (NSManagedObject *mo in objects)
-			[objectIDs addObject:[mo objectID]];
-	}
-	
-	NSManagedObjectContext *threadedContext = [[NSManagedObjectContext alloc] init];
-	[threadedContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
-	
-	dispatch_queue_t asyncQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-	
-	dispatch_async(asyncQueue, ^{
-		
-		NSArray *threadedObjects = nil;
-		if (objectIDs) {
-			NSMutableArray *array = [NSMutableArray arrayWithCapacity:[objectIDs count]];
-			for (NSManagedObjectID *objectID in objectIDs)			
-				[array addObject:[threadedContext objectWithID:objectID]];
-
-			threadedObjects = [NSArray arrayWithArray:array];
-		}
-		
-		workBlock(threadedContext, threadedObjects);
-		
-		dispatch_async(queue, ^{
-			
-			NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-			
-			[defaultCenter addObserver:self 
-							  selector:@selector(dctInternal_threadedContextDidSave:)
-								  name:NSManagedObjectContextDidSaveNotification
-								object:threadedContext];
-			
-			if ([threadedContext hasChanges]) [threadedContext dct_save];
-			
-			[defaultCenter removeObserver:self
-									 name:NSManagedObjectContextDidSaveNotification
-								   object:threadedContext];
-			
-			[threadedContext release];
-			
-			completionBlock();
-		});		
 	});	
 	
 }

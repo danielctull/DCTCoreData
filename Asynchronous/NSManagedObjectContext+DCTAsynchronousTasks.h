@@ -42,35 +42,13 @@ typedef void (^DCTManagedObjectContextObjectBlock) (NSManagedObjectContext *mana
 typedef void (^DCTManagedObjectContextObjectsBlock) (NSManagedObjectContext *managedObjectContext, NSArray *managedObjects);
 
 typedef void (^DCTManagedObjectContextCompletionBlock) (void);
+
 typedef void (^DCTFetchRequestCallbackBlock) (NSArray *fetchedObjects, NSError *error);
 typedef void (^DCTFetchRequestObjectCallbackBlock) (id fetchedObject, NSError *error);
 
 @interface NSManagedObjectContext (DCTAsynchronousTasks)
 
-
-
-
-
-- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
-							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock;
-
-- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
-							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock
-					   completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
-
-- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
-						 callbackQueue:(dispatch_queue_t)queue
-							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock;
-
-- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
-						 callbackQueue:(dispatch_queue_t)queue
-							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock
-					   completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
-
-
-
-
-
+/// @name Asynchronous Task
 
 - (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)workBlock;
 
@@ -87,30 +65,54 @@ typedef void (^DCTFetchRequestObjectCallbackBlock) (id fetchedObject, NSError *e
 
 
 
+/// @name Asynchronous Task with Object
+
+- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
+							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock;
+
+- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
+							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock
+					   completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
+
+- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
+						 callbackQueue:(dispatch_queue_t)queue
+							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock;
+
+- (void)dct_asynchronousTaskWithObject:(NSManagedObject *)object
+						 callbackQueue:(dispatch_queue_t)queue
+							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock
+					   completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
+
+
+
+
+/// @name Asynchronous Task with Objects
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock;
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
+						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+						  callbackQueue:(dispatch_queue_t)queue
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock;
+
+- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
+						  callbackQueue:(dispatch_queue_t)queue
+							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
+						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
+
+
+/// @name Asynchronous Fetching 
+
+
 - (void)dct_asynchronousFetchRequest:(NSFetchRequest *)fetchRequest
 				   withCallbackBlock:(DCTFetchRequestCallbackBlock)callbackBlock;
 
 - (void)dct_asynchronousFetchRequest:(NSFetchRequest *)fetchRequest
 				   withCallbackQueue:(dispatch_queue_t)callbackQueue
 							   block:(DCTFetchRequestCallbackBlock)callbackBlock;
-
-
-
-
-- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
-							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock;
-
-- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
-							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
-						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
-
-- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
-						  callbackQueue:(dispatch_queue_t)queue
-							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock;
-
-- (void)dct_asynchronousTaskWithObjects:(NSArray *)objects
-						  callbackQueue:(dispatch_queue_t)queue
-							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
-						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock;
 
 @end
