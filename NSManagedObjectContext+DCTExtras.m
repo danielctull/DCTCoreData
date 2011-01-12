@@ -44,7 +44,24 @@
 }
 
 - (BOOL)dct_save {
-	return [self save:nil];
+	
+	NSError *error = nil;
+	
+	BOOL saved = [self save:&error];
+	if (!saved) {
+		
+		NSLog(@"Save failed: %@", [error localizedDescription]);
+		
+		NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+		
+		if(detailedErrors != nil && [detailedErrors count] > 0) {
+			for(NSError* detailedError in detailedErrors) {
+				NSLog(@"    DetailedError: %@", [detailedError userInfo]);
+			}
+		}
+	}
+	
+	return saved;
 }
 
 @end
