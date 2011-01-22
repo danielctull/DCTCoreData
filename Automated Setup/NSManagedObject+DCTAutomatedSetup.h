@@ -118,7 +118,7 @@
 /*
  Give the keys for the attributes to check for equality showing two managed objects are the same.
  */
-+ (NSMutableArray *)dct_uniqueKeys;
++ (NSArray *)dct_uniqueKeys;
 
 /*
  Some key/value pairs in the given dictionary 

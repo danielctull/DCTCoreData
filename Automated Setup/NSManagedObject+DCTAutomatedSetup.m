@@ -130,22 +130,20 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	
 	Class<DCTManagedObjectAutomatedSetup> myself = (Class<DCTManagedObjectAutomatedSetup>)self;
 	
-	NSMutableArray *localPrimaryKeys = nil;
+	NSArray *localPrimaryKeys = nil;
 	
 	if ([self respondsToSelector:@selector(dct_uniqueKeys)])
 		localPrimaryKeys = [myself dct_uniqueKeys];
 	
 	
 	if (!localPrimaryKeys && [self respondsToSelector:@selector(dct_uniqueKey)]) {
-		localPrimaryKeys = [[[NSMutableArray alloc] init] autorelease];
-		[localPrimaryKeys addObject:[myself dct_uniqueKey]];
+		localPrimaryKeys = [NSArray arrayWithObject:[myself dct_uniqueKey]];
 	}
 	
 	if (!localPrimaryKeys) {
 		NSRange range = [[entity name] rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet] options:NSBackwardsSearch];
 		NSString *localPrimaryKey = [[[[entity name] substringFromIndex:range.location] lowercaseString] stringByAppendingString:@"ID"];
-		localPrimaryKeys = [[[NSMutableArray alloc] init] autorelease];
-		[localPrimaryKeys addObject:localPrimaryKey];
+		localPrimaryKeys = [NSArray arrayWithObject:localPrimaryKey];
 		
 		
 		if (DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse)
