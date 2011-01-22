@@ -53,7 +53,7 @@
  @return A managed object or nil if the setup process fails.
  */
 
-+ (id)dct_objectForDictionary:(NSDictionary *)dictionary managedObjectContext:(NSManagedObjectContext *)moc;
++ (id)dct_objectFromDictionary:(NSDictionary *)dictionary insertIntoManagedObjectContext:(NSManagedObjectContext *)moc;
 
 /*
  @brief Sets up the object from the given dictionary.

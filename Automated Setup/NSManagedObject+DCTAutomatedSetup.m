@@ -58,8 +58,8 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 
 @implementation NSManagedObject (DCTAutomatedSetup)
 
-+ (id)dct_objectForDictionary:(NSDictionary *)dictionary 
-		managedObjectContext:(NSManagedObjectContext *)moc {
++ (id)dct_objectFromDictionary:(NSDictionary *)dictionary 
+		insertIntoManagedObjectContext:(NSManagedObjectContext *)moc {
 	
 	if (![self conformsToProtocol:@protocol(DCTManagedObjectAutomatedSetup)])
 		return nil;
@@ -273,7 +273,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 		if ([object isKindOfClass:[NSDictionary class]]) {
 			NSString *destinationClassName = [destinationEntity managedObjectClassName];
 			Class destinationClass = NSClassFromString(destinationClassName);
-			object = [destinationClass dct_objectForDictionary:object managedObjectContext:[self managedObjectContext]];
+			object = [destinationClass dct_objectFromDictionary:object insertIntoManagedObjectContext:[self managedObjectContext]];
 		}
 		
 		BOOL isValid = [destinationEntity dct_isObjectValid:object];
