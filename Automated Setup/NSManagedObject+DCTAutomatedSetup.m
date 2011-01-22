@@ -66,12 +66,6 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	
 	NSManagedObject *object = nil;
 	
-	if ([self respondsToSelector:@selector(dct_handleObjectForDictionary:)]) {
-		object = [myself dct_handleObjectForDictionary:dictionary];
-		[object dct_setupFromDictionary:dictionary];
-		return object;
-	}
-	
 	NSString *entityName = nil;
 	if ([self respondsToSelector:@selector(dct_entityName)])
 		entityName = [myself dct_entityName];

@@ -47,6 +47,8 @@
  This will recursively go through the dictionary, if a nested dictionary exists it will try to find
  a relationship for the key, and set up that as a core data object using the nested dictionary.
  
+ Override this method to handle the setup manually if you wish.
+ 
  @param dictionary The dictionary used to represent the managed object's data.
  @param moc The managed object context the resulting managed object should be inserted to.
  
@@ -91,13 +93,6 @@
  If this method does not exist, the class name is used as the enity name.
  */
 + (NSString *)dct_entityName;
-
-/*
- Override this method to handle the setup manually, returning the setup object.
- 
- If this method returns nil, the automated setup will continue to run.
- */
-+ (id)dct_handleObjectForDictionary:(NSDictionary *)dictionary;
 
 /*
  Give the key for the attribute to check for equality showing two managed objects are the same.
