@@ -74,14 +74,23 @@
 - (BOOL)dct_setupFromDictionary:(NSDictionary *)dictionary;
 
 /**
+ You can override this method to manually store values from the dictionary for the key.
+ 
+ By default this method does the following:
+ 
  1. Calls +dct_convertValue:toCorrectTypeForKey: to perform any conversion needed
- 2. Does something special to handle arrays. I'm not sure what
- 3. If key is an modelled attribute of the receiver, calls -setValue:forKey:
- 4. Otherwise, try to create a relationship from the object
+ 2. If the value is an array, it will loop through each object calling this method with the object and the key
+ 3. If key is a modelled attribute of the receiver, calls -setValue:forKey:
+ 4. If key is a modelled relationship it will get a managed object for that relationship
+ 5. If key is a modelled to-one it will set the created managed object for the relationship
+ 6. If key is a modelled to-many it will add the created managed object to the set for the relationship
+ 
+ @param value The value for the given key in the setup dictionary
+ @param key The key from the setup dictionary. This will be the mapped key, if there is a mapping.
  
  @return YES if setting the value succeeded, NO if it failed.
  */
-- (BOOL)dct_setSerializedValue:(id)object forKey:(NSString *)key;
+- (BOOL)dct_setSerializedValue:(id)value forKey:(NSString *)key;
 
 @end
 
