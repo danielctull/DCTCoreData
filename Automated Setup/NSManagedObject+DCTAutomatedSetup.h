@@ -121,9 +121,14 @@
 + (NSArray *)dct_uniqueKeys;
 
 /*
- Some key/value pairs in the given dictionary 
+ 1. Calls +dct_convertValue:toCorrectTypeForKey: to perform any conversion needed
+ 2. Does something special to handle arrays. I'm not sure what
+ 3. If key is an modelled attribute of the receiver, calls -setValue:forKey:
+ 4. Otherwise, try to create a relationship from the object
+ 
+ @return YES if setting the value succeeded, NO if it failed.
  */
-- (BOOL)dct_handleKey:(NSString *)key value:(id)value;
+- (BOOL)dct_setSerializedValue:(id)object forKey:(NSString *)key;
 
 /*
  Another option to convert the value in the dictionary to the correct type needed for the Core Data model.

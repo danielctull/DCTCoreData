@@ -52,8 +52,6 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 					   dictionary:(NSDictionary *)dictionary 
 			 managedObjectContext:(NSManagedObjectContext *)moc;
 
-- (BOOL)dctInternal_handleObject:(id)object forKey:(NSString *)key;
-
 @end
 
 @implementation NSManagedObject (DCTAutomatedSetup)
@@ -117,7 +115,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 			key = [mapping objectForKey:key];
 		
 		
-		if (![self dctInternal_handleObject:object forKey:key] && DCTManagedObjectAutomatedSetupLogStorageFailures)
+		if (![(id <DCTManagedObjectAutomatedSetup>)self dct_setSerializedValue:object forKey:key] && DCTManagedObjectAutomatedSetupLogStorageFailures)
 			NSLog(@"%@ (DCTManagedObjectAutomatedSetup): Didn't store key:%@ object:%@", NSStringFromClass([self class]), key, object);
 		
 	}
@@ -219,14 +217,9 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	
 }
 
-- (BOOL)dctInternal_handleObject:(id)object forKey:(NSString *)key {
+- (BOOL)dct_setSerializedValue:(id)object forKey:(NSString *)key {
 	
-	NSManagedObject<DCTManagedObjectAutomatedSetup> *myself = (NSManagedObject<DCTManagedObjectAutomatedSetup> *)self;
 	Class<DCTManagedObjectAutomatedSetup> selfclass = [self class];
-	
-	if ([myself respondsToSelector:@selector(dct_handleKey:value:)])
-		if ([myself dct_handleKey:key value:object])
-			return YES;
 	
 	// give the class a chance to convert the object
 	if ([[self class] respondsToSelector:@selector(dct_convertValue:toCorrectTypeForKey:)] && ![object isKindOfClass:[NSNull class]]) {
@@ -239,7 +232,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 		BOOL returnBool = NO;
 		
 		for (id o in (NSArray *)object) {
-			if ([self dctInternal_handleObject:o forKey:key])
+			if ([self dct_setSerializedValue:o forKey:key])
 				returnBool = YES;
 		}
 		return returnBool;
