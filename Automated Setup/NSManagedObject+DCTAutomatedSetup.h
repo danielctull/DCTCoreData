@@ -114,7 +114,7 @@
 + (NSString *)dct_entityName;
 
 /**
- Give the key for the attribute to check for equality showing two managed objects are the same.
+ Give the keys for the attributes to check for equality showing two managed objects are the same.
  
  If not implemented, the setup will try to locate an attribute named like so:
  
@@ -124,13 +124,7 @@
  An entity "DTPerson" will lead to an attribute of name "personID".
  An entity "DTTwitterPerson" will lead to an attribute of name "personID".
  
- Implement this method if the unique attribute for the object is not named in this fashion.
- 
- */
-+ (NSString *)dct_uniqueKey;
-
-/**
- Give the keys for the attributes to check for equality showing two managed objects are the same.
+ Implement this method if the unique attribute(s) for the object are not named in this fashion.
  */
 + (NSArray *)dct_uniqueKeys;
 

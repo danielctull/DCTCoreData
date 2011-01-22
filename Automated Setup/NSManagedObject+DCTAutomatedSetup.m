@@ -109,7 +109,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 			key = [mapping objectForKey:key];
 		
 		
-		if (![(id <DCTManagedObjectAutomatedSetup>)self dct_setSerializedValue:object forKey:key] && DCTManagedObjectAutomatedSetupLogStorageFailures)
+		if (![self dct_setSerializedValue:object forKey:key] && DCTManagedObjectAutomatedSetupLogStorageFailures)
 			NSLog(@"%@ (DCTManagedObjectAutomatedSetup): Didn't store key:%@ object:%@", NSStringFromClass([self class]), key, object);
 		
 	}
@@ -128,12 +128,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	
 	if ([self respondsToSelector:@selector(dct_uniqueKeys)])
 		localPrimaryKeys = [myself dct_uniqueKeys];
-	
-	
-	if (!localPrimaryKeys && [self respondsToSelector:@selector(dct_uniqueKey)]) {
-		localPrimaryKeys = [NSArray arrayWithObject:[myself dct_uniqueKey]];
-	}
-	
+		
 	if (!localPrimaryKeys) {
 		NSRange range = [[entity name] rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet] options:NSBackwardsSearch];
 		NSString *localPrimaryKey = [[[[entity name] substringFromIndex:range.location] lowercaseString] stringByAppendingString:@"ID"];

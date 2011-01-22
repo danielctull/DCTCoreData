@@ -10,8 +10,8 @@
 
 @implementation DCTCDItem (DCTManagedObjectAutomatedSetup)
 
-+ (NSString *)dct_uniqueKey {
-	return @"theID";
++ (NSArray *)dct_uniqueKeys {
+	return [NSArray arrayWithObject:@"theID"];
 }
 
 + (NSDictionary *)dct_mappingFromRemoteNamesToLocalNames {
