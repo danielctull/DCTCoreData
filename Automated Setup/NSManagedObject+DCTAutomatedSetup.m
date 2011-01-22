@@ -48,9 +48,9 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 
 @interface NSManagedObject ()
 
-+ (id)dctInternal_objectForEntity:(NSEntityDescription *)entity
-					   dictionary:(NSDictionary *)dictionary 
-			 managedObjectContext:(NSManagedObjectContext *)moc;
++ (id)dctInternal_fetchObjectMatchingDictionary:(NSDictionary *)dictionary
+                                         entity:(NSEntityDescription *)entity
+                           managedObjectContext:(NSManagedObjectContext *)moc;
 
 @end
 
@@ -76,7 +76,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:moc];
 	
 	if (!object)
-		object = [self dctInternal_objectForEntity:entity dictionary:dictionary managedObjectContext:moc];
+		object = [self dctInternal_fetchObjectMatchingDictionary:dictionary entity:entity managedObjectContext:moc];
 	
 	if (!object)
 		object = [moc dct_insertNewObjectForEntityName:entityName];
@@ -118,8 +118,10 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	
 }
 
-+ (id)dctInternal_objectForEntity:(NSEntityDescription *)entity dictionary:(NSDictionary *)dictionary managedObjectContext:(NSManagedObjectContext *)moc {
-	
++ (id)dctInternal_fetchObjectMatchingDictionary:(NSDictionary *)dictionary
+                                         entity:(NSEntityDescription *)entity
+                           managedObjectContext:(NSManagedObjectContext *)moc;
+{
 	Class<DCTManagedObjectAutomatedSetup> myself = (Class<DCTManagedObjectAutomatedSetup>)self;
 	
 	NSArray *localPrimaryKeys = nil;
