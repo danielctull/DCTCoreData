@@ -57,12 +57,6 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/dct_uniqueKey">+ dct_uniqueKey</a></code>
-		<span class="tooltip"> Give the key for the attribute to check for equality showing two managed objects are the same. </span>
-	</span>
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/dct_uniqueKeys">+ dct_uniqueKeys</a></code>
 		<span class="tooltip"> Give the keys for the attributes to check for equality showing two managed objects are the same. </span>
 	</span>
@@ -210,51 +204,6 @@
 </div>
 					
 					<div class="section-method">
-	<a name="//api/name/dct_uniqueKey" title="dct_uniqueKey"></a>
-	<h3 class="subsubtitle method-title">dct_uniqueKey</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p> Give the key for the attribute to check for equality showing two managed objects are the same. </p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (NSString *)dct_uniqueKey</code></div>
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		
-		<p> Give the key for the attribute to check for equality showing two managed objects are the same. </p>
-		
-		<p> If not implemented, the setup will try to locate an attribute named like so: </p>
-		
-		<p> Last camel-cased word of entity name, lowercased, plus &quot;ID&quot; on the end. Examples: An entity &quot;Person&quot; will lead to an attribute of name &quot;personID&quot;. An entity &quot;DTPerson&quot; will lead to an attribute of name &quot;personID&quot;. An entity &quot;DTTwitterPerson&quot; will lead to an attribute of name &quot;personID&quot;. </p>
-		
-		<p> Implement this method if the unique attribute for the object is not named in this fashion. </p>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">NSManagedObject+DCTAutomatedSetup.h</code><br />
-	</div>				
-	
-	
-</div>
-					
-					<div class="section-method">
 	<a name="//api/name/dct_uniqueKeys" title="dct_uniqueKeys"></a>
 	<h3 class="subsubtitle method-title">dct_uniqueKeys</h3>
 	
@@ -271,6 +220,19 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		
+		<p> Give the keys for the attributes to check for equality showing two managed objects are the same. </p>
+		
+		<p> If not implemented, the setup will try to locate an attribute named like so: </p>
+		
+		<p> Last camel-cased word of entity name, lowercased, plus &quot;ID&quot; on the end. Examples: An entity &quot;Person&quot; will lead to an attribute of name &quot;personID&quot;. An entity &quot;DTPerson&quot; will lead to an attribute of name &quot;personID&quot;. An entity &quot;DTTwitterPerson&quot; will lead to an attribute of name &quot;personID&quot;. </p>
+		
+		<p> Implement this method if the unique attribute(s) for the object are not named in this fashion. </p>
+		
+	</div>
 	
 	
 	
