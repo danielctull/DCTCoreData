@@ -142,8 +142,8 @@
 				240E501A12ABBA95005575CE /* NSPredicate+DCTExtras.m */,
 			);
 			name = DCTCoreData;
-			path = /Users/danielctull/Dropbox/Programs/Cocoa/Frameworks/DCTCoreData;
-			sourceTree = "<absolute>";
+			path = ..;
+			sourceTree = "<group>";
 		};
 		240E4FD912ABBA95005575CE /* Asynchronous */ = {
 			isa = PBXGroup;
