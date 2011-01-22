@@ -48,18 +48,16 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 
 @interface NSManagedObject ()
 
-+ (id)dctInternal_objectForEntity:(NSEntityDescription *)entity
-					   dictionary:(NSDictionary *)dictionary 
-			 managedObjectContext:(NSManagedObjectContext *)moc;
-
-- (BOOL)dctInternal_handleObject:(id)object forKey:(NSString *)key;
++ (id)dctInternal_fetchObjectMatchingDictionary:(NSDictionary *)dictionary
+                                         entity:(NSEntityDescription *)entity
+                           managedObjectContext:(NSManagedObjectContext *)moc;
 
 @end
 
 @implementation NSManagedObject (DCTAutomatedSetup)
 
-+ (id)dct_objectForDictionary:(NSDictionary *)dictionary 
-		managedObjectContext:(NSManagedObjectContext *)moc {
++ (id)dct_objectFromDictionary:(NSDictionary *)dictionary 
+		insertIntoManagedObjectContext:(NSManagedObjectContext *)moc {
 	
 	if (![self conformsToProtocol:@protocol(DCTManagedObjectAutomatedSetup)])
 		return nil;
@@ -67,12 +65,6 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	Class<DCTManagedObjectAutomatedSetup> myself = (Class<DCTManagedObjectAutomatedSetup>)self;
 	
 	NSManagedObject *object = nil;
-	
-	if ([self respondsToSelector:@selector(dct_handleObjectForDictionary:)]) {
-		object = [myself dct_handleObjectForDictionary:dictionary];
-		[object dct_setupFromDictionary:dictionary];
-		return object;
-	}
 	
 	NSString *entityName = nil;
 	if ([self respondsToSelector:@selector(dct_entityName)])
@@ -84,7 +76,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:moc];
 	
 	if (!object)
-		object = [self dctInternal_objectForEntity:entity dictionary:dictionary managedObjectContext:moc];
+		object = [self dctInternal_fetchObjectMatchingDictionary:dictionary entity:entity managedObjectContext:moc];
 	
 	if (!object)
 		object = [moc dct_insertNewObjectForEntityName:entityName];
@@ -117,7 +109,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 			key = [mapping objectForKey:key];
 		
 		
-		if (![self dctInternal_handleObject:object forKey:key] && DCTManagedObjectAutomatedSetupLogStorageFailures)
+		if (![(id <DCTManagedObjectAutomatedSetup>)self dct_setSerializedValue:object forKey:key] && DCTManagedObjectAutomatedSetupLogStorageFailures)
 			NSLog(@"%@ (DCTManagedObjectAutomatedSetup): Didn't store key:%@ object:%@", NSStringFromClass([self class]), key, object);
 		
 	}
@@ -126,26 +118,26 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	
 }
 
-+ (id)dctInternal_objectForEntity:(NSEntityDescription *)entity dictionary:(NSDictionary *)dictionary managedObjectContext:(NSManagedObjectContext *)moc {
-	
++ (id)dctInternal_fetchObjectMatchingDictionary:(NSDictionary *)dictionary
+                                         entity:(NSEntityDescription *)entity
+                           managedObjectContext:(NSManagedObjectContext *)moc;
+{
 	Class<DCTManagedObjectAutomatedSetup> myself = (Class<DCTManagedObjectAutomatedSetup>)self;
 	
-	NSMutableArray *localPrimaryKeys = nil;
+	NSArray *localPrimaryKeys = nil;
 	
 	if ([self respondsToSelector:@selector(dct_uniqueKeys)])
 		localPrimaryKeys = [myself dct_uniqueKeys];
 	
 	
 	if (!localPrimaryKeys && [self respondsToSelector:@selector(dct_uniqueKey)]) {
-		localPrimaryKeys = [[[NSMutableArray alloc] init] autorelease];
-		[localPrimaryKeys addObject:[myself dct_uniqueKey]];
+		localPrimaryKeys = [NSArray arrayWithObject:[myself dct_uniqueKey]];
 	}
 	
 	if (!localPrimaryKeys) {
 		NSRange range = [[entity name] rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet] options:NSBackwardsSearch];
 		NSString *localPrimaryKey = [[[[entity name] substringFromIndex:range.location] lowercaseString] stringByAppendingString:@"ID"];
-		localPrimaryKeys = [[[NSMutableArray alloc] init] autorelease];
-		[localPrimaryKeys addObject:localPrimaryKey];
+		localPrimaryKeys = [NSArray arrayWithObject:localPrimaryKey];
 		
 		
 		if (DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse)
@@ -221,14 +213,9 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	
 }
 
-- (BOOL)dctInternal_handleObject:(id)object forKey:(NSString *)key {
+- (BOOL)dct_setSerializedValue:(id)object forKey:(NSString *)key {
 	
-	NSManagedObject<DCTManagedObjectAutomatedSetup> *myself = (NSManagedObject<DCTManagedObjectAutomatedSetup> *)self;
 	Class<DCTManagedObjectAutomatedSetup> selfclass = [self class];
-	
-	if ([myself respondsToSelector:@selector(dct_handleKey:value:)])
-		if ([myself dct_handleKey:key value:object])
-			return YES;
 	
 	// give the class a chance to convert the object
 	if ([[self class] respondsToSelector:@selector(dct_convertValue:toCorrectTypeForKey:)] && ![object isKindOfClass:[NSNull class]]) {
@@ -241,7 +228,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 		BOOL returnBool = NO;
 		
 		for (id o in (NSArray *)object) {
-			if ([self dctInternal_handleObject:o forKey:key])
+			if ([self dct_setSerializedValue:o forKey:key])
 				returnBool = YES;
 		}
 		return returnBool;
@@ -273,7 +260,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 		if ([object isKindOfClass:[NSDictionary class]]) {
 			NSString *destinationClassName = [destinationEntity managedObjectClassName];
 			Class destinationClass = NSClassFromString(destinationClassName);
-			object = [destinationClass dct_objectForDictionary:object managedObjectContext:[self managedObjectContext]];
+			object = [destinationClass dct_objectFromDictionary:object insertIntoManagedObjectContext:[self managedObjectContext]];
 		}
 		
 		BOOL isValid = [destinationEntity dct_isObjectValid:object];

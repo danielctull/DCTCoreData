@@ -47,13 +47,15 @@
  This will recursively go through the dictionary, if a nested dictionary exists it will try to find
  a relationship for the key, and set up that as a core data object using the nested dictionary.
  
+ Override this method to handle the setup manually if you wish.
+ 
  @param dictionary The dictionary used to represent the managed object's data.
  @param moc The managed object context the resulting managed object should be inserted to.
  
  @return A managed object or nil if the setup process fails.
  */
 
-+ (id)dct_objectForDictionary:(NSDictionary *)dictionary managedObjectContext:(NSManagedObjectContext *)moc;
++ (id)dct_objectFromDictionary:(NSDictionary *)dictionary insertIntoManagedObjectContext:(NSManagedObjectContext *)moc;
 
 /**
  Sets up the object from the given dictionary.
@@ -93,13 +95,6 @@
 + (NSString *)dct_entityName;
 
 /**
- Override this method to handle the setup manually, returning the setup object.
- 
- If this method returns nil, the automated setup will continue to run.
- */
-+ (id)dct_handleObjectForDictionary:(NSDictionary *)dictionary;
-
-/**
  Give the key for the attribute to check for equality showing two managed objects are the same.
  
  If not implemented, the setup will try to locate an attribute named like so:
@@ -118,12 +113,17 @@
 /**
  Give the keys for the attributes to check for equality showing two managed objects are the same.
  */
-+ (NSMutableArray *)dct_uniqueKeys;
++ (NSArray *)dct_uniqueKeys;
 
 /**
- Some key/value pairs in the given dictionary 
+ 1. Calls +dct_convertValue:toCorrectTypeForKey: to perform any conversion needed
+ 2. Does something special to handle arrays. I'm not sure what
+ 3. If key is an modelled attribute of the receiver, calls -setValue:forKey:
+ 4. Otherwise, try to create a relationship from the object
+ 
+ @return YES if setting the value succeeded, NO if it failed.
  */
-- (BOOL)dct_handleKey:(NSString *)key value:(id)value;
+- (BOOL)dct_setSerializedValue:(id)object forKey:(NSString *)key;
 
 /**
  Another option to convert the value in the dictionary to the correct type needed for the Core Data model.

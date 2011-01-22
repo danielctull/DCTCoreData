@@ -39,13 +39,13 @@
 	
 	// CREATE THE INITIAL GROUP:
 	
-	DCTCDGroup *group = [DCTCDGroup dct_objectForDictionary:initialGroupDict managedObjectContext:managedObjectContext];
+	DCTCDGroup *group = [DCTCDGroup dct_objectFromDictionary:initialGroupDict insertIntoManagedObjectContext:managedObjectContext];
 	[self dctInternal_logGroup:group];
 	
 	
 	// THE FOLLOWING SHOULD LOG OUT AS THE SAME OBJECT BECAUSE THE UNIQUE KEYS MATCHED:
 	
-	DCTCDGroup *group2 = [DCTCDGroup dct_objectForDictionary:initialGroupDict managedObjectContext:managedObjectContext];
+	DCTCDGroup *group2 = [DCTCDGroup dct_objectFromDictionary:initialGroupDict insertIntoManagedObjectContext:managedObjectContext];
 	[self dctInternal_logGroup:group2];
 	
 	
@@ -106,7 +106,7 @@
 	
 	[managedObjectContext dct_asynchronousTaskWithWorkBlock:^(NSManagedObjectContext *moc) {
 		
-		DCTCDGroup *group = [DCTCDGroup dct_objectForDictionary:initialGroupDict managedObjectContext:moc]; // USE THE MOC GIVEN TO USÉ THIS WILL BE DIFFERENT TO OUR MAIN MOC
+		DCTCDGroup *group = [DCTCDGroup dct_objectFromDictionary:initialGroupDict insertIntoManagedObjectContext:moc]; // USE THE MOC GIVEN TO USÉ THIS WILL BE DIFFERENT TO OUR MAIN MOC
 		[self dctInternal_logGroup:group];
 		
 	} completionBlock:^(NSManagedObjectContext *moc) {
