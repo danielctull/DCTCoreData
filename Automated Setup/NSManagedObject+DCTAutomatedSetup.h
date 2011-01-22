@@ -40,12 +40,14 @@
 
 
 /**
- @brief Setup method to get the managed object inserted into the given context, from the given dictionary.
+ Setup method to get the managed object inserted into the given context, from the given dictionary.
  
  Call this on the managed object class you wish to setup. 
  
  This will recursively go through the dictionary, if a nested dictionary exists it will try to find
  a relationship for the key, and set up that as a core data object using the nested dictionary.
+ 
+ Override this method to handle the setup manually if you wish.
  
  @param dictionary The dictionary used to represent the managed object's data.
  @param moc The managed object context the resulting managed object should be inserted to.
@@ -53,10 +55,10 @@
  @return A managed object or nil if the setup process fails.
  */
 
-+ (id)dct_objectForDictionary:(NSDictionary *)dictionary managedObjectContext:(NSManagedObjectContext *)moc;
++ (id)dct_objectFromDictionary:(NSDictionary *)dictionary insertIntoManagedObjectContext:(NSManagedObjectContext *)moc;
 
-/*
- @brief Sets up the object from the given dictionary.
+/**
+ Sets up the object from the given dictionary.
  
  If you already have an object that represents the dictionary,  you can call this to run through the same
  setup proceedure as the class method. 
@@ -71,12 +73,22 @@
 
 - (BOOL)dct_setupFromDictionary:(NSDictionary *)dictionary;
 
+/**
+ 1. Calls +dct_convertValue:toCorrectTypeForKey: to perform any conversion needed
+ 2. Does something special to handle arrays. I'm not sure what
+ 3. If key is an modelled attribute of the receiver, calls -setValue:forKey:
+ 4. Otherwise, try to create a relationship from the object
+ 
+ @return YES if setting the value succeeded, NO if it failed.
+ */
+- (BOOL)dct_setSerializedValue:(id)object forKey:(NSString *)key;
+
 @end
 
 
 
 
-/*
+/**
  Any object that wants the ability to have its setup automated MUST conform to 
  this protocol. It needn't implement any of the methods for it, but it must 
  declare that it conforms to this protocol.
@@ -85,21 +97,14 @@
 @optional
 
 
-/*
+/**
  Add this method if the core data entity name differs to the class.
  
  If this method does not exist, the class name is used as the enity name.
  */
 + (NSString *)dct_entityName;
 
-/*
- Override this method to handle the setup manually, returning the setup object.
- 
- If this method returns nil, the automated setup will continue to run.
- */
-+ (id)dct_handleObjectForDictionary:(NSDictionary *)dictionary;
-
-/*
+/**
  Give the key for the attribute to check for equality showing two managed objects are the same.
  
  If not implemented, the setup will try to locate an attribute named like so:
@@ -115,22 +120,17 @@
  */
 + (NSString *)dct_uniqueKey;
 
-/*
+/**
  Give the keys for the attributes to check for equality showing two managed objects are the same.
  */
-+ (NSMutableArray *)dct_uniqueKeys;
++ (NSArray *)dct_uniqueKeys;
 
-/*
- Some key/value pairs in the given dictionary 
- */
-- (BOOL)dct_handleKey:(NSString *)key value:(id)value;
-
-/*
+/**
  Another option to convert the value in the dictionary to the correct type needed for the Core Data model.
  */
 + (id)dct_convertValue:(id)value toCorrectTypeForKey:(NSString *)key;
 
-/*
+/**
  This is an important method that should probably be implemented. Yuo need to return a dictionary 
  of remote keys to local keys. For example if the remote key is "updated_at" and the key for in 
  the model is "updatedAt", you need to provide a dictionary like so:

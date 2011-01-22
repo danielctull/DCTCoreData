@@ -38,7 +38,7 @@
 
 @implementation NSPredicate (DCTExtras)
 
-+ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name equals:(NSObject *)object {
++ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name equals:(id)object {
 	return [NSPredicate predicateWithFormat:@"%K == %@", name, object];
 }
 
