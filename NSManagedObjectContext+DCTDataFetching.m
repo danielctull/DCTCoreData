@@ -108,8 +108,7 @@
 
 	return [self dct_objectForEntityName:entityName
 							   predicate:nil
-						 sortDescriptors:nil
-							   batchSize:DCTFetchBatchSizeNil];
+						 sortDescriptors:nil];
 }
 
 - (id)dct_objectForEntityName:(NSString *)entityName
@@ -117,18 +116,7 @@
 	
 	return [self dct_objectForEntityName:entityName
 							   predicate:predicate
-						 sortDescriptors:nil
-							   batchSize:DCTFetchBatchSizeNil];
-}
-
-- (id)dct_objectForEntityName:(NSString *)entityName
-					predicate:(NSPredicate *)predicate
-			  sortDescriptors:(NSArray *)sortDescriptors {
-	
-	return [self dct_objectForEntityName:entityName
-							   predicate:predicate
-						 sortDescriptors:sortDescriptors
-							   batchSize:DCTFetchBatchSizeNil];
+						 sortDescriptors:nil];
 }
 
 - (id)dct_objectForEntityName:(NSString *)entityName
@@ -136,20 +124,18 @@
 	
 	return [self dct_objectForEntityName:entityName
 							   predicate:nil
-						 sortDescriptors:sortDescriptors
-							   batchSize:DCTFetchBatchSizeNil];
+						 sortDescriptors:sortDescriptors];
 }
 
 - (id)dct_objectForEntityName:(NSString *)entityName
-					predicate:(NSPredicate *)predicate 
-			  sortDescriptors:(NSArray *)sortDescriptors
-					batchSize:(NSUInteger)batchSize {
+					predicate:(NSPredicate *)predicate
+			  sortDescriptors:(NSArray *)sortDescriptors {
 	
 	NSArray *results = [self dct_fetchObjectsForEntityName:entityName
-											predicate:predicate
-									  sortDescriptors:sortDescriptors
-											batchSize:batchSize];
-		
+                                                 predicate:predicate
+                                           sortDescriptors:sortDescriptors
+                                                 batchSize:DCTFetchBatchSizeNil];
+    
 	if ([results count] < 1) return nil;
 	
 	return [results objectAtIndex:0];

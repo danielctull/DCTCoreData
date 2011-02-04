@@ -70,16 +70,11 @@
 					predicate:(NSPredicate *)predicate;
 
 - (id)dct_objectForEntityName:(NSString *)entityName
+			  sortDescriptors:(NSArray *)sortDescriptors;
+
+- (id)dct_objectForEntityName:(NSString *)entityName
 					predicate:(NSPredicate *)predicate
 			  sortDescriptors:(NSArray *)sortDescriptors;
-
-- (id)dct_objectForEntityName:(NSString *)entityName
-			  sortDescriptors:(NSArray *)sortDescriptors;
-
-- (id)dct_objectForEntityName:(NSString *)entityName
-					predicate:(NSPredicate *)predicate 
-			  sortDescriptors:(NSArray *)sortDescriptors
-					batchSize:(NSUInteger)batchSize;
 
 #pragma mark -
 #pragma mark Inserting New Objects
