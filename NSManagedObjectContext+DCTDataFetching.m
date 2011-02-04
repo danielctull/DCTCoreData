@@ -42,44 +42,44 @@
 #pragma mark -
 #pragma mark Fetching Multiple Objects
 
-- (NSArray *)dct_objectsForEntityName:(NSString *)entityName {
+- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName {
 	
-	return [self dct_objectsForEntityName:entityName
+	return [self dct_fetchObjectsForEntityName:entityName
 							predicate:nil
 					  sortDescriptors:nil
 							batchSize:DCTFetchBatchSizeNil];
 }
 
-- (NSArray *)dct_objectsForEntityName:(NSString *)entityName
+- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName
 							predicate:(NSPredicate *)predicate {
 	
-	return [self dct_objectsForEntityName:entityName
+	return [self dct_fetchObjectsForEntityName:entityName
 								predicate:predicate
 						  sortDescriptors:nil
 								batchSize:DCTFetchBatchSizeNil];
 }
 
-- (NSArray *)dct_objectsForEntityName:(NSString *)entityName
+- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName
 							predicate:(NSPredicate *)predicate
 					  sortDescriptors:(NSArray *)sortDescriptors {
 	
-	return [self dct_objectsForEntityName:entityName
+	return [self dct_fetchObjectsForEntityName:entityName
 								predicate:predicate
 						  sortDescriptors:sortDescriptors
 								batchSize:DCTFetchBatchSizeNil];
 }
 
-- (NSArray *)dct_objectsForEntityName:(NSString *)entityName
+- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName
 					  sortDescriptors:(NSArray *)sortDescriptors {
 	
-	return [self dct_objectsForEntityName:entityName
+	return [self dct_fetchObjectsForEntityName:entityName
 								predicate:nil
 						  sortDescriptors:sortDescriptors
 								batchSize:DCTFetchBatchSizeNil];
 }
 
 // The one method that does the heavy lifting:
-- (NSArray *)dct_objectsForEntityName:(NSString *)entityName
+- (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
 							predicate:(NSPredicate *)predicate
 					  sortDescriptors:(NSArray *)sortDescriptors
 							batchSize:(NSUInteger)batchSize {
@@ -145,7 +145,7 @@
 			  sortDescriptors:(NSArray *)sortDescriptors
 					batchSize:(NSUInteger)batchSize {
 	
-	NSArray *results = [self dct_objectsForEntityName:entityName
+	NSArray *results = [self dct_fetchObjectsForEntityName:entityName
 											predicate:predicate
 									  sortDescriptors:sortDescriptors
 											batchSize:batchSize];
