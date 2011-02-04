@@ -42,16 +42,16 @@
 #pragma mark -
 #pragma mark Fetching Multiple Objects
 
-- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName {
+- (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName {
 	
 	return [self dct_fetchObjectsForEntityName:entityName
-							predicate:nil
-					  sortDescriptors:nil
-							batchSize:DCTFetchBatchSizeNil];
+									 predicate:nil
+							   sortDescriptors:nil
+									 batchSize:DCTFetchBatchSizeNil];
 }
 
-- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName
-							predicate:(NSPredicate *)predicate {
+- (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
+								 predicate:(NSPredicate *)predicate {
 	
 	return [self dct_fetchObjectsForEntityName:entityName
 								predicate:predicate
@@ -59,9 +59,9 @@
 								batchSize:DCTFetchBatchSizeNil];
 }
 
-- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName
-							predicate:(NSPredicate *)predicate
-					  sortDescriptors:(NSArray *)sortDescriptors {
+- (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
+								 predicate:(NSPredicate *)predicate
+						   sortDescriptors:(NSArray *)sortDescriptors {
 	
 	return [self dct_fetchObjectsForEntityName:entityName
 								predicate:predicate
@@ -69,8 +69,8 @@
 								batchSize:DCTFetchBatchSizeNil];
 }
 
-- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName
-					  sortDescriptors:(NSArray *)sortDescriptors {
+- (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
+						   sortDescriptors:(NSArray *)sortDescriptors {
 	
 	return [self dct_fetchObjectsForEntityName:entityName
 								predicate:nil
@@ -80,13 +80,16 @@
 
 // The one method that does the heavy lifting:
 - (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
-							predicate:(NSPredicate *)predicate
-					  sortDescriptors:(NSArray *)sortDescriptors
-							batchSize:(NSUInteger)batchSize {
+								 predicate:(NSPredicate *)predicate
+						   sortDescriptors:(NSArray *)sortDescriptors
+								 batchSize:(NSUInteger)batchSize {
 	
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
 	
-	NSFetchRequest *request = [[NSFetchRequest alloc] dct_initWithEntity:entity predicate:predicate sortDescriptors:sortDescriptors batchSize:batchSize];
+	NSFetchRequest *request = [[NSFetchRequest alloc] dct_initWithEntity:entity 
+															   predicate:predicate
+														 sortDescriptors:sortDescriptors
+															   batchSize:batchSize];
 	
 	NSError *error = nil;
 	
@@ -107,24 +110,24 @@
 - (id)dct_fetchAnyObjectForEntityName:(NSString *)entityName {
 
 	return [self dct_fetchFirstObjectForEntityName:entityName
-							   predicate:nil
-						 sortDescriptors:nil];
+										 predicate:nil
+								   sortDescriptors:nil];
 }
 
 - (id)dct_fetchAnyObjectForEntityName:(NSString *)entityName
                             predicate:(NSPredicate *)predicate {
 	
 	return [self dct_fetchFirstObjectForEntityName:entityName
-							   predicate:predicate
-						 sortDescriptors:nil];
+										 predicate:predicate
+								   sortDescriptors:nil];
 }
 
 - (id)dct_fetchFirstObjectForEntityName:(NSString *)entityName
                         sortDescriptors:(NSArray *)sortDescriptors {
 	
 	return [self dct_fetchFirstObjectForEntityName:entityName
-							   predicate:nil
-						 sortDescriptors:sortDescriptors];
+										 predicate:nil
+								   sortDescriptors:sortDescriptors];
 }
 
 - (id)dct_fetchFirstObjectForEntityName:(NSString *)entityName

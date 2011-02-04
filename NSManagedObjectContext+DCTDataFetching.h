@@ -44,17 +44,17 @@
 /*  If the fetch fails, the error will be logged
  */
 
-- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName;
+- (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName;
 
-- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName
-                                    predicate:(NSPredicate *)predicate;
+- (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
+								 predicate:(NSPredicate *)predicate;
 
-- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName
-                                    predicate:(NSPredicate *)predicate
-                              sortDescriptors:(NSArray *)sortDescriptors;
+- (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
+								 predicate:(NSPredicate *)predicate
+						   sortDescriptors:(NSArray *)sortDescriptors;
 	
-- (NSArray *)dct_fetchAllObjectsForEntityName:(NSString *)entityName
-                                sortDescriptors:(NSArray *)sortDescriptors;
+- (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
+						   sortDescriptors:(NSArray *)sortDescriptors;
 
 - (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
                                  predicate:(NSPredicate *)predicate
