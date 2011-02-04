@@ -64,17 +64,17 @@
 #pragma mark -
 #pragma mark Fetching Single Objects
 
-- (id)dct_objectForEntityName:(NSString *)entityName;
+- (id)dct_fetchAnyObjectForEntityName:(NSString *)entityName;
 
-- (id)dct_objectForEntityName:(NSString *)entityName
-					predicate:(NSPredicate *)predicate;
+- (id)dct_fetchAnyObjectForEntityName:(NSString *)entityName
+                            predicate:(NSPredicate *)predicate;
 
-- (id)dct_objectForEntityName:(NSString *)entityName
-			  sortDescriptors:(NSArray *)sortDescriptors;
+- (id)dct_fetchFirstObjectForEntityName:(NSString *)entityName
+                        sortDescriptors:(NSArray *)sortDescriptors;
 
-- (id)dct_objectForEntityName:(NSString *)entityName
-					predicate:(NSPredicate *)predicate
-			  sortDescriptors:(NSArray *)sortDescriptors;
+- (id)dct_fetchFirstObjectForEntityName:(NSString *)entityName
+                              predicate:(NSPredicate *)predicate
+                        sortDescriptors:(NSArray *)sortDescriptors;
 
 #pragma mark -
 #pragma mark Inserting New Objects

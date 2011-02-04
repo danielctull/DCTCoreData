@@ -104,32 +104,32 @@
 #pragma mark -
 #pragma mark Fetching Single Objects
 
-- (id)dct_objectForEntityName:(NSString *)entityName {
+- (id)dct_fetchAnyObjectForEntityName:(NSString *)entityName {
 
-	return [self dct_objectForEntityName:entityName
+	return [self dct_fetchFirstObjectForEntityName:entityName
 							   predicate:nil
 						 sortDescriptors:nil];
 }
 
-- (id)dct_objectForEntityName:(NSString *)entityName
-					predicate:(NSPredicate *)predicate {
+- (id)dct_fetchAnyObjectForEntityName:(NSString *)entityName
+                            predicate:(NSPredicate *)predicate {
 	
-	return [self dct_objectForEntityName:entityName
+	return [self dct_fetchFirstObjectForEntityName:entityName
 							   predicate:predicate
 						 sortDescriptors:nil];
 }
 
-- (id)dct_objectForEntityName:(NSString *)entityName
-			  sortDescriptors:(NSArray *)sortDescriptors {
+- (id)dct_fetchFirstObjectForEntityName:(NSString *)entityName
+                        sortDescriptors:(NSArray *)sortDescriptors {
 	
-	return [self dct_objectForEntityName:entityName
+	return [self dct_fetchFirstObjectForEntityName:entityName
 							   predicate:nil
 						 sortDescriptors:sortDescriptors];
 }
 
-- (id)dct_objectForEntityName:(NSString *)entityName
-					predicate:(NSPredicate *)predicate
-			  sortDescriptors:(NSArray *)sortDescriptors {
+- (id)dct_fetchFirstObjectForEntityName:(NSString *)entityName
+                              predicate:(NSPredicate *)predicate
+                        sortDescriptors:(NSArray *)sortDescriptors {
 	
 	NSArray *results = [self dct_fetchObjectsForEntityName:entityName
                                                  predicate:predicate
