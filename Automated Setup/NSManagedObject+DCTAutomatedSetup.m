@@ -204,7 +204,7 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString];
 	[predicateString release];
 	
-	return [moc dct_objectForEntityName:[entity name] predicate:predicate];
+	return [moc dct_fetchAnyObjectForEntityName:[entity name] predicate:predicate];
 	
 }
 
