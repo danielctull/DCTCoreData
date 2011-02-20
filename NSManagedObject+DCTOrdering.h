@@ -43,10 +43,10 @@
 - (void)dct_addOrderedObject:(NSManagedObject<DCTOrderedObject> *)object forKey:(NSString *)key;
 - (void)dct_addOrderedObject:(NSManagedObject<DCTOrderedObject> *)object forKey:(NSString *)key lastObject:(NSManagedObject<DCTOrderedObject> *)last;
 
-- (void)dct_insertOrderedObject:(NSManagedObject<DCTOrderedObject> *)object atIndex:(NSInteger)index forKey:(NSString *)key;
-- (void)dct_removeOrderedObjectAtIndex:(NSInteger)index forKey:(NSString *)key;
+- (void)dct_insertOrderedObject:(NSManagedObject<DCTOrderedObject> *)object atIndex:(NSUInteger)index forKey:(NSString *)key;
+- (void)dct_removeOrderedObjectAtIndex:(NSUInteger)index forKey:(NSString *)key;
 
-- (NSManagedObject<DCTOrderedObject> *)dct_orderedObjectAtIndex:(NSInteger)index forKey:(NSString *)key;
+- (NSManagedObject<DCTOrderedObject> *)dct_orderedObjectAtIndex:(NSUInteger)index forKey:(NSString *)key;
 - (NSManagedObject<DCTOrderedObject> *)dct_lastOrderedObjectForKey:(NSString *)key;
 - (NSManagedObject<DCTOrderedObject> *)dct_firstOrderedObjectForKey:(NSString *)key;
 
