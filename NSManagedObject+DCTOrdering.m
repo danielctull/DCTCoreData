@@ -94,13 +94,13 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 	if ([last dctInternal_nextOrderedObject])
 		return [self dct_addOrderedObject:object forKey:key];
 	
-	NSInteger index = [last.dctOrderedObjectIndex integerValue] + 1;
+	NSUInteger insertionIndex = [last.dctOrderedObjectIndex integerValue] + 1;
 	
 	// if the set count is larger than the new object's insertion point, it's not the end so call the proper insert method
-	if ([[self valueForKey:key] count] > index)
+	if ([[self valueForKey:key] count] > insertionIndex)
 		return [self dct_addOrderedObject:object forKey:key];
 	
-	object.dctOrderedObjectIndex = [NSNumber numberWithInteger:index];
+	object.dctOrderedObjectIndex = [NSNumber numberWithInteger:insertionIndex];
 	
 	[object dctInternal_setNextOrderedObject:last];
 	
@@ -109,7 +109,7 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 
 
 - (void)dct_insertOrderedObject:(NSManagedObject<DCTOrderedObject> *)object 
-						atIndex:(NSInteger)index 
+						atIndex:(NSUInteger)insertionIndex 
 						 forKey:(NSString *)key {
 	
 	if (![self dctInternal_containsRelationshipForKey:key]) return;
@@ -120,69 +120,69 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 		
 		NSArray *orderedObjects = [self dct_orderedObjectsForKey:key];
 		
-		if ([orderedObjects count] > index) {
+		if ([orderedObjects count] > insertionIndex) {
 			
-			NSRange range = NSMakeRange(index, [orderedObjects count]-index);
+			NSRange range = NSMakeRange(insertionIndex, [orderedObjects count] - insertionIndex);
 			NSArray *objectsAfter = [orderedObjects subarrayWithRange:range];
 			
 			for (NSManagedObject<DCTOrderedObject> *o in objectsAfter)
 				o.dctOrderedObjectIndex = [NSNumber numberWithInteger:[o.dctOrderedObjectIndex integerValue]+1];
 			
-			[object dctInternal_setNextOrderedObject:[orderedObjects objectAtIndex:index]];
+			[object dctInternal_setNextOrderedObject:[orderedObjects objectAtIndex:insertionIndex]];
 		} 
 		
 		// work out the object before insert
-		[object dctInternal_setPreviousOrderedObject:[orderedObjects objectAtIndex:index-1]];
+		[object dctInternal_setPreviousOrderedObject:[orderedObjects objectAtIndex:insertionIndex - 1]];
 	}
 	
-	object.dctOrderedObjectIndex = [NSNumber numberWithInteger:index];
+	object.dctOrderedObjectIndex = [NSNumber numberWithInteger:insertionIndex];
 	
 	[self dct_addRelatedObject:object forKey:key];
 }
 
 
 
-- (void)dct_removeOrderedObjectAtIndex:(NSInteger)index 
+- (void)dct_removeOrderedObjectAtIndex:(NSUInteger)theIndex 
 								forKey:(NSString *)key {
 	
 	if (![self dctInternal_containsRelationshipForKey:key]) return;
 	
 	NSSet *set = [self dctInternal_orderedObjectsSetForKey:key];
 	
-	if ([set count] < index) return;
+	if ([set count] < theIndex) return;
 	
 	
 	NSArray *orderedObjects = [self dct_orderedObjectsForKey:key];
 	
-	NSManagedObject<DCTOrderedObject> *previous = [orderedObjects objectAtIndex:index-1];
+	NSManagedObject<DCTOrderedObject> *previous = [orderedObjects objectAtIndex:theIndex - 1];
 	
 	[previous dctInternal_setNextOrderedObject:nil];
 	
-	NSManagedObject<DCTOrderedObject> *object = [orderedObjects objectAtIndex:index];
+	NSManagedObject<DCTOrderedObject> *object = [orderedObjects objectAtIndex:theIndex];
 	
-	if ([orderedObjects count] > index) {
+	if ([orderedObjects count] > theIndex) {
 		
-		NSManagedObject<DCTOrderedObject> *next = [orderedObjects objectAtIndex:index+1];
+		NSManagedObject<DCTOrderedObject> *next = [orderedObjects objectAtIndex:theIndex + 1];
 		[previous dctInternal_setNextOrderedObject:next];
 		
-		NSRange range = NSMakeRange(index, [orderedObjects count]-index);
+		NSRange range = NSMakeRange(theIndex, [orderedObjects count] - theIndex);
 		NSArray *objectsAfter = [orderedObjects subarrayWithRange:range];
 		
 		for (NSManagedObject<DCTOrderedObject> *o in objectsAfter)
-			o.dctOrderedObjectIndex = [NSNumber numberWithInteger:[o.dctOrderedObjectIndex integerValue]-1];
+			o.dctOrderedObjectIndex = [NSNumber numberWithInteger:[o.dctOrderedObjectIndex integerValue] - 1];
 	}
 	
 	[self dct_removeRelatedObject:object forKey:key];
 }
 
 
-- (void)dct_replaceOrderedObjectAtIndex:(NSInteger)index 
+- (void)dct_replaceOrderedObjectAtIndex:(NSUInteger)theIndex 
 							 withObject:(NSManagedObject<DCTOrderedObject> *)object 
 								 forKey:(NSString *)key {
 	
 	if (![self dctInternal_containsRelationshipForKey:key]) return;
 	
-	NSManagedObject<DCTOrderedObject> *objectToReplace = [self dct_orderedObjectAtIndex:index forKey:key];
+	NSManagedObject<DCTOrderedObject> *objectToReplace = [self dct_orderedObjectAtIndex:theIndex forKey:key];
 	
 	object.dctOrderedObjectIndex = objectToReplace.dctOrderedObjectIndex;
 	
@@ -200,14 +200,14 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 
 
 
-- (NSManagedObject<DCTOrderedObject> *)dct_orderedObjectAtIndex:(NSInteger)index 
+- (NSManagedObject<DCTOrderedObject> *)dct_orderedObjectAtIndex:(NSUInteger)theIndex 
 														 forKey:(NSString *)key {
 	
 	NSArray *orderedObjects = [self dct_orderedObjectsForKey:key];
 	
-	if (!orderedObjects || [orderedObjects count] < index) return nil;
+	if (!orderedObjects || [orderedObjects count] < theIndex) return nil;
 	
-	NSManagedObject *mo = [orderedObjects objectAtIndex:index];
+	NSManagedObject *mo = [orderedObjects objectAtIndex:theIndex];
 	
 	if (![mo conformsToProtocol:@protocol(DCTOrderedObject)]) return nil;
 	
