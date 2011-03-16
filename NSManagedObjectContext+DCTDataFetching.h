@@ -61,6 +61,11 @@
                            sortDescriptors:(NSArray *)sortDescriptors
                                  batchSize:(NSUInteger)batchSize;
 
+- (NSArray *)dct_fetchObjectsForEntity:(NSEntityDescription *)entity
+							 predicate:(NSPredicate *)predicate
+					   sortDescriptors:(NSArray *)sortDescriptors
+							 batchSize:(NSUInteger)batchSize;
+
 #pragma mark -
 #pragma mark Fetching Single Objects
 

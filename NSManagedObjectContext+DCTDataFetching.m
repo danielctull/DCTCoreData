@@ -78,19 +78,30 @@
 								batchSize:DCTFetchBatchSizeNil];
 }
 
-// The one method that does the heavy lifting:
 - (NSArray *)dct_fetchObjectsForEntityName:(NSString *)entityName
 								 predicate:(NSPredicate *)predicate
 						   sortDescriptors:(NSArray *)sortDescriptors
 								 batchSize:(NSUInteger)batchSize {
 	
-	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+											  inManagedObjectContext:self];
+	
+	return [self dct_fetchObjectsForEntity:entity
+								 predicate:predicate
+						   sortDescriptors:sortDescriptors
+								 batchSize:batchSize];
+}
+
+// The one method that does the heavy lifting:
+- (NSArray *)dct_fetchObjectsForEntity:(NSEntityDescription *)entity
+							 predicate:(NSPredicate *)predicate
+					   sortDescriptors:(NSArray *)sortDescriptors
+							 batchSize:(NSUInteger)batchSize {
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] dct_initWithEntity:entity 
 															   predicate:predicate
 														 sortDescriptors:sortDescriptors
 															   batchSize:batchSize];
-	
 	NSError *error = nil;
 	
 	NSArray *fetchResult = [self executeFetchRequest:request error:&error];
@@ -103,6 +114,8 @@
 	
 	return fetchResult;
 }
+
+
 
 #pragma mark -
 #pragma mark Fetching Single Objects
