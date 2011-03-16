@@ -12,7 +12,7 @@
 
 + (NSEntityDescription *)dct_entityInManagedObjectContext:(NSManagedObjectContext *)moc;
 
-+ (NSArray *)dct_fetchAllObjectsInManagedObjectContext:(NSManagedObjectContext *)moc;
++ (NSArray *)dct_fetchObjectsInManagedObjectContext:(NSManagedObjectContext *)moc;
 
 + (id)dct_insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)moc;
 
