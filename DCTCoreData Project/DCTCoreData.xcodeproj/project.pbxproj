@@ -38,6 +38,7 @@
 		24714BB5124F963D00817366 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24714BB3124F963D00817366 /* MainWindow_iPad.xib */; };
 		24714BB8124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 24714BB7124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.m */; };
 		24714BBB124F963D00817366 /* DCTCoreDataAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 24714BBA124F963D00817366 /* DCTCoreDataAppDelegate_iPad.m */; };
+		24D001661330BF5300D1616B /* NSManagedObject+DCTDataFetching.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D001651330BF5300D1616B /* NSManagedObject+DCTDataFetching.m */; };
 		24F07C6512ABE25F00AD7E2A /* NSFetchRequest+DCTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C6412ABE25F00AD7E2A /* NSFetchRequest+DCTExtras.m */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,8 @@
 		24714BB7124F963D00817366 /* DCTCoreDataAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCTCoreDataAppDelegate_iPhone.m; sourceTree = "<group>"; };
 		24714BB9124F963D00817366 /* DCTCoreDataAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCTCoreDataAppDelegate_iPad.h; sourceTree = "<group>"; };
 		24714BBA124F963D00817366 /* DCTCoreDataAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCTCoreDataAppDelegate_iPad.m; sourceTree = "<group>"; };
+		24D001641330BF5300D1616B /* NSManagedObject+DCTDataFetching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTDataFetching.h"; sourceTree = "<group>"; };
+		24D001651330BF5300D1616B /* NSManagedObject+DCTDataFetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTDataFetching.m"; sourceTree = "<group>"; };
 		24F07C6312ABE25F00AD7E2A /* NSFetchRequest+DCTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+DCTExtras.h"; sourceTree = "<group>"; };
 		24F07C6412ABE25F00AD7E2A /* NSFetchRequest+DCTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchRequest+DCTExtras.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +139,8 @@
 				240E501412ABBA95005575CE /* NSManagedObject+DCTRelatedObjects.m */,
 				240E501512ABBA95005575CE /* NSManagedObjectContext+DCTDataFetching.h */,
 				240E501612ABBA95005575CE /* NSManagedObjectContext+DCTDataFetching.m */,
+				24D001641330BF5300D1616B /* NSManagedObject+DCTDataFetching.h */,
+				24D001651330BF5300D1616B /* NSManagedObject+DCTDataFetching.m */,
 				240E501712ABBA95005575CE /* NSManagedObjectContext+DCTExtras.h */,
 				240E501812ABBA95005575CE /* NSManagedObjectContext+DCTExtras.m */,
 				240E501912ABBA95005575CE /* NSPredicate+DCTExtras.h */,
@@ -358,6 +363,7 @@
 				240E525912ABBA95005575CE /* NSManagedObjectContext+DCTExtras.m in Sources */,
 				240E525A12ABBA95005575CE /* NSPredicate+DCTExtras.m in Sources */,
 				24F07C6512ABE25F00AD7E2A /* NSFetchRequest+DCTExtras.m in Sources */,
+				24D001661330BF5300D1616B /* NSManagedObject+DCTDataFetching.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
