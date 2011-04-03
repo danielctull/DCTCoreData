@@ -28,7 +28,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+	
 	NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
 	
 	// SETTING UP THE DICTIONARY TO IMPORT:
@@ -106,7 +106,7 @@
 	
 	[managedObjectContext dct_asynchronousTaskWithWorkBlock:^(NSManagedObjectContext *moc) {
 		
-		DCTCDGroup *group = [DCTCDGroup dct_objectFromDictionary:initialGroupDict insertIntoManagedObjectContext:moc]; // USE THE MOC GIVEN TO USÉ THIS WILL BE DIFFERENT TO OUR MAIN MOC
+		DCTCDGroup *group = [DCTCDGroup dct_objectFromDictionary:initialGroupDict insertIntoManagedObjectContext:moc]; // USE THE MOC GIVEN TO USâ€¦ THIS WILL BE DIFFERENT TO OUR MAIN MOC
 		[self dctInternal_logGroup:group];
 		
 	} completionBlock:^(NSManagedObjectContext *moc) {
@@ -139,7 +139,7 @@
 - (void)dctInternal_logGroup:(DCTCDGroup *)group {
 	
 	NSLog(@"%@", group);
-		
+	
 	for (DCTCDItem *item in group.items)
 		NSLog(@"%@", item);
 	
@@ -175,7 +175,7 @@
 	NSMutableDictionary *itemDict2 = [[NSMutableDictionary alloc] init];
 	[itemDict2 setObject:@"Item 20's updated description." forKey:@"itemDescription"];
 	[itemDict2 setObject:@"20" forKey:@"remoteID"];
-		
+	
 	NSMutableDictionary *groupDict = [[NSMutableDictionary alloc] init];
 	[groupDict setObject:[NSNumber numberWithInteger:12] forKey:@"id"];
 	[groupDict setObject:@"This is the updated description string for the group." forKey:@"description"];
