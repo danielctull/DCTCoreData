@@ -42,6 +42,10 @@
 	return [NSPredicate predicateWithFormat:@"%K == %@", name, object];
 }
 
++ (NSPredicate *)dct_predicateWherePropertyIsNil:(NSString *)name {
+	return [NSPredicate predicateWithFormat:@"%K == nil", name];
+}
+
 + (NSPredicate *)dct_predicateWherePropertyIsNotNil:(NSString *)name {
 	return [NSPredicate predicateWithFormat:@"%K != nil", name];
 }

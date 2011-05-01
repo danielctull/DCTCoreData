@@ -39,6 +39,7 @@
 @interface NSPredicate (DCTExtras)
 
 + (NSPredicate *)dct_predicateWhereProperty:(NSString *)name equals:(id)object;
++ (NSPredicate *)dct_predicateWherePropertyIsNil:(NSString *)name;
 + (NSPredicate *)dct_predicateWherePropertyIsNotNil:(NSString *)name;
 + (NSPredicate *)dct_predicateWhereStringPropertyIsNotNilAndNotEmpty:(NSString *)name;
 
