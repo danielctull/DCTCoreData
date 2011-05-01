@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'DCTCoreDataTests' target in the 'DCTCoreDataTests' project
-//
-
-#ifdef __OBJC__
-	#import <UIKit/UIKit.h>
-#endif
