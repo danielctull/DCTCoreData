@@ -200,7 +200,6 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
 		[predicateString appendFormat:@"%@ == '%@'", localPrimaryKey, primaryKeyValue];
 	}
 	
-	NSLog(@"%@:%@ %@", self, NSStringFromSelector(_cmd), predicateString);
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString];
 	[predicateString release];
 	
