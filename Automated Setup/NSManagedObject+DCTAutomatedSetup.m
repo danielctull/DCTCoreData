@@ -42,9 +42,9 @@
 #import "NSManagedObject+DCTRelatedObjects.h"
 #import "NSDictionary+DCTKeyForObject.h"
 
-BOOL const DCTManagedObjectAutomatedSetupLogStorageFailures = YES;
-BOOL const DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse = YES;
-BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = YES;
+BOOL const DCTManagedObjectAutomatedSetupLogStorageFailures = NO;
+BOOL const DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse = NO;
+BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = NO;
 
 @interface NSManagedObject ()
 
