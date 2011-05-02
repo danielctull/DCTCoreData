@@ -60,7 +60,7 @@ BOOL const DCTManagedObjectAutomatedSyncLogErrorMessages = YES;
 		return;
 	}
 	
-	NSManagedObject<DCTManagedObjectAutomatedSync> *syncSelf = self;
+	NSManagedObject<DCTManagedObjectAutomatedSync> *syncSelf = (NSManagedObject<DCTManagedObjectAutomatedSync> *)self;
 	
 	DCTManagedObjectAutomatedSyncStatus syncStatus = DCTManagedObjectAutomatedSyncStatusNil;
 	
