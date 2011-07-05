@@ -222,7 +222,6 @@
 									 name:NSManagedObjectContextDidSaveNotification
 								   object:threadedContext];
 			
-			[threadedContext release];
 			
 			completionBlock();
 		});		

@@ -102,7 +102,6 @@
 	[self dct_asynchronousFetchRequest:request
 					 withCallbackBlock:callbackBlock];
 	
-	[request release];	
 }
 
 #pragma mark -

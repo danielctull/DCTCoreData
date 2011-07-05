@@ -41,30 +41,30 @@ NSUInteger const DCTFetchBatchSizeNil = 0;
 @implementation NSFetchRequest (DCTExtras)
 
 + (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity {
-	return [[[self alloc] dct_initWithEntity:entity] autorelease];
+	return [[self alloc] dct_initWithEntity:entity];
 }
 
 + (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
 					   predicate:(NSPredicate *)predicate {
 	
-	return [[[self alloc] dct_initWithEntity:entity
-								   predicate:predicate] autorelease];
+	return [[self alloc] dct_initWithEntity:entity
+								   predicate:predicate];
 }
 
 + (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity 
 				 sortDescriptors:(NSArray *)sortDescriptors {
 	
-	return [[[self alloc] dct_initWithEntity:entity
-							 sortDescriptors:sortDescriptors] autorelease];
+	return [[self alloc] dct_initWithEntity:entity
+							 sortDescriptors:sortDescriptors];
 }
 
 + (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
 					   predicate:(NSPredicate *)predicate
 				 sortDescriptors:(NSArray *)sortDescriptors {
 	
-	return [[[self alloc] dct_initWithEntity:entity
+	return [[self alloc] dct_initWithEntity:entity
 								   predicate:predicate
-							 sortDescriptors:sortDescriptors] autorelease];
+							 sortDescriptors:sortDescriptors];
 }
 
 + (id)dct_fetchRequestWithEntity:(NSEntityDescription *)entity
@@ -72,10 +72,10 @@ NSUInteger const DCTFetchBatchSizeNil = 0;
 				 sortDescriptors:(NSArray *)sortDescriptors
 					   batchSize:(NSUInteger)batchSize {
 	
-	return [[[self alloc] dct_initWithEntity:entity
+	return [[self alloc] dct_initWithEntity:entity
 								   predicate:predicate
 							 sortDescriptors:sortDescriptors
-								   batchSize:batchSize] autorelease];
+								   batchSize:batchSize];
 }
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity {
@@ -119,17 +119,17 @@ NSUInteger const DCTFetchBatchSizeNil = 0;
 		 sortDescriptors:(NSArray *)sortDescriptors
 			   batchSize:(NSUInteger)batchSize {
 	
-	if (!(self = [self init])) return nil;
+	NSFetchRequest *fr = [[NSFetchRequest alloc] init];
 	
-	[self setEntity:entity];
+	[fr setEntity:entity];
 	
-	if (predicate) [self setPredicate:predicate];
+	if (predicate) [fr setPredicate:predicate];
 	
-	if (sortDescriptors) [self setSortDescriptors:sortDescriptors];
+	if (sortDescriptors) [fr setSortDescriptors:sortDescriptors];
 	
-	if (batchSize != DCTFetchBatchSizeNil) [self setFetchBatchSize:batchSize];
+	if (batchSize != DCTFetchBatchSizeNil) [fr setFetchBatchSize:batchSize];
 	
-	return self;
+	return fr;
 }
 
 @end
