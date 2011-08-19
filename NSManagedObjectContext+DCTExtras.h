@@ -40,5 +40,6 @@
 
 - (NSManagedObjectModel *)dct_managedObjectModel;
 - (BOOL)dct_save;
+- (NSString *)validationError:(NSError *)anError;
 
 @end
