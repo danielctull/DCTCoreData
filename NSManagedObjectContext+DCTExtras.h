@@ -48,4 +48,7 @@
 - (void)dct_performWithObjectIDs:(NSArray *)objectIDs block:(void (^)(NSArray *objects))block;
 - (void)dct_performAndWaitWithObjectIDs:(NSArray *)objectIDs block:(void (^)(NSArray *objects))block;
 
+- (id)dct_safeObjectWithID:(NSManagedObjectID *)objectID;
+
+
 @end

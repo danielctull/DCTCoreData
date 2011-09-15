@@ -39,6 +39,14 @@
 
 @implementation NSManagedObjectContext (DCTExtras)
 
+- (id)dct_safeObjectWithID:(NSManagedObjectID *)objectID {
+	
+	if (!objectID) return nil;
+	
+	return [self objectWithID:objectID];
+}
+
+
 - (void)dct_performAndWaitWithObjectID:(NSManagedObjectID *)objectID block:(void (^)(NSManagedObject *object))block {
 	
 	[self performBlockAndWait:^{
@@ -47,12 +55,20 @@
 }
 
 - (void)dct_performWithObjectID:(NSManagedObjectID *)objectID block:(void (^)(NSManagedObject *object))block {
+	
+	NSAssert(objectID != nil, @"objectID should not be nil");
+	NSAssert(block != nil, @"block should not be nil");
+	
 	[self performBlock:^{
 		block([self objectWithID:objectID]);
 	}];
 }
 
 - (void)dct_performWithObjectIDs:(NSArray *)objectIDs block:(void (^)(NSArray *objects))block {
+	
+	NSAssert(objectIDs != nil, @"objectIDs should not be nil");
+	NSAssert(block != nil, @"block should not be nil");
+	
 	[self performBlock:^{
 		
 		NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:[objectIDs count]];
