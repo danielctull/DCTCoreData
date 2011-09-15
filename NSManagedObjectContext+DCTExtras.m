@@ -39,6 +39,45 @@
 
 @implementation NSManagedObjectContext (DCTExtras)
 
+- (void)dct_performAndWaitWithObjectID:(NSManagedObjectID *)objectID block:(void (^)(NSManagedObject *object))block {
+	
+	[self performBlockAndWait:^{
+		block([self objectWithID:objectID]);
+	}];
+}
+
+- (void)dct_performWithObjectID:(NSManagedObjectID *)objectID block:(void (^)(NSManagedObject *object))block {
+	[self performBlock:^{
+		block([self objectWithID:objectID]);
+	}];
+}
+
+- (void)dct_performWithObjectIDs:(NSArray *)objectIDs block:(void (^)(NSArray *objects))block {
+	[self performBlock:^{
+		
+		NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:[objectIDs count]];
+		
+		[objectIDs enumerateObjectsUsingBlock:^(NSManagedObjectID *objectID, NSUInteger idx, BOOL *stop) {
+			[objects addObject:[self objectWithID:objectID]];
+		}];
+		
+		block([objects copy]);
+	}];
+}
+
+- (void)dct_performAndWaitWithObjectIDs:(NSArray *)objectIDs block:(void (^)(NSArray *objects))block {
+	[self performBlockAndWait:^{
+		
+		NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:[objectIDs count]];
+		
+		[objectIDs enumerateObjectsUsingBlock:^(NSManagedObjectID *objectID, NSUInteger idx, BOOL *stop) {
+			[objects addObject:[self objectWithID:objectID]];
+		}];
+		
+		block([objects copy]);
+	}];
+}
+
 - (NSManagedObjectModel *)dct_managedObjectModel {
 	return [[self persistentStoreCoordinator] managedObjectModel];
 }
