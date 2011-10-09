@@ -40,5 +40,15 @@
 
 - (NSManagedObjectModel *)dct_managedObjectModel;
 - (BOOL)dct_save;
+- (NSString *)validationError:(NSError *)anError;
+
+- (void)dct_performAndWaitWithObjectID:(NSManagedObjectID *)objectID block:(void (^)(NSManagedObject *))block;
+- (void)dct_performWithObjectID:(NSManagedObjectID *)objectID block:(void (^)(NSManagedObject *))block;
+
+- (void)dct_performWithObjectIDs:(NSArray *)objectIDs block:(void (^)(NSArray *objects))block;
+- (void)dct_performAndWaitWithObjectIDs:(NSArray *)objectIDs block:(void (^)(NSArray *objects))block;
+
+- (id)dct_safeObjectWithID:(NSManagedObjectID *)objectID;
+
 
 @end
