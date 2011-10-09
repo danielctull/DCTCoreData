@@ -1,0 +1,99 @@
+h1. DCTCoreData
+
+DCTCoreData is my collection of extensions to Apple's Core Data framework. 
+
+*2.0* Code is now written for ARC, and works with iOS 4.3-style ARC.
+
+*1.3* New API for data fetching.
+
+*1.2* New API for automated setup.
+
+*1.1* Moves the location of all of the classes and renames NSFetchRequest+DCTInitMethods.h/m to NSFetchRequest+DCTExtras.h/m so you may need to jiggle things about when updating.
+
+h2. Features
+
+* Convenience methods for fetching from the managed object context
+* Automated creation of managed objects from an NSDictionary representation
+* A category to handle the ordering of related objects
+* Asynchronous tasks and fetching with blocks
+* Convenience methods for asynchronously fetching from the managed object context
+
+h3. NSManagedObjectContext (DCTDataFetching)
+
+Fetching from the context the way it always should have been! Lots of methods to ease the pain of fetching objects from a managed object context.
+
+Also includes an easy way to insert a new object. This will likely be moved to a separate category in the future.
+
+h3. NSManagedObject (DCTAutomatedSetup)
+
+Category to enable a subclass of NSManagedObject to conform to the DCTManagedObjectAutomatedSetup protocol and take a dictionary to generate its values.
+
+There are a number of methods subclasses can implement that will aid the setup process, I talk about these on "my blog post (DCTCoreData: DCTManagedObjectAutomatedSetup)":http://danieltull.co.uk/blog/2010/09/30/dctcoredata-dctmanagedobjectautomatedsetup/.
+
+h3. NSManagedObjectContext (DCTAsynchronousTasks)
+
+Adds methods to perform tasks off the main thread using GCD queues.
+
+The first set allow you to pass a block, in which you can access the threaded managed object context, to perform the task in another queue.
+
+The second set allow you to execute a fetch request on another GCD queue, which will call the given block when done with any objects fetched and an error if there is one. This method returns objects managed in the managed object context called on.
+
+h3. NSManagedObjectContext (DCTAsynchronousDataFetching)
+
+Similar to the DCTDataFetching category on NSManagedObjectContext, but performed using the asynchronous fetch from the DCTAsynchronousTasks category.
+
+h2. Branch Structure
+
+There is a new branch structure for DCTCoreData 2.0, *master* and *demo*. Unlike previous versions, *master* is now the branch to use as a submodule.
+
+h3. master
+
+The master branch contains the code and should be used if you want to add these extensions as a git submodule in other projects. It will only contain the class files themselves without the Xcode project or example classes. This is preferable as it will keep your directories clean of any code which is unnecessary to your working project.
+
+To add this project as a submodule you should run the following from inside your project's git repository:
+
+bc. git submodule add git://github.com/danielctull/DCTTableViewDataSources.git
+
+To keep up to date with the latest changes `cd` into the directory that contains this submodule and pull the newest changes as usual:
+
+bc. git pull origin
+
+h3. demo
+
+This contains an Xcode project that demonstrates the code and is the branch to use to see how to use the code. The demo branch contains a submodule reference to the master branch to bring in the library classes.
+
+To clone the demo branch, while also pulling in any necessary submodules run the following command:
+
+bc. git clone -b demo --recursive git://github.com/danielctull/DCTTableViewDataSources.git
+
+When changing to the demo branch you will need to run through the following set of commands:
+
+bc. git checkout demo
+git submodule init
+git submodule update
+
+After these you will see the example project and the library code will be in a sub-directory.
+
+h3. Artefacts
+
+Sometimes, there may be artefacts left over when switching from demo to master. These are files that are ignored by git and are easily cleaned up by running
+
+bc. git clean -dxf
+
+h2. Examples
+
+Examples of some of these features can be found in the iPhone app delegate.
+
+h2. License
+
+Copyright (C) 2010 Daniel Tull. All rights reserved.
+ 
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+ 
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ 
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ 
+* Neither the name of the author nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+ 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
