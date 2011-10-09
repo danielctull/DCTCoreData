@@ -35,7 +35,6 @@
  */
 
 #import "NSManagedObjectContext+DCTExtras.h"
-#import "NSError+DCTExtensions.h"
 
 @implementation NSManagedObjectContext (DCTExtras)
 
