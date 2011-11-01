@@ -57,21 +57,21 @@ extern NSUInteger const DCTFetchBatchSizeNil;
 				 sortDescriptors:(NSArray *)sortDescriptors
 					   batchSize:(NSUInteger)batchSize;
 
-- (id)dct_initWithEntity:(NSEntityDescription *)entity;
+- (id)dct_initWithEntity:(NSEntityDescription *)entity __attribute__((ns_consumes_self))__attribute__((ns_returns_retained));
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity
-			   predicate:(NSPredicate *)predicate;
+			   predicate:(NSPredicate *)predicate __attribute__((ns_consumes_self))__attribute__((ns_returns_retained));
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity 
-		 sortDescriptors:(NSArray *)sortDescriptors;
+		 sortDescriptors:(NSArray *)sortDescriptors __attribute__((ns_consumes_self))__attribute__((ns_returns_retained));
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity
 			   predicate:(NSPredicate *)predicate
-		 sortDescriptors:(NSArray *)sortDescriptors;
+		 sortDescriptors:(NSArray *)sortDescriptors __attribute__((ns_consumes_self))__attribute__((ns_returns_retained));
 
 - (id)dct_initWithEntity:(NSEntityDescription *)entity
 			   predicate:(NSPredicate *)predicate
 		 sortDescriptors:(NSArray *)sortDescriptors
-			   batchSize:(NSUInteger)batchSize;
+			   batchSize:(NSUInteger)batchSize __attribute__((ns_consumes_self))__attribute__((ns_returns_retained));
 
 @end
