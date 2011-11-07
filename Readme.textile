@@ -52,7 +52,7 @@ The master branch contains the code and should be used if you want to add these 
 
 To add this project as a submodule you should run the following from inside your project's git repository:
 
-bc. git submodule add git://github.com/danielctull/DCTTableViewDataSources.git
+bc. git submodule add git://github.com/danielctull/DCTCoreData.git
 
 To keep up to date with the latest changes `cd` into the directory that contains this submodule and pull the newest changes as usual:
 
@@ -64,7 +64,7 @@ This contains an Xcode project that demonstrates the code and is the branch to u
 
 To clone the demo branch, while also pulling in any necessary submodules run the following command:
 
-bc. git clone -b demo --recursive git://github.com/danielctull/DCTTableViewDataSources.git
+bc. git clone -b demo --recursive git://github.com/danielctull/DCTCoreData.git
 
 When changing to the demo branch you will need to run through the following set of commands:
 
