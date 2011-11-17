@@ -42,9 +42,13 @@
 #import "NSManagedObject+DCTRelatedObjects.h"
 #import "NSDictionary+DCTKeyForObject.h"
 
-BOOL const DCTManagedObjectAutomatedSetupLogStorageFailures = NO;
-BOOL const DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse = NO;
-BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = NO;
+/* Define these for logging problems:
+ 
+ DCTManagedObjectAutomatedSetupLogStorageFailures
+ DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse
+ DCTManagedObjectAutomatedSetupLogExtremeFailures
+*/
+
 
 @interface NSManagedObject ()
 
@@ -107,9 +111,13 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = NO;
 		if ([[mapping allKeys] containsObject:key])
 			key = [mapping objectForKey:key];
 		
-		
-		if (![self dct_setSerializedValue:object forKey:key] && DCTManagedObjectAutomatedSetupLogStorageFailures)
+		if (![self dct_setSerializedValue:object forKey:key]) {
+			
+#if defined(DCTManagedObjectAutomatedSetupLogStorageFailures)
 			NSLog(@"%@ (DCTManagedObjectAutomatedSetup): Didn't store key:%@ object:%@", NSStringFromClass([self class]), key, object);
+#endif
+			
+		}
 		
 	}
 	
@@ -133,16 +141,18 @@ BOOL const DCTManagedObjectAutomatedSetupLogExtremeFailures = NO;
 		NSString *localPrimaryKey = [[[[entity name] substringFromIndex:range.location] lowercaseString] stringByAppendingString:@"ID"];
 		localPrimaryKeys = [NSArray arrayWithObject:localPrimaryKey];
 		
-		
-		if (DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse)
+#if defined (DCTManagedObjectAutomatedSetupLogAutomaticPrimaryKeyUse)
 			NSLog(@"%@ (DCTManagedObjectAutomatedSetup): Cannot determine primary keys, using '%@\'", NSStringFromClass([self class]), localPrimaryKey);
+#endif
+		
 	}
 	
 	for (NSString *localPrimaryKey in localPrimaryKeys) {
 		if (![[[entity propertiesByName] allKeys] containsObject:localPrimaryKey]) {
 			
-			if (DCTManagedObjectAutomatedSetupLogExtremeFailures)
+#if defined (DCTManagedObjectAutomatedSetupLogExtremeFailures)
 				NSLog(@"!!!!! DCTManagedObjectAutomatedSetup: Cannot resolve a primary key for %@, so duplicate objects will not be found.", [entity name]);
+#endif
 			
 			return nil;	
 		}
