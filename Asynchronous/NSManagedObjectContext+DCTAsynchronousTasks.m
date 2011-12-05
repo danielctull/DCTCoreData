@@ -216,7 +216,7 @@
 								  name:NSManagedObjectContextDidSaveNotification
 								object:threadedContext];
 			
-			if ([threadedContext hasChanges]) [threadedContext dct_save];
+			if ([threadedContext hasChanges]) [threadedContext save:NULL];
 			
 			[defaultCenter removeObserver:self
 									 name:NSManagedObjectContextDidSaveNotification
