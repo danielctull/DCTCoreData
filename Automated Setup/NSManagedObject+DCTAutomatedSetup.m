@@ -41,6 +41,7 @@
 #import "NSAttributeDescription+DCTObjectCheck.h"
 #import "NSManagedObject+DCTRelatedObjects.h"
 #import "NSDictionary+DCTKeyForObject.h"
+#import "NSPredicate+DCTExtras.h"
 
 /* Define these for logging problems:
  
@@ -158,8 +159,8 @@
 		}
 	}
 	
-	NSMutableString *predicateString = [[NSMutableString alloc] init];
-	
+	NSMutableArray *predicates = [[NSMutableArray alloc] initWithCapacity:[localPrimaryKeys count]];
+		
 	for (NSString *localPrimaryKey in localPrimaryKeys) {
 		
 		NSString *remotePrimaryKey = nil;
@@ -178,7 +179,6 @@
 		
 		if (!remotePrimaryKey)
 			remotePrimaryKey = @"id";
-		
 		
 		id primaryKeyValue = [dictionary objectForKey:remotePrimaryKey];
 		
@@ -200,16 +200,13 @@
 		if (!objectIsValid && [self respondsToSelector:@selector(dct_convertValue:toCorrectTypeForKey:)])
 			primaryKeyValue = [myself dct_convertValue:primaryKeyValue toCorrectTypeForKey:localPrimaryKey];
 		
-		if ([predicateString length] > 0) [predicateString appendString:@" && "];
-		
-		
 		if ([primaryKeyValue isKindOfClass:[NSString class]])
 			primaryKeyValue = [primaryKeyValue stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
 		
-		[predicateString appendFormat:@"%@ == '%@'", localPrimaryKey, primaryKeyValue];
+		[predicates addObject:[NSPredicate dct_predicateWhereProperty:localPrimaryKey equals:primaryKeyValue]];
 	}
 	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateString];
+	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
 	
 	return [moc dct_fetchAnyObjectForEntityName:[entity name] predicate:predicate];
 	
