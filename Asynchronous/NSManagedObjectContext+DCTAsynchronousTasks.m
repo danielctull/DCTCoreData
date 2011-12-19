@@ -37,9 +37,9 @@
 #import "NSManagedObjectContext+DCTAsynchronousTasks.h"
 #import "NSManagedObjectContext+DCTExtras.h"
 
-@interface NSManagedObjectContext ()
-- (void)dctInternal_threadedContextDidSave:(NSNotification *)notification;
-- (BOOL)dctInternal_raiseExceptionIfNotMainThread;
+@interface NSManagedObjectContext (DCTAsynchronousTasksInternal)
+- (void)dctAsynchronousTasksInternal_threadedContextDidSave:(NSNotification *)notification;
+- (BOOL)dctAsynchronousTasksInternal_raiseExceptionIfNotMainThread;
 @end
 
 @implementation NSManagedObjectContext (DCTAsynchronousTasks)
@@ -58,7 +58,7 @@
 - (void)dct_asynchronousTaskWithWorkBlock:(DCTManagedObjectContextBlock)workBlock
 						  completionBlock:(DCTManagedObjectContextBlock)completionBlock {
 	
-	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
+	if ([self dctAsynchronousTasksInternal_raiseExceptionIfNotMainThread]) return;
 	
 	[self dct_asynchronousTaskWithCallbackQueue:dispatch_get_main_queue() workBlock:workBlock completionBlock:completionBlock];
 }
@@ -104,7 +104,7 @@
 							 workBlock:(DCTManagedObjectContextObjectBlock)workBlock
 					   completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock {
 	
-	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
+	if ([self dctAsynchronousTasksInternal_raiseExceptionIfNotMainThread]) return;
 	
 	[self dct_asynchronousTaskWithObject:object
 						   callbackQueue:dispatch_get_main_queue()
@@ -158,7 +158,7 @@
 							  workBlock:(DCTManagedObjectContextObjectsBlock)workBlock
 						completionBlock:(DCTManagedObjectContextCompletionBlock)completionBlock {
 	
-	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
+	if ([self dctAsynchronousTasksInternal_raiseExceptionIfNotMainThread]) return;
 	
 	[self dct_asynchronousTaskWithObjects:objects
 							callbackQueue:dispatch_get_main_queue()
@@ -212,7 +212,7 @@
 			NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
 			
 			[defaultCenter addObserver:self 
-							  selector:@selector(dctInternal_threadedContextDidSave:)
+							  selector:@selector(dctAsynchronousTasksInternal_threadedContextDidSave:)
 								  name:NSManagedObjectContextDidSaveNotification
 								object:threadedContext];
 			
@@ -235,7 +235,7 @@
 - (void)dct_asynchronousFetchRequest:(NSFetchRequest *)fetchRequest
 				   withCallbackBlock:(DCTFetchRequestCallbackBlock)callbackBlock {
 	
-	if ([self dctInternal_raiseExceptionIfNotMainThread]) return;
+	if ([self dctAsynchronousTasksInternal_raiseExceptionIfNotMainThread]) return;
 	
 	[self dct_asynchronousFetchRequest:fetchRequest 
 					 withCallbackQueue:dispatch_get_main_queue()
@@ -276,14 +276,11 @@
 }
 
 
+@end
 
+@implementation NSManagedObjectContext (DCTAsynchronousTasksInternal)
 
-
-
-#pragma mark -
-#pragma mark Internal methods
-
-- (BOOL)dctInternal_raiseExceptionIfNotMainThread {
+- (BOOL)dctAsynchronousTasksInternal_raiseExceptionIfNotMainThread {
 	if (![[NSThread currentThread] isEqual:[NSThread mainThread]]) {
 		[[NSException exceptionWithName:@"DCTManagedObjectContextBackgroundingNotMainThreadException"
 								 reason:@"Calling to perform a background operation on something which isn't the main thread." 
@@ -294,7 +291,7 @@
 	return NO;	
 }
 
-- (void)dctInternal_threadedContextDidSave:(NSNotification *)notification {
+- (void)dctAsynchronousTasksInternal_threadedContextDidSave:(NSNotification *)notification {
 	[self setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
 	[self mergeChangesFromContextDidSaveNotification:notification];
 }

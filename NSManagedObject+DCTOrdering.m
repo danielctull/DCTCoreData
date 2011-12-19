@@ -51,16 +51,16 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 	return [man1.dctOrderedObjectIndex compare:man2.dctOrderedObjectIndex];
 };
 
-@interface NSManagedObject ()
-- (BOOL)dctInternal_containsRelationshipForKey:(NSString *)key;
-- (NSSet *)dctInternal_orderedObjectsSetForKey:(NSString *)key;
-- (NSInteger)dctInternal_setCountForKey:(NSString *)key;
+@interface NSManagedObject (DCTOrderingInternal)
+- (BOOL)dctOrderingInternal_containsRelationshipForKey:(NSString *)key;
+- (NSSet *)dctOrderingInternal_orderedObjectsSetForKey:(NSString *)key;
+- (NSInteger)dctOrderingInternal_setCountForKey:(NSString *)key;
 
-- (void)dctInternal_setNextOrderedObject:(NSManagedObject<DCTOrderedObject> *)nextObject;
-- (NSManagedObject<DCTOrderedObject> *)dctInternal_nextOrderedObject;
+- (void)dctOrderingInternal_setNextOrderedObject:(NSManagedObject<DCTOrderedObject> *)nextObject;
+- (NSManagedObject<DCTOrderedObject> *)dctOrderingInternal_nextOrderedObject;
 
-- (void)dctInternal_setPreviousOrderedObject:(NSManagedObject<DCTOrderedObject> *)nextObject;
-- (NSManagedObject<DCTOrderedObject> *)dctInternal_previousOrderedObject;
+- (void)dctOrderingInternal_setPreviousOrderedObject:(NSManagedObject<DCTOrderedObject> *)nextObject;
+- (NSManagedObject<DCTOrderedObject> *)dctOrderingInternal_previousOrderedObject;
 @end
 
 @implementation NSManagedObject (DCTOrdering)
@@ -69,13 +69,13 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 - (void)dct_addOrderedObject:(NSManagedObject<DCTOrderedObject> *)object
 					  forKey:(NSString *)key {
 	
-	if (![self dctInternal_containsRelationshipForKey:key]) return;
+	if (![self dctOrderingInternal_containsRelationshipForKey:key]) return;
 	
 	NSManagedObject<DCTOrderedObject> *lastObject = [self dct_lastOrderedObjectForKey:key];
 	
-	if ([lastObject dctInternal_nextOrderedObject]) return;
+	if ([lastObject dctOrderingInternal_nextOrderedObject]) return;
 	
-	[lastObject dctInternal_setNextOrderedObject:object];
+	[lastObject dctOrderingInternal_setNextOrderedObject:object];
 	
 	object.dctOrderedObjectIndex = [NSNumber numberWithInteger:[lastObject.dctOrderedObjectIndex integerValue]+1];
 	
@@ -88,10 +88,10 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 					  forKey:(NSString *)key
 				  lastObject:(NSManagedObject<DCTOrderedObject> *)last {
 	
-	if (![self dctInternal_containsRelationshipForKey:key]) return;
+	if (![self dctOrderingInternal_containsRelationshipForKey:key]) return;
 	
 	// if the afterObject has a next object set, it's not the end so call the proper insert method
-	if ([last dctInternal_nextOrderedObject])
+	if ([last dctOrderingInternal_nextOrderedObject])
 		return [self dct_addOrderedObject:object forKey:key];
 	
 	NSUInteger insertionIndex = [last.dctOrderedObjectIndex integerValue] + 1;
@@ -102,7 +102,7 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 	
 	object.dctOrderedObjectIndex = [NSNumber numberWithInteger:insertionIndex];
 	
-	[object dctInternal_setNextOrderedObject:last];
+	[object dctOrderingInternal_setNextOrderedObject:last];
 	
 	[self dct_addRelatedObject:object forKey:key];
 }
@@ -112,9 +112,9 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 						atIndex:(NSUInteger)insertionIndex 
 						 forKey:(NSString *)key {
 	
-	if (![self dctInternal_containsRelationshipForKey:key]) return;
+	if (![self dctOrderingInternal_containsRelationshipForKey:key]) return;
 	
-	NSSet *set = [self dctInternal_orderedObjectsSetForKey:key];
+	NSSet *set = [self dctOrderingInternal_orderedObjectsSetForKey:key];
 	
 	if ([set count] > 0) {
 		
@@ -128,11 +128,11 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 			for (NSManagedObject<DCTOrderedObject> *o in objectsAfter)
 				o.dctOrderedObjectIndex = [NSNumber numberWithInteger:[o.dctOrderedObjectIndex integerValue]+1];
 			
-			[object dctInternal_setNextOrderedObject:[orderedObjects objectAtIndex:insertionIndex]];
+			[object dctOrderingInternal_setNextOrderedObject:[orderedObjects objectAtIndex:insertionIndex]];
 		} 
 		
 		// work out the object before insert
-		[object dctInternal_setPreviousOrderedObject:[orderedObjects objectAtIndex:insertionIndex - 1]];
+		[object dctOrderingInternal_setPreviousOrderedObject:[orderedObjects objectAtIndex:insertionIndex - 1]];
 	}
 	
 	object.dctOrderedObjectIndex = [NSNumber numberWithInteger:insertionIndex];
@@ -145,9 +145,9 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 - (void)dct_removeOrderedObjectAtIndex:(NSUInteger)theIndex 
 								forKey:(NSString *)key {
 	
-	if (![self dctInternal_containsRelationshipForKey:key]) return;
+	if (![self dctOrderingInternal_containsRelationshipForKey:key]) return;
 	
-	NSSet *set = [self dctInternal_orderedObjectsSetForKey:key];
+	NSSet *set = [self dctOrderingInternal_orderedObjectsSetForKey:key];
 	
 	if ([set count] < theIndex) return;
 	
@@ -156,14 +156,14 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 	
 	NSManagedObject<DCTOrderedObject> *previous = [orderedObjects objectAtIndex:theIndex - 1];
 	
-	[previous dctInternal_setNextOrderedObject:nil];
+	[previous dctOrderingInternal_setNextOrderedObject:nil];
 	
 	NSManagedObject<DCTOrderedObject> *object = [orderedObjects objectAtIndex:theIndex];
 	
 	if ([orderedObjects count] > theIndex) {
 		
 		NSManagedObject<DCTOrderedObject> *next = [orderedObjects objectAtIndex:theIndex + 1];
-		[previous dctInternal_setNextOrderedObject:next];
+		[previous dctOrderingInternal_setNextOrderedObject:next];
 		
 		NSRange range = NSMakeRange(theIndex, [orderedObjects count] - theIndex);
 		NSArray *objectsAfter = [orderedObjects subarrayWithRange:range];
@@ -180,20 +180,20 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 							 withObject:(NSManagedObject<DCTOrderedObject> *)object 
 								 forKey:(NSString *)key {
 	
-	if (![self dctInternal_containsRelationshipForKey:key]) return;
+	if (![self dctOrderingInternal_containsRelationshipForKey:key]) return;
 	
 	NSManagedObject<DCTOrderedObject> *objectToReplace = [self dct_orderedObjectAtIndex:theIndex forKey:key];
 	
 	object.dctOrderedObjectIndex = objectToReplace.dctOrderedObjectIndex;
 	
-	NSManagedObject<DCTOrderedObject> *previous = [objectToReplace dctInternal_previousOrderedObject];
-	NSManagedObject<DCTOrderedObject> *next = [objectToReplace dctInternal_nextOrderedObject];
+	NSManagedObject<DCTOrderedObject> *previous = [objectToReplace dctOrderingInternal_previousOrderedObject];
+	NSManagedObject<DCTOrderedObject> *next = [objectToReplace dctOrderingInternal_nextOrderedObject];
 	
-	[objectToReplace dctInternal_setNextOrderedObject:nil];
-	[objectToReplace dctInternal_setPreviousOrderedObject:nil];
+	[objectToReplace dctOrderingInternal_setNextOrderedObject:nil];
+	[objectToReplace dctOrderingInternal_setPreviousOrderedObject:nil];
 	
-	[object dctInternal_setPreviousOrderedObject:previous];
-	[object dctInternal_setNextOrderedObject:next];
+	[object dctOrderingInternal_setPreviousOrderedObject:previous];
+	[object dctOrderingInternal_setNextOrderedObject:next];
 	
 	[self dct_replaceRelatedObject:objectToReplace withRelatedObject:object forKey:key];	
 }
@@ -218,7 +218,7 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 
 - (NSArray *)dct_orderedObjectsForKey:(NSString *)key {
 	
-	NSSet *set = [self dctInternal_orderedObjectsSetForKey:key];
+	NSSet *set = [self dctOrderingInternal_orderedObjectsSetForKey:key];
 	
 	if (!set) return nil;
 	
@@ -230,7 +230,7 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 
 - (NSManagedObject<DCTOrderedObject> *)dct_lastOrderedObjectForKey:(NSString *)key {
 	
-	NSInteger count = [self dctInternal_setCountForKey:key];
+	NSInteger count = [self dctOrderingInternal_setCountForKey:key];
 	
 	if (count == 0) return nil;
 	
@@ -241,55 +241,53 @@ NSComparisonResult (^compareOrderedObjects)(id obj1, id obj2) = ^(id obj1, id ob
 
 - (NSManagedObject<DCTOrderedObject> *)dct_firstOrderedObjectForKey:(NSString *)key {
 	
-	if ([self dctInternal_setCountForKey:key] == 0) return nil;
+	if ([self dctOrderingInternal_setCountForKey:key] == 0) return nil;
 	
 	return [self dct_orderedObjectAtIndex:0 forKey:key];
 }
 
+@end
 
+@implementation NSManagedObject (DCTOrderingInternal)
 
-
-#pragma mark -
-#pragma mark Internal methods
-
-- (BOOL)dctInternal_containsRelationshipForKey:(NSString *)key {
+- (BOOL)dctOrderingInternal_containsRelationshipForKey:(NSString *)key {
 	return [[[[self entity] relationshipsByName] allKeys] containsObject:key];
 }
 
 
-- (NSSet *)dctInternal_orderedObjectsSetForKey:(NSString *)key {
+- (NSSet *)dctOrderingInternal_orderedObjectsSetForKey:(NSString *)key {
 	
-	if (![self dctInternal_containsRelationshipForKey:key]) return nil;
+	if (![self dctOrderingInternal_containsRelationshipForKey:key]) return nil;
 	
 	return [self valueForKey:key];
 }
 
-- (NSInteger)dctInternal_setCountForKey:(NSString *)key {	
-	return [[self dctInternal_orderedObjectsSetForKey:key] count];
+- (NSInteger)dctOrderingInternal_setCountForKey:(NSString *)key {	
+	return [[self dctOrderingInternal_orderedObjectsSetForKey:key] count];
 }
 
-- (void)dctInternal_setNextOrderedObject:(NSManagedObject<DCTOrderedObject> *)next {
+- (void)dctOrderingInternal_setNextOrderedObject:(NSManagedObject<DCTOrderedObject> *)next {
 	
 	if (![self conformsToProtocol:@protocol(DCTOrderedObject)] || ![self respondsToSelector:@selector(setDctNextOrderedObject:)]) return;
 	
 	((NSManagedObject<DCTOrderedObject> *)self).dctNextOrderedObject = next;
 }
 
-- (NSManagedObject<DCTOrderedObject> *)dctInternal_nextOrderedObject {
+- (NSManagedObject<DCTOrderedObject> *)dctOrderingInternal_nextOrderedObject {
 	
 	if (![self conformsToProtocol:@protocol(DCTOrderedObject)] || ![self respondsToSelector:@selector(dctNextOrderedObject)]) return nil;
 	
 	return ((NSManagedObject<DCTOrderedObject> *)self).dctNextOrderedObject;
 }
 
-- (void)dctInternal_setPreviousOrderedObject:(NSManagedObject<DCTOrderedObject> *)previous {
+- (void)dctOrderingInternal_setPreviousOrderedObject:(NSManagedObject<DCTOrderedObject> *)previous {
 	
 	if (![self conformsToProtocol:@protocol(DCTOrderedObject)] || ![self respondsToSelector:@selector(setDctPreviousOrderedObject:)]) return;
 	
 	((NSManagedObject<DCTOrderedObject> *)self).dctPreviousOrderedObject = previous;
 }
 
-- (NSManagedObject<DCTOrderedObject> *)dctInternal_previousOrderedObject {
+- (NSManagedObject<DCTOrderedObject> *)dctOrderingInternal_previousOrderedObject {
 	
 	if (![self conformsToProtocol:@protocol(DCTOrderedObject)] || ![self respondsToSelector:@selector(dctPreviousOrderedObject)]) return nil;
 	

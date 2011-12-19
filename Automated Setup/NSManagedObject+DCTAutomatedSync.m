@@ -44,10 +44,10 @@ BOOL const DCTManagedObjectAutomatedSyncLogWarningMessages = YES;
 BOOL const DCTManagedObjectAutomatedSyncLogErrorMessages = YES;
 
 
-@interface NSManagedObject ()
-- (NSDate *)dctInternal_localUpdatedDate;
-- (NSDate *)dctInternal_updatedDateInDictionary:(NSDictionary *)dictionary;
-- (NSString *)dctInternal_lastUpdatedDateKey;
+@interface NSManagedObject (DCTAutomatedSyncInternal)
+- (NSDate *)dctAutomatedSyncInternal_localUpdatedDate;
+- (NSDate *)dctAutomatedSyncInternal_updatedDateInDictionary:(NSDictionary *)dictionary;
+- (NSString *)dctAutomatedSyncInternal_lastUpdatedDateKey;
 @end
 
 @implementation NSManagedObject (DCTAutomatedSync)
@@ -69,8 +69,8 @@ BOOL const DCTManagedObjectAutomatedSyncLogErrorMessages = YES;
 	
 	if (syncStatus == DCTManagedObjectAutomatedSyncStatusNil) {
 		
-		NSDate *localUpdatedDate = [self dctInternal_localUpdatedDate];
-		NSDate *remoteUpdatedDate = [self dctInternal_updatedDateInDictionary:dictionary];
+		NSDate *localUpdatedDate = [self dctAutomatedSyncInternal_localUpdatedDate];
+		NSDate *remoteUpdatedDate = [self dctAutomatedSyncInternal_updatedDateInDictionary:dictionary];
 		
 		if (!localUpdatedDate || !remoteUpdatedDate) {
 			if (DCTManagedObjectAutomatedSyncLogErrorMessages)
@@ -115,12 +115,13 @@ BOOL const DCTManagedObjectAutomatedSyncLogErrorMessages = YES;
 	
 }
 
-#pragma mark - 
-#pragma mark Internal methods
+@end
 
-- (NSDate *)dctInternal_localUpdatedDate {
+@implementation NSManagedObject (DCTAutomatedSyncInternal)
+
+- (NSDate *)dctAutomatedSyncInternal_localUpdatedDate {
 	
-	NSString *key = [self dctInternal_lastUpdatedDateKey];
+	NSString *key = [self dctAutomatedSyncInternal_lastUpdatedDateKey];
 	
 	if (!key) return nil;
 	
@@ -131,9 +132,9 @@ BOOL const DCTManagedObjectAutomatedSyncLogErrorMessages = YES;
 	return [self valueForKey:key];
 }
 
-- (NSDate *)dctInternal_updatedDateInDictionary:(NSDictionary *)dictionary {
+- (NSDate *)dctAutomatedSyncInternal_updatedDateInDictionary:(NSDictionary *)dictionary {
 	
-	NSString *key = [self dctInternal_lastUpdatedDateKey];
+	NSString *key = [self dctAutomatedSyncInternal_lastUpdatedDateKey];
 	
 	if (!key) return nil;
 	
@@ -165,7 +166,7 @@ BOOL const DCTManagedObjectAutomatedSyncLogErrorMessages = YES;
 }
 
 
-- (NSString *)dctInternal_lastUpdatedDateKey {
+- (NSString *)dctAutomatedSyncInternal_lastUpdatedDateKey {
 	
 	if ([self respondsToSelector:@selector(dct_lastUpdatedDateKey)])
 		return [(id<DCTManagedObjectAutomatedSync>)self dct_lastUpdatedDateKey];

@@ -51,9 +51,9 @@
 */
 
 
-@interface NSManagedObject ()
+@interface NSManagedObject (DCTAutomatedSetupInternal)
 
-+ (id)dctInternal_fetchObjectMatchingDictionary:(NSDictionary *)dictionary
++ (id)dctAutomatedSetupInternal_fetchObjectMatchingDictionary:(NSDictionary *)dictionary
                                          entity:(NSEntityDescription *)entity
                            managedObjectContext:(NSManagedObjectContext *)moc;
 
@@ -81,7 +81,7 @@
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:moc];
 	
 	if (!object)
-		object = [self dctInternal_fetchObjectMatchingDictionary:dictionary entity:entity managedObjectContext:moc];
+		object = [self dctAutomatedSetupInternal_fetchObjectMatchingDictionary:dictionary entity:entity managedObjectContext:moc];
 	
 	if (!object) {
 		object = [moc dct_insertNewObjectForEntityName:entityName];
@@ -127,10 +127,85 @@
 	
 }
 
-+ (id)dctInternal_fetchObjectMatchingDictionary:(NSDictionary *)dictionary
-                                         entity:(NSEntityDescription *)entity
-                           managedObjectContext:(NSManagedObjectContext *)moc;
-{
+- (BOOL)dct_setSerializedValue:(id)object forKey:(NSString *)key {
+	
+	Class<DCTManagedObjectAutomatedSetup> selfclass = [self class];
+	
+	// give the class a chance to convert the object
+	if ([[self class] respondsToSelector:@selector(dct_convertValue:toCorrectTypeForKey:)] && ![object isKindOfClass:[NSNull class]]) {
+		id returnedObject = [selfclass dct_convertValue:object toCorrectTypeForKey:key];
+		if (returnedObject) object = returnedObject;
+	}
+	
+	
+	if ([object isKindOfClass:[NSArray class]]) {
+		BOOL returnBool = NO;
+		
+		for (id o in (NSArray *)object) {
+			if ([self dct_setSerializedValue:o forKey:key])
+				returnBool = YES;
+		}
+		return returnBool;
+	}
+	
+	
+	NSEntityDescription *entity = [self entity];
+	NSDictionary *attributesByName = [entity attributesByName];
+	
+	if ([[attributesByName allKeys] containsObject:key]) {
+		
+		NSAttributeDescription *attribute = [attributesByName objectForKey:key];
+		
+		if ([attribute dct_isObjectValid:object]) {
+			[self setValue:object forKey:key];
+			return YES;
+		}
+	}
+	
+	
+	NSDictionary *relationshipsByName = [entity relationshipsByName];
+	
+	if ([[relationshipsByName allKeys] containsObject:key]) {
+		
+		NSRelationshipDescription *relationship = [relationshipsByName objectForKey:key];
+		NSEntityDescription *destinationEntity = [relationship destinationEntity];
+		
+		// if it's a dictionary at this point, we'll try to create a managed object of the right class using the dictionary
+		if ([object isKindOfClass:[NSDictionary class]]) {
+			NSString *destinationClassName = [destinationEntity managedObjectClassName];
+			Class destinationClass = NSClassFromString(destinationClassName);
+			object = [destinationClass dct_objectFromDictionary:object insertIntoManagedObjectContext:[self managedObjectContext]];
+		}
+		
+		BOOL isValid = [destinationEntity dct_isObjectValid:object];
+		
+		if (isValid) {
+			
+			if ([relationship isToMany]) {
+				
+				if ([object conformsToProtocol:@protocol(DCTOrderedObject)])
+					[self dct_addOrderedObject:object forKey:key];
+				else
+					[self dct_addRelatedObject:object forKey:key];
+				
+			} else if (isValid)
+				[self setValue:object forKey:key];
+			
+			return YES;			
+		}
+	}
+	
+	return NO;
+}
+
+@end
+
+@implementation NSManagedObject (DCTAutomatedSetupInternal)
+
++ (id)dctAutomatedSetupInternal_fetchObjectMatchingDictionary:(NSDictionary *)dictionary
+													   entity:(NSEntityDescription *)entity
+										 managedObjectContext:(NSManagedObjectContext *)moc {
+	
 	Class<DCTManagedObjectAutomatedSetup> myself = (Class<DCTManagedObjectAutomatedSetup>)self;
 	
 	NSArray *localPrimaryKeys = nil;
@@ -211,77 +286,6 @@
 	
 	return [moc dct_fetchAnyObjectForEntityName:[entity name] predicate:predicate];
 	
-}
-
-- (BOOL)dct_setSerializedValue:(id)object forKey:(NSString *)key {
-	
-	Class<DCTManagedObjectAutomatedSetup> selfclass = [self class];
-	
-	// give the class a chance to convert the object
-	if ([[self class] respondsToSelector:@selector(dct_convertValue:toCorrectTypeForKey:)] && ![object isKindOfClass:[NSNull class]]) {
-		id returnedObject = [selfclass dct_convertValue:object toCorrectTypeForKey:key];
-		if (returnedObject) object = returnedObject;
-	}
-	
-	
-	if ([object isKindOfClass:[NSArray class]]) {
-		BOOL returnBool = NO;
-		
-		for (id o in (NSArray *)object) {
-			if ([self dct_setSerializedValue:o forKey:key])
-				returnBool = YES;
-		}
-		return returnBool;
-	}
-	
-	
-	NSEntityDescription *entity = [self entity];
-	NSDictionary *attributesByName = [entity attributesByName];
-	
-	if ([[attributesByName allKeys] containsObject:key]) {
-		
-		NSAttributeDescription *attribute = [attributesByName objectForKey:key];
-		
-		if ([attribute dct_isObjectValid:object]) {
-			[self setValue:object forKey:key];
-			return YES;
-		}
-	}
-	
-	
-	NSDictionary *relationshipsByName = [entity relationshipsByName];
-	
-	if ([[relationshipsByName allKeys] containsObject:key]) {
-		
-		NSRelationshipDescription *relationship = [relationshipsByName objectForKey:key];
-		NSEntityDescription *destinationEntity = [relationship destinationEntity];
-		
-		// if it's a dictionary at this point, we'll try to create a managed object of the right class using the dictionary
-		if ([object isKindOfClass:[NSDictionary class]]) {
-			NSString *destinationClassName = [destinationEntity managedObjectClassName];
-			Class destinationClass = NSClassFromString(destinationClassName);
-			object = [destinationClass dct_objectFromDictionary:object insertIntoManagedObjectContext:[self managedObjectContext]];
-		}
-		
-		BOOL isValid = [destinationEntity dct_isObjectValid:object];
-		
-		if (isValid) {
-			
-			if ([relationship isToMany]) {
-				
-				if ([object conformsToProtocol:@protocol(DCTOrderedObject)])
-					[self dct_addOrderedObject:object forKey:key];
-				else
-					[self dct_addRelatedObject:object forKey:key];
-				
-			} else if (isValid)
-				[self setValue:object forKey:key];
-			
-			return YES;			
-		}
-	}
-	
-	return NO;
 }
 
 @end
