@@ -83,10 +83,9 @@
 	if (!object)
 		object = [self dctAutomatedSetupInternal_fetchObjectMatchingDictionary:dictionary entity:entity managedObjectContext:moc];
 	
-	if (!object) {
+	if (!object)
 		object = [moc dct_insertNewObjectForEntityName:entityName];
-		[moc obtainPermanentIDsForObjects:[NSArray arrayWithObject:object] error:nil];
-	}
+	
 	
 	[object dct_setupFromDictionary:dictionary];	
 	
