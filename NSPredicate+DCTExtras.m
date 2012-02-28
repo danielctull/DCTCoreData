@@ -36,22 +36,62 @@
 
 #import "NSPredicate+DCTExtras.h"
 
+@interface NSPredicate (DCTExtrasInternal)
++ (NSString *)dctExtrasInternal_keyPathFromObject:(id)object;
+@end
+
 @implementation NSPredicate (DCTExtras)
 
-+ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name equals:(id)object {
-	return [NSPredicate predicateWithFormat:@"%K == %@", name, object];
++ (NSPredicate *)dct_predicateWhereProperty:(id)nameOrKeyPath equals:(id)object {
+	nameOrKeyPath = [self dctExtrasInternal_keyPathFromObject:nameOrKeyPath];
+	return [NSPredicate predicateWithFormat:@"%K == %@", nameOrKeyPath, object];
 }
 
-+ (NSPredicate *)dct_predicateWherePropertyIsNil:(NSString *)name {
-	return [NSPredicate predicateWithFormat:@"%K == nil", name];
++ (NSPredicate *)dct_predicateWhereProperty:(id)nameOrKeyPath isGreaterThan:(id)object {
+	nameOrKeyPath = [self dctExtrasInternal_keyPathFromObject:nameOrKeyPath];
+	return [NSPredicate predicateWithFormat:@"%K > %@", nameOrKeyPath, object];
+	
 }
 
-+ (NSPredicate *)dct_predicateWherePropertyIsNotNil:(NSString *)name {
-	return [NSPredicate predicateWithFormat:@"%K != nil", name];
++ (NSPredicate *)dct_predicateWhereProperty:(id)nameOrKeyPath isLessThan:(id)object {
+	nameOrKeyPath = [self dctExtrasInternal_keyPathFromObject:nameOrKeyPath];
+	return [NSPredicate predicateWithFormat:@"%K < %@", nameOrKeyPath, object];
 }
 
-+ (NSPredicate *)dct_predicateWhereStringPropertyIsNotNilAndNotEmpty:(NSString *)name {
-	return [NSPredicate predicateWithFormat:@"%K != nil && %K != ''", name, name];
++ (NSPredicate *)dct_predicateWhereProperty:(id)nameOrKeyPath doesNotEqual:(id)object {
+	nameOrKeyPath = [self dctExtrasInternal_keyPathFromObject:nameOrKeyPath];
+	return [NSPredicate predicateWithFormat:@"%K != %@", nameOrKeyPath, object];
+}
+
++ (NSPredicate *)dct_predicateWherePropertyIsNil:(id)nameOrKeyPath {
+	nameOrKeyPath = [self dctExtrasInternal_keyPathFromObject:nameOrKeyPath];
+	return [NSPredicate predicateWithFormat:@"%K == nil", nameOrKeyPath];
+}
+
++ (NSPredicate *)dct_predicateWherePropertyIsNotNil:(id)nameOrKeyPath {
+	nameOrKeyPath = [self dctExtrasInternal_keyPathFromObject:nameOrKeyPath];
+	return [NSPredicate predicateWithFormat:@"%K != nil", nameOrKeyPath];
+}
+
++ (NSPredicate *)dct_predicateWhereStringPropertyIsNotNilAndNotEmpty:(id)nameOrKeyPath {
+	nameOrKeyPath = [self dctExtrasInternal_keyPathFromObject:nameOrKeyPath];
+	return [NSPredicate predicateWithFormat:@"%K != nil && %K != ''", nameOrKeyPath, nameOrKeyPath];
+}
+
+@end
+
+@implementation NSPredicate (DCTExtrasInternal)
+
++ (NSString *)dctExtrasInternal_keyPathFromObject:(id)object {
+	
+	if ([object isKindOfClass:[NSString class]])
+		return object;
+	
+	if ([object isKindOfClass:[NSArray class]])
+		return [object componentsJoinedByString:@"."];
+	
+	[NSException raise:@"Invalid parameter" format:@"%@ should be of class NSString or NSArray", object];
+	return nil;
 }
 
 @end

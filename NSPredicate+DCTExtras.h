@@ -38,9 +38,50 @@
 
 @interface NSPredicate (DCTExtras)
 
-+ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name equals:(id)object;
+/** Returns a predictate where the given name or keypath equals the given object.
+ 
+ @param nameOrKeyPath This can be the property name, a keypath as an NSString or an NSArray
+ @param object The object to compare
+ */
++ (NSPredicate *)dct_predicateWhereProperty:(id)nameOrKeyPath equals:(id)object;
+
+/** Returns a predictate where the given name or keypath is greater than the given object.
+ 
+ @param nameOrKeyPath This can be the property name, a keypath as an NSString or an NSArray
+ @param object The object to compare
+ */
++ (NSPredicate *)dct_predicateWhereProperty:(id)nameOrKeyPath isGreaterThan:(id)object;
+
+/** Returns a predictate where the given name or keypath is less than the given object.
+ 
+ @param nameOrKeyPath This can be the property name, a keypath as an NSString or an NSArray
+ @param object The object to compare
+ */
++ (NSPredicate *)dct_predicateWhereProperty:(id)nameOrKeyPath isLessThan:(id)object;
+
+/** Returns a predictate where the given name or keypath does not equal the given object.
+ 
+ @param nameOrKeyPath This can be the property name, a keypath as an NSString or an NSArray
+ @param object The object to compare
+ */
++ (NSPredicate *)dct_predicateWhereProperty:(id)nameOrKeyPath doesNotEqual:(id)object;
+
+/** Returns a predictate where the given name or keypath is tested for nil.
+ 
+ @param nameOrKeyPath This can be the property name, a keypath as an NSString or an NSArray
+ */
 + (NSPredicate *)dct_predicateWherePropertyIsNil:(NSString *)name;
+
+/** Returns a predictate where the given name or keypath is tested for not nil.
+ 
+ @param nameOrKeyPath This can be the property name, a keypath as an NSString or an NSArray
+ */
 + (NSPredicate *)dct_predicateWherePropertyIsNotNil:(NSString *)name;
+
+/** Returns a predictate where the given name or keypath is tested for not nil and not empty.
+ 
+ @param nameOrKeyPath This can be the property name, a keypath as an NSString or an NSArray
+ */
 + (NSPredicate *)dct_predicateWhereStringPropertyIsNotNilAndNotEmpty:(NSString *)name;
 
 @end
