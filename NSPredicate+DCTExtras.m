@@ -94,4 +94,8 @@
 	return nil;
 }
 
++ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name contains:(id)object {
+	return [NSPredicate predicateWithFormat:@"%K CONTAINS %@", name, object];
+}
+
 @end

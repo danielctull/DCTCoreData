@@ -84,4 +84,6 @@
  */
 + (NSPredicate *)dct_predicateWhereStringPropertyIsNotNilAndNotEmpty:(NSString *)name;
 
++ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name contains:(id)object;
+
 @end
