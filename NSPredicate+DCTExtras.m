@@ -78,6 +78,10 @@
 	return [NSPredicate predicateWithFormat:@"%K != nil && %K != ''", nameOrKeyPath, nameOrKeyPath];
 }
 
++ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name contains:(id)object {
+	return [NSPredicate predicateWithFormat:@"%K CONTAINS %@", name, object];
+}
+
 @end
 
 @implementation NSPredicate (DCTExtrasInternal)
@@ -92,10 +96,6 @@
 	
 	[NSException raise:@"Invalid parameter" format:@"%@ should be of class NSString or NSArray", object];
 	return nil;
-}
-
-+ (NSPredicate *)dct_predicateWhereProperty:(NSString *)name contains:(id)object {
-	return [NSPredicate predicateWithFormat:@"%K CONTAINS %@", name, object];
 }
 
 @end
