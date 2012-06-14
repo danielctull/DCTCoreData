@@ -1,0 +1,543 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		24F6EEE0158A442800CEDD41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6EEDF158A442800CEDD41 /* Foundation.framework */; };
+		24F6EEEE158A442800CEDD41 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6EEED158A442800CEDD41 /* SenTestingKit.framework */; };
+		24F6EEF1158A442900CEDD41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6EEDF158A442800CEDD41 /* Foundation.framework */; };
+		24F6EEF4158A442900CEDD41 /* libDCTCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6EEDC158A442800CEDD41 /* libDCTCoreData.a */; };
+		24F6EEFA158A442900CEDD41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24F6EEF8158A442900CEDD41 /* InfoPlist.strings */; };
+		24F6EEFD158A442900CEDD41 /* DCTCoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EEFC158A442900CEDD41 /* DCTCoreDataTests.m */; };
+		24F6EF07158A445F00CEDD41 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6EF06158A445F00CEDD41 /* CoreData.framework */; };
+		24F6EF3D158A447E00CEDD41 /* DCTCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF18158A446E00CEDD41 /* DCTCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF3E158A447E00CEDD41 /* NSArray+DCTSortDescriptors.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF19158A446E00CEDD41 /* NSArray+DCTSortDescriptors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF40158A447E00CEDD41 /* NSFetchedResultsController+DCTExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF1B158A446E00CEDD41 /* NSFetchedResultsController+DCTExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF42158A447E00CEDD41 /* NSFetchRequest+DCTExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF1D158A446E00CEDD41 /* NSFetchRequest+DCTExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF44158A447E00CEDD41 /* NSManagedObject+DCTExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF1F158A446E00CEDD41 /* NSManagedObject+DCTExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF46158A447E00CEDD41 /* NSManagedObject+DCTOrdering.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF21158A446E00CEDD41 /* NSManagedObject+DCTOrdering.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF48158A447E00CEDD41 /* NSManagedObject+DCTRelatedObjects.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF23158A446E00CEDD41 /* NSManagedObject+DCTRelatedObjects.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF4A158A447E00CEDD41 /* NSManagedObjectContext+DCTDataFetching.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF25158A446E00CEDD41 /* NSManagedObjectContext+DCTDataFetching.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF4C158A447E00CEDD41 /* NSManagedObjectContext+DCTExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF27158A446E00CEDD41 /* NSManagedObjectContext+DCTExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF4E158A447E00CEDD41 /* NSPredicate+DCTExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF29158A446E00CEDD41 /* NSPredicate+DCTExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF50158A449700CEDD41 /* NSAttributeDescription+DCTObjectCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF0E158A446E00CEDD41 /* NSAttributeDescription+DCTObjectCheck.h */; settings = {ATTRIBUTES = (); }; };
+		24F6EF51158A449700CEDD41 /* NSDictionary+DCTKeyForObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF10158A446E00CEDD41 /* NSDictionary+DCTKeyForObject.h */; settings = {ATTRIBUTES = (); }; };
+		24F6EF52158A449700CEDD41 /* NSEntityDescription+DCTObjectCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF12158A446E00CEDD41 /* NSEntityDescription+DCTObjectCheck.h */; settings = {ATTRIBUTES = (); }; };
+		24F6EF53158A449700CEDD41 /* NSManagedObject+DCTAutomatedSetup.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF14158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSetup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF54158A449700CEDD41 /* NSManagedObject+DCTAutomatedSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF16158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF55158A44A000CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF09158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF56158A44A000CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F6EF0B158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24F6EF65158A478D00CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF0A158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.m */; };
+		24F6EF66158A479000CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF0C158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.m */; };
+		24F6EF67158A479E00CEDD41 /* NSAttributeDescription+DCTObjectCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF0F158A446E00CEDD41 /* NSAttributeDescription+DCTObjectCheck.m */; };
+		24F6EF68158A47A300CEDD41 /* NSDictionary+DCTKeyForObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF11158A446E00CEDD41 /* NSDictionary+DCTKeyForObject.m */; };
+		24F6EF69158A47A700CEDD41 /* NSEntityDescription+DCTObjectCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF13158A446E00CEDD41 /* NSEntityDescription+DCTObjectCheck.m */; };
+		24F6EF6A158A47AD00CEDD41 /* NSManagedObject+DCTAutomatedSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF15158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSetup.m */; };
+		24F6EF6B158A47B100CEDD41 /* NSManagedObject+DCTAutomatedSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF17158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSync.m */; };
+		24F6EF6C158A47B700CEDD41 /* NSArray+DCTSortDescriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF1A158A446E00CEDD41 /* NSArray+DCTSortDescriptors.m */; };
+		24F6EF6D158A47BD00CEDD41 /* NSFetchedResultsController+DCTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF1C158A446E00CEDD41 /* NSFetchedResultsController+DCTExtras.m */; };
+		24F6EF6E158A47C000CEDD41 /* NSFetchRequest+DCTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF1E158A446E00CEDD41 /* NSFetchRequest+DCTExtras.m */; };
+		24F6EF6F158A47C600CEDD41 /* NSManagedObject+DCTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF20158A446E00CEDD41 /* NSManagedObject+DCTExtras.m */; };
+		24F6EF70158A47C900CEDD41 /* NSManagedObject+DCTOrdering.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF22158A446E00CEDD41 /* NSManagedObject+DCTOrdering.m */; };
+		24F6EF71158A47CC00CEDD41 /* NSManagedObject+DCTRelatedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF24158A446E00CEDD41 /* NSManagedObject+DCTRelatedObjects.m */; };
+		24F6EF72158A47CF00CEDD41 /* NSManagedObjectContext+DCTDataFetching.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF26158A446E00CEDD41 /* NSManagedObjectContext+DCTDataFetching.m */; };
+		24F6EF73158A47D200CEDD41 /* NSManagedObjectContext+DCTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF28158A446E00CEDD41 /* NSManagedObjectContext+DCTExtras.m */; };
+		24F6EF74158A47D600CEDD41 /* NSPredicate+DCTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F6EF2A158A446E00CEDD41 /* NSPredicate+DCTExtras.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		24F6EEF2158A442900CEDD41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F6EED3158A442800CEDD41 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24F6EEDB158A442800CEDD41;
+			remoteInfo = DCTCoreData;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		24F6EEDC158A442800CEDD41 /* libDCTCoreData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDCTCoreData.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		24F6EEDF158A442800CEDD41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		24F6EEEC158A442800CEDD41 /* DCTCoreDataTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DCTCoreDataTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		24F6EEED158A442800CEDD41 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		24F6EEF7158A442900CEDD41 /* DCTCoreDataTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DCTCoreDataTests-Info.plist"; sourceTree = "<group>"; };
+		24F6EEF9158A442900CEDD41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		24F6EEFB158A442900CEDD41 /* DCTCoreDataTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCTCoreDataTests.h; sourceTree = "<group>"; };
+		24F6EEFC158A442900CEDD41 /* DCTCoreDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCTCoreDataTests.m; sourceTree = "<group>"; };
+		24F6EF06158A445F00CEDD41 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		24F6EF09158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+DCTAsynchronousDataFetching.h"; sourceTree = "<group>"; };
+		24F6EF0A158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+DCTAsynchronousDataFetching.m"; sourceTree = "<group>"; };
+		24F6EF0B158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+DCTAsynchronousTasks.h"; sourceTree = "<group>"; };
+		24F6EF0C158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+DCTAsynchronousTasks.m"; sourceTree = "<group>"; };
+		24F6EF0E158A446E00CEDD41 /* NSAttributeDescription+DCTObjectCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+DCTObjectCheck.h"; sourceTree = "<group>"; };
+		24F6EF0F158A446E00CEDD41 /* NSAttributeDescription+DCTObjectCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributeDescription+DCTObjectCheck.m"; sourceTree = "<group>"; };
+		24F6EF10158A446E00CEDD41 /* NSDictionary+DCTKeyForObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DCTKeyForObject.h"; sourceTree = "<group>"; };
+		24F6EF11158A446E00CEDD41 /* NSDictionary+DCTKeyForObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+DCTKeyForObject.m"; sourceTree = "<group>"; };
+		24F6EF12158A446E00CEDD41 /* NSEntityDescription+DCTObjectCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+DCTObjectCheck.h"; sourceTree = "<group>"; };
+		24F6EF13158A446E00CEDD41 /* NSEntityDescription+DCTObjectCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+DCTObjectCheck.m"; sourceTree = "<group>"; };
+		24F6EF14158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTAutomatedSetup.h"; sourceTree = "<group>"; };
+		24F6EF15158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTAutomatedSetup.m"; sourceTree = "<group>"; };
+		24F6EF16158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTAutomatedSync.h"; sourceTree = "<group>"; };
+		24F6EF17158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTAutomatedSync.m"; sourceTree = "<group>"; };
+		24F6EF18158A446E00CEDD41 /* DCTCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTCoreData.h; sourceTree = "<group>"; };
+		24F6EF19158A446E00CEDD41 /* NSArray+DCTSortDescriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DCTSortDescriptors.h"; sourceTree = "<group>"; };
+		24F6EF1A158A446E00CEDD41 /* NSArray+DCTSortDescriptors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DCTSortDescriptors.m"; sourceTree = "<group>"; };
+		24F6EF1B158A446E00CEDD41 /* NSFetchedResultsController+DCTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+DCTExtras.h"; sourceTree = "<group>"; };
+		24F6EF1C158A446E00CEDD41 /* NSFetchedResultsController+DCTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+DCTExtras.m"; sourceTree = "<group>"; };
+		24F6EF1D158A446E00CEDD41 /* NSFetchRequest+DCTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+DCTExtras.h"; sourceTree = "<group>"; };
+		24F6EF1E158A446E00CEDD41 /* NSFetchRequest+DCTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchRequest+DCTExtras.m"; sourceTree = "<group>"; };
+		24F6EF1F158A446E00CEDD41 /* NSManagedObject+DCTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTExtras.h"; sourceTree = "<group>"; };
+		24F6EF20158A446E00CEDD41 /* NSManagedObject+DCTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTExtras.m"; sourceTree = "<group>"; };
+		24F6EF21158A446E00CEDD41 /* NSManagedObject+DCTOrdering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTOrdering.h"; sourceTree = "<group>"; };
+		24F6EF22158A446E00CEDD41 /* NSManagedObject+DCTOrdering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTOrdering.m"; sourceTree = "<group>"; };
+		24F6EF23158A446E00CEDD41 /* NSManagedObject+DCTRelatedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+DCTRelatedObjects.h"; sourceTree = "<group>"; };
+		24F6EF24158A446E00CEDD41 /* NSManagedObject+DCTRelatedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+DCTRelatedObjects.m"; sourceTree = "<group>"; };
+		24F6EF25158A446E00CEDD41 /* NSManagedObjectContext+DCTDataFetching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+DCTDataFetching.h"; sourceTree = "<group>"; };
+		24F6EF26158A446E00CEDD41 /* NSManagedObjectContext+DCTDataFetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+DCTDataFetching.m"; sourceTree = "<group>"; };
+		24F6EF27158A446E00CEDD41 /* NSManagedObjectContext+DCTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+DCTExtras.h"; sourceTree = "<group>"; };
+		24F6EF28158A446E00CEDD41 /* NSManagedObjectContext+DCTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+DCTExtras.m"; sourceTree = "<group>"; };
+		24F6EF29158A446E00CEDD41 /* NSPredicate+DCTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+DCTExtras.h"; sourceTree = "<group>"; };
+		24F6EF2A158A446E00CEDD41 /* NSPredicate+DCTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+DCTExtras.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		24F6EED9158A442800CEDD41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F6EF07158A445F00CEDD41 /* CoreData.framework in Frameworks */,
+				24F6EEE0158A442800CEDD41 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24F6EEE8158A442800CEDD41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F6EEEE158A442800CEDD41 /* SenTestingKit.framework in Frameworks */,
+				24F6EEF1158A442900CEDD41 /* Foundation.framework in Frameworks */,
+				24F6EEF4158A442900CEDD41 /* libDCTCoreData.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		24F6EED1158A442800CEDD41 = {
+			isa = PBXGroup;
+			children = (
+				24F6EEE1158A442800CEDD41 /* DCTCoreData */,
+				24F6EEF5158A442900CEDD41 /* DCTCoreDataTests */,
+				24F6EEDE158A442800CEDD41 /* Frameworks */,
+				24F6EEDD158A442800CEDD41 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		24F6EEDD158A442800CEDD41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24F6EEDC158A442800CEDD41 /* libDCTCoreData.a */,
+				24F6EEEC158A442800CEDD41 /* DCTCoreDataTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		24F6EEDE158A442800CEDD41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24F6EF06158A445F00CEDD41 /* CoreData.framework */,
+				24F6EEDF158A442800CEDD41 /* Foundation.framework */,
+				24F6EEED158A442800CEDD41 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24F6EEE1158A442800CEDD41 /* DCTCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				24F6EF08158A446E00CEDD41 /* Asynchronous */,
+				24F6EF0D158A446E00CEDD41 /* Automated Setup */,
+				24F6EF18158A446E00CEDD41 /* DCTCoreData.h */,
+				24F6EF19158A446E00CEDD41 /* NSArray+DCTSortDescriptors.h */,
+				24F6EF1A158A446E00CEDD41 /* NSArray+DCTSortDescriptors.m */,
+				24F6EF1B158A446E00CEDD41 /* NSFetchedResultsController+DCTExtras.h */,
+				24F6EF1C158A446E00CEDD41 /* NSFetchedResultsController+DCTExtras.m */,
+				24F6EF1D158A446E00CEDD41 /* NSFetchRequest+DCTExtras.h */,
+				24F6EF1E158A446E00CEDD41 /* NSFetchRequest+DCTExtras.m */,
+				24F6EF1F158A446E00CEDD41 /* NSManagedObject+DCTExtras.h */,
+				24F6EF20158A446E00CEDD41 /* NSManagedObject+DCTExtras.m */,
+				24F6EF21158A446E00CEDD41 /* NSManagedObject+DCTOrdering.h */,
+				24F6EF22158A446E00CEDD41 /* NSManagedObject+DCTOrdering.m */,
+				24F6EF23158A446E00CEDD41 /* NSManagedObject+DCTRelatedObjects.h */,
+				24F6EF24158A446E00CEDD41 /* NSManagedObject+DCTRelatedObjects.m */,
+				24F6EF25158A446E00CEDD41 /* NSManagedObjectContext+DCTDataFetching.h */,
+				24F6EF26158A446E00CEDD41 /* NSManagedObjectContext+DCTDataFetching.m */,
+				24F6EF27158A446E00CEDD41 /* NSManagedObjectContext+DCTExtras.h */,
+				24F6EF28158A446E00CEDD41 /* NSManagedObjectContext+DCTExtras.m */,
+				24F6EF29158A446E00CEDD41 /* NSPredicate+DCTExtras.h */,
+				24F6EF2A158A446E00CEDD41 /* NSPredicate+DCTExtras.m */,
+			);
+			path = DCTCoreData;
+			sourceTree = "<group>";
+		};
+		24F6EEF5158A442900CEDD41 /* DCTCoreDataTests */ = {
+			isa = PBXGroup;
+			children = (
+				24F6EEFB158A442900CEDD41 /* DCTCoreDataTests.h */,
+				24F6EEFC158A442900CEDD41 /* DCTCoreDataTests.m */,
+				24F6EEF6158A442900CEDD41 /* Supporting Files */,
+			);
+			path = DCTCoreDataTests;
+			sourceTree = "<group>";
+		};
+		24F6EEF6158A442900CEDD41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				24F6EEF7158A442900CEDD41 /* DCTCoreDataTests-Info.plist */,
+				24F6EEF8158A442900CEDD41 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		24F6EF08158A446E00CEDD41 /* Asynchronous */ = {
+			isa = PBXGroup;
+			children = (
+				24F6EF09158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.h */,
+				24F6EF0A158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.m */,
+				24F6EF0B158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.h */,
+				24F6EF0C158A446E00CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.m */,
+			);
+			path = Asynchronous;
+			sourceTree = "<group>";
+		};
+		24F6EF0D158A446E00CEDD41 /* Automated Setup */ = {
+			isa = PBXGroup;
+			children = (
+				24F6EF0E158A446E00CEDD41 /* NSAttributeDescription+DCTObjectCheck.h */,
+				24F6EF0F158A446E00CEDD41 /* NSAttributeDescription+DCTObjectCheck.m */,
+				24F6EF10158A446E00CEDD41 /* NSDictionary+DCTKeyForObject.h */,
+				24F6EF11158A446E00CEDD41 /* NSDictionary+DCTKeyForObject.m */,
+				24F6EF12158A446E00CEDD41 /* NSEntityDescription+DCTObjectCheck.h */,
+				24F6EF13158A446E00CEDD41 /* NSEntityDescription+DCTObjectCheck.m */,
+				24F6EF14158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSetup.h */,
+				24F6EF15158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSetup.m */,
+				24F6EF16158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSync.h */,
+				24F6EF17158A446E00CEDD41 /* NSManagedObject+DCTAutomatedSync.m */,
+			);
+			path = "Automated Setup";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		24F6EEDA158A442800CEDD41 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F6EF3D158A447E00CEDD41 /* DCTCoreData.h in Headers */,
+				24F6EF3E158A447E00CEDD41 /* NSArray+DCTSortDescriptors.h in Headers */,
+				24F6EF40158A447E00CEDD41 /* NSFetchedResultsController+DCTExtras.h in Headers */,
+				24F6EF42158A447E00CEDD41 /* NSFetchRequest+DCTExtras.h in Headers */,
+				24F6EF44158A447E00CEDD41 /* NSManagedObject+DCTExtras.h in Headers */,
+				24F6EF46158A447E00CEDD41 /* NSManagedObject+DCTOrdering.h in Headers */,
+				24F6EF48158A447E00CEDD41 /* NSManagedObject+DCTRelatedObjects.h in Headers */,
+				24F6EF4A158A447E00CEDD41 /* NSManagedObjectContext+DCTDataFetching.h in Headers */,
+				24F6EF4C158A447E00CEDD41 /* NSManagedObjectContext+DCTExtras.h in Headers */,
+				24F6EF4E158A447E00CEDD41 /* NSPredicate+DCTExtras.h in Headers */,
+				24F6EF53158A449700CEDD41 /* NSManagedObject+DCTAutomatedSetup.h in Headers */,
+				24F6EF54158A449700CEDD41 /* NSManagedObject+DCTAutomatedSync.h in Headers */,
+				24F6EF55158A44A000CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.h in Headers */,
+				24F6EF56158A44A000CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.h in Headers */,
+				24F6EF50158A449700CEDD41 /* NSAttributeDescription+DCTObjectCheck.h in Headers */,
+				24F6EF51158A449700CEDD41 /* NSDictionary+DCTKeyForObject.h in Headers */,
+				24F6EF52158A449700CEDD41 /* NSEntityDescription+DCTObjectCheck.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		24F6EEDB158A442800CEDD41 /* DCTCoreData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24F6EF00158A442900CEDD41 /* Build configuration list for PBXNativeTarget "DCTCoreData" */;
+			buildPhases = (
+				24F6EED8158A442800CEDD41 /* Sources */,
+				24F6EED9158A442800CEDD41 /* Frameworks */,
+				24F6EEDA158A442800CEDD41 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DCTCoreData;
+			productName = DCTCoreData;
+			productReference = 24F6EEDC158A442800CEDD41 /* libDCTCoreData.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		24F6EEEB158A442800CEDD41 /* DCTCoreDataTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24F6EF03158A442900CEDD41 /* Build configuration list for PBXNativeTarget "DCTCoreDataTests" */;
+			buildPhases = (
+				24F6EEE7158A442800CEDD41 /* Sources */,
+				24F6EEE8158A442800CEDD41 /* Frameworks */,
+				24F6EEE9158A442800CEDD41 /* Resources */,
+				24F6EEEA158A442800CEDD41 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24F6EEF3158A442900CEDD41 /* PBXTargetDependency */,
+			);
+			name = DCTCoreDataTests;
+			productName = DCTCoreDataTests;
+			productReference = 24F6EEEC158A442800CEDD41 /* DCTCoreDataTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		24F6EED3158A442800CEDD41 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Daniel Tull";
+			};
+			buildConfigurationList = 24F6EED6158A442800CEDD41 /* Build configuration list for PBXProject "DCTCoreData" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 24F6EED1158A442800CEDD41;
+			productRefGroup = 24F6EEDD158A442800CEDD41 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				24F6EEDB158A442800CEDD41 /* DCTCoreData */,
+				24F6EEEB158A442800CEDD41 /* DCTCoreDataTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		24F6EEE9158A442800CEDD41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F6EEFA158A442900CEDD41 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		24F6EEEA158A442800CEDD41 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		24F6EED8158A442800CEDD41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F6EF65158A478D00CEDD41 /* NSManagedObjectContext+DCTAsynchronousDataFetching.m in Sources */,
+				24F6EF66158A479000CEDD41 /* NSManagedObjectContext+DCTAsynchronousTasks.m in Sources */,
+				24F6EF67158A479E00CEDD41 /* NSAttributeDescription+DCTObjectCheck.m in Sources */,
+				24F6EF68158A47A300CEDD41 /* NSDictionary+DCTKeyForObject.m in Sources */,
+				24F6EF69158A47A700CEDD41 /* NSEntityDescription+DCTObjectCheck.m in Sources */,
+				24F6EF6A158A47AD00CEDD41 /* NSManagedObject+DCTAutomatedSetup.m in Sources */,
+				24F6EF6B158A47B100CEDD41 /* NSManagedObject+DCTAutomatedSync.m in Sources */,
+				24F6EF6C158A47B700CEDD41 /* NSArray+DCTSortDescriptors.m in Sources */,
+				24F6EF6D158A47BD00CEDD41 /* NSFetchedResultsController+DCTExtras.m in Sources */,
+				24F6EF6E158A47C000CEDD41 /* NSFetchRequest+DCTExtras.m in Sources */,
+				24F6EF6F158A47C600CEDD41 /* NSManagedObject+DCTExtras.m in Sources */,
+				24F6EF70158A47C900CEDD41 /* NSManagedObject+DCTOrdering.m in Sources */,
+				24F6EF71158A47CC00CEDD41 /* NSManagedObject+DCTRelatedObjects.m in Sources */,
+				24F6EF72158A47CF00CEDD41 /* NSManagedObjectContext+DCTDataFetching.m in Sources */,
+				24F6EF73158A47D200CEDD41 /* NSManagedObjectContext+DCTExtras.m in Sources */,
+				24F6EF74158A47D600CEDD41 /* NSPredicate+DCTExtras.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24F6EEE7158A442800CEDD41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F6EEFD158A442900CEDD41 /* DCTCoreDataTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		24F6EEF3158A442900CEDD41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24F6EEDB158A442800CEDD41 /* DCTCoreData */;
+			targetProxy = 24F6EEF2158A442900CEDD41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		24F6EEF8158A442900CEDD41 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24F6EEF9158A442900CEDD41 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		24F6EEFE158A442900CEDD41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		24F6EEFF158A442900CEDD41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		24F6EF01158A442900CEDD41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/DCTCoreData.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		24F6EF02158A442900CEDD41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/DCTCoreData.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		24F6EF04158A442900CEDD41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DCTCoreData/DCTCoreData-Prefix.pch";
+				INFOPLIST_FILE = "DCTCoreDataTests/DCTCoreDataTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		24F6EF05158A442900CEDD41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DCTCoreData/DCTCoreData-Prefix.pch";
+				INFOPLIST_FILE = "DCTCoreDataTests/DCTCoreDataTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		24F6EED6158A442800CEDD41 /* Build configuration list for PBXProject "DCTCoreData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24F6EEFE158A442900CEDD41 /* Debug */,
+				24F6EEFF158A442900CEDD41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24F6EF00158A442900CEDD41 /* Build configuration list for PBXNativeTarget "DCTCoreData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24F6EF01158A442900CEDD41 /* Debug */,
+				24F6EF02158A442900CEDD41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24F6EF03158A442900CEDD41 /* Build configuration list for PBXNativeTarget "DCTCoreDataTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24F6EF04158A442900CEDD41 /* Debug */,
+				24F6EF05158A442900CEDD41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 24F6EED3158A442800CEDD41 /* Project object */;
+}

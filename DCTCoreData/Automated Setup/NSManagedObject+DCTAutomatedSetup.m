@@ -34,7 +34,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "NSManagedObject+DCTAutomatedSetup.h"
+#import <DCTCoreData/DCTCoreData.h>
 #import "NSManagedObjectContext+DCTDataFetching.h"
 #import "NSManagedObject+DCTOrdering.h"
 #import "NSEntityDescription+DCTObjectCheck.h"
