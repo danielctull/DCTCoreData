@@ -35,7 +35,6 @@
  */
 
 #import <CoreData/CoreData.h>
-#import <DCTCoreData/DCTCoreData.h>
 
 typedef enum {
 	DCTManagedObjectAutomatedSyncStatusNil = 0,
