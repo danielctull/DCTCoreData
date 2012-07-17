@@ -18,7 +18,8 @@
 #define dctcoredata_2_0     20000
 #define dctcoredata_2_0_1	20001
 #define dctcoredata_2_1	    20100
-#define dctcoredata         dctcoredata_2_1
+#define dctcoredata_2_2	    20200
+#define dctcoredata         dctcoredata_2_2
 #endif
 
 #import <DCTCoreData/NSArray+DCTSortDescriptors.h>
