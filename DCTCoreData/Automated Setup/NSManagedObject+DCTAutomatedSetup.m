@@ -35,13 +35,9 @@
  */
 
 #import <DCTCoreData/DCTCoreData.h>
-#import "NSManagedObjectContext+DCTDataFetching.h"
-#import "NSManagedObject+DCTOrdering.h"
 #import "NSEntityDescription+DCTObjectCheck.h"
 #import "NSAttributeDescription+DCTObjectCheck.h"
-#import "NSManagedObject+DCTRelatedObjects.h"
 #import "NSDictionary+DCTKeyForObject.h"
-#import "NSPredicate+DCTExtras.h"
 
 /* Define these for logging problems:
  
